@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4148678867413700650}
   - component: {fileID: 6154601537940847259}
   - component: {fileID: 2227491287565348702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SuperRocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}

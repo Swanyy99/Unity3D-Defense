@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private int curWayIndex = 0;
 
-    [SerializeField]
-    private int Hp;
+    public int MaxHp;
+    public int Hp;
 
     private void Awake()
     {
@@ -18,19 +18,22 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+
         SetNextPoint();
 
         if (WaveManager.Instance.Wave < 10)
         {
-            Hp = WaveManager.Instance.Wave + 3;
+            MaxHp = WaveManager.Instance.Wave + 2;
             agent.speed = 5;
         }
 
         if (WaveManager.Instance.Wave >= 10)
         {
-            Hp = WaveManager.Instance.Wave * 2;
+            MaxHp = WaveManager.Instance.Wave * 2;
             agent.speed = 7;
         }
+
+        Hp = MaxHp;
 
     }
 
@@ -90,4 +93,13 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag.Equals("Attack"))
+    //    {
+    //        TakeDamage(1);
+    //    }
+
+    //}
 }

@@ -42,6 +42,12 @@ public class TowerPlace : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (GameManager.Instance.BuildMode == false)
+            return;
+
+        if (Input.GetMouseButton(1))
+            return;
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             isOver = false;
@@ -67,6 +73,12 @@ public class TowerPlace : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (GameManager.Instance.BuildMode == false)
+            return;
+
+        if (Input.GetMouseButton(1))
             return;
 
         if (tower == null)

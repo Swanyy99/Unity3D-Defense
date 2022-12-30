@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 607044502571972318}
   - component: {fileID: 7248050798976015471}
   - component: {fileID: 3392922697224079786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4112579518304017725}
   - component: {fileID: 2474107612659309269}
-  m_Layer: 15
+  m_Layer: 7
   m_Name: TrailLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 6684321012017337312}
   - component: {fileID: 5821465644070473422}
   - component: {fileID: 3289358608266249854}
-  m_Layer: 15
+  m_Layer: 7
   m_Name: TrailFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5059,7 +5059,7 @@ GameObject:
   - component: {fileID: 4471896553589266737}
   - component: {fileID: 7078524297813276395}
   - component: {fileID: 2673970950749236522}
-  m_Layer: 15
+  m_Layer: 7
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

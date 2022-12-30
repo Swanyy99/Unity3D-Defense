@@ -53,7 +53,7 @@ public class WaveManager : SingleTon<WaveManager>
 
     private void Update()
     {
-        if (spawnDelay > 0.5f)
+        if (spawnDelay > 0.7f)
         {
             if (Wave < 10)
                 spawnDelay = 1 - (Wave / 10f);
