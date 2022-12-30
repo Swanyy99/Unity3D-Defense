@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float padding;
 
-
+    
     [SerializeField]
     private float mouseSensitivity;
 
@@ -34,6 +34,7 @@ public class CameraController : MonoBehaviour
         Rotate();
     }
 
+    
     private void Move()
     {
         if (GameManager.Instance.BuildMode == false)

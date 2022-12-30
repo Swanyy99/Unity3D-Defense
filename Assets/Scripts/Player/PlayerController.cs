@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    [SerializeField]
     private float moveY;
+    [SerializeField]
+    private int attckCount;
 
     [SerializeField]
     private GameObject standard;
@@ -35,8 +38,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CinemachineFreeLook playerCam;
 
+    private bool attacked;
+    private float attackTimer;
 
-    float maxDistance = 1.2f;
+
+    float maxDistance = 1.4f;
 
     
 
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -65,17 +71,33 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.BuildMode == true)
             return;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
-            return;
+        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
+        //{
+        //    Debug.Log("공격중이애오");
+        //    return;
+        //}
 
-        if (Input.GetMouseButtonDown(0))
+        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == true ||
+        //    anim.GetCurrentAnimatorStateInfo(0).IsName("Move") == true)
+        //    return;
+
+        if (Input.GetMouseButtonDown(0) && 
+            anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false &&
+            anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false &&
+            attacked == false)
         {
+
+            attacked = true;
+            anim.SetBool("isMoving", false);
+            anim.SetBool("isAttacking", true);
             anim.SetTrigger("Attack");
-            //Instantiate(SwordWave, AttackPos.transform.position, AttackPos.transform.rotation);
-            doubleSwordWave = StartCoroutine(DoubleSwordWave());
+            Instantiate(SwordWave, AttackPos.transform.position, AttackPos.transform.rotation);
+            attckCount += 1;
+
+            //doubleSwordWave = StartCoroutine(DoubleSwordWave());
         }
 
-        
+
 
     }
 
@@ -94,75 +116,61 @@ public class PlayerController : MonoBehaviour
             playerCam.enabled = true;
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
-            return;
-
-        Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
-        Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0f, Camera.main.transform.right.z).normalized;
-
-        Vector3 moveInput = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
-        if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
-
-        Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
-
-        controller.Move(moveVec * moveSpeed * Time.deltaTime);
-
-        if (moveVec.sqrMagnitude != 0)
-        {
-            transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
-        }
 
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ||
-            Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            anim.SetBool("isMoving", true);
-        }
-
-        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) ||
-                 Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) ||
+                Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             anim.SetBool("isMoving", false);
         }
 
+
+
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
+        {
+
+            anim.SetBool("isAttacking", false);
+            Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
+            Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0f, Camera.main.transform.right.z).normalized;
+
+            Vector3 moveInput = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
+            if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
+
+            Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
+
+            controller.Move(moveVec * moveSpeed * Time.deltaTime);
+
+            if (moveVec.sqrMagnitude != 0)
+            {
+                transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
+            }
+
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ||
+                Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                anim.SetBool("isMoving", true);
+            }
+
+            
+
+        }
     }
 
     private void Jump()
     {
-        moveY += Physics.gravity.y * Time.deltaTime;
+        if (controller.isGrounded == false)
+            moveY += Physics.gravity.y * Time.deltaTime;
+
+        if (controller.isGrounded == true)
+            moveY = 0;
 
 
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    moveY = jumpSpeed;
-        //    anim.SetBool("isJumping", true);
-        //}
-
-        //else if (controller.isGrounded && moveY < 0)
-        //{
-        //    Debug.Log("착지 완료");
-        //    moveY = 0;
-        //    anim.SetBool("isJumping", false);
-        //}
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
-            return;
+        return;
 
-        //if (Input.GetButtonDown("Jump") && controller.isGrounded == true/* && anim.GetBool("isJumping") == false*/)
-        //{
-        //    anim.SetTrigger("Jump");
-        //    moveY = jumpSpeed;
-        //    anim.SetBool("isJumping", true);
-        //}
 
-        //else if (moveY <= 0 && controller.isGrounded)
-        //{
-        //    //Debug.Log("착지 완료");
-        //    //moveY = 0;
-        //    anim.SetBool("isJumping", false);
-        //}
-
-        //controller.Move(Vector3.up * moveY * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && anim.GetBool("isJumping") == false)
         {
@@ -173,15 +181,26 @@ public class PlayerController : MonoBehaviour
         else if (IsGround() && moveY < 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == true)
         {
             Debug.Log("착지 완료");
-            //moveY = 0;
             anim.SetBool("isJumping", false);
         }
+
+        
 
         controller.Move(Vector3.up * moveY * Time.deltaTime);
     }
 
     public void Interaction()
     {
+        if (attacked == true)
+        {
+            attackTimer += Time.deltaTime;
+
+            if (attackTimer >= 1.2)
+            {
+                attacked = false;
+                attackTimer = 0;
+            }
+        }
         
         if (Input.GetKeyDown(KeyCode.R))
             GameManager.Instance.GameOn = true;
@@ -207,22 +226,28 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isMoving", false);
             break;
         }
-        StopCoroutine(DoubleSwordWave());
+        StopCoroutine(doubleSwordWave);
     }
 
     private bool IsGround()
     {
         if (controller.isGrounded) return true;
 
-        if (anim.GetBool("isJumping") == false)
-            return true;
+        //if (anim.GetBool("isJumping") == false)
+        //    return true;
 
-        var ray = new Ray(standard.transform.position + Vector3.up * 0.5f, Vector3.down);
+        if (moveY < 0)
+        {
+            var ray = new Ray(standard.transform.position + Vector3.up * 0.5f, Vector3.down);
 
 
-        Debug.DrawRay(standard.transform.position + Vector3.up * 0.5f, Vector3.down * maxDistance, Color.red);
+            Debug.DrawRay(standard.transform.position + Vector3.up * 0.5f, Vector3.down * maxDistance, Color.red);
 
-        return Physics.Raycast(ray, maxDistance, jumpLayerMask);
+            return Physics.Raycast(ray, maxDistance, jumpLayerMask);
+        }
+
+        return false;
+
     }
 
 
