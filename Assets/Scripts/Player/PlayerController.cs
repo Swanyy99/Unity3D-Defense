@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject standard;
 
+    [Header("Basic")]
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private LayerMask jumpLayerMask;
 
     [Header("Attack")]
     [SerializeField]
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private CinemachineFreeLook playerCam;
 
 
-    //float maxDistance = 1.8f;
+    float maxDistance = 1.2f;
 
     
 
@@ -145,18 +148,31 @@ public class PlayerController : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
             return;
 
-        
+        //if (Input.GetButtonDown("Jump") && controller.isGrounded == true/* && anim.GetBool("isJumping") == false*/)
+        //{
+        //    anim.SetTrigger("Jump");
+        //    moveY = jumpSpeed;
+        //    anim.SetBool("isJumping", true);
+        //}
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded == true/* && anim.GetBool("isJumping") == false*/)
+        //else if (moveY <= 0 && controller.isGrounded)
+        //{
+        //    //Debug.Log("ÂøÁö ¿Ï·á");
+        //    //moveY = 0;
+        //    anim.SetBool("isJumping", false);
+        //}
+
+        //controller.Move(Vector3.up * moveY * Time.deltaTime);
+
+        if (Input.GetButtonDown("Jump") && anim.GetBool("isJumping") == false)
         {
-            anim.SetTrigger("Jump");
             moveY = jumpSpeed;
             anim.SetBool("isJumping", true);
         }
 
-        else if (moveY <= 0 && controller.isGrounded)
+        else if (IsGround() && moveY < 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == true)
         {
-            //Debug.Log("ÂøÁö ¿Ï·á");
+            Debug.Log("ÂøÁö ¿Ï·á");
             //moveY = 0;
             anim.SetBool("isJumping", false);
         }
@@ -194,20 +210,20 @@ public class PlayerController : MonoBehaviour
         StopCoroutine(DoubleSwordWave());
     }
 
-    //private bool IsGround()
-    //{
-    //    if (controller.isGrounded) return true;
+    private bool IsGround()
+    {
+        if (controller.isGrounded) return true;
 
-    //    if (anim.GetBool("isJumping") == false)
-    //        return true;
+        if (anim.GetBool("isJumping") == false)
+            return true;
 
-    //    var ray = new Ray(standard.transform.position + Vector3.up * 0.5f, Vector3.down);
+        var ray = new Ray(standard.transform.position + Vector3.up * 0.5f, Vector3.down);
 
 
-    //    Debug.DrawRay(standard.transform.position + Vector3.up * 0.5f, Vector3.down * maxDistance, Color.red);
+        Debug.DrawRay(standard.transform.position + Vector3.up * 0.5f, Vector3.down * maxDistance, Color.red);
 
-    //    return Physics.Raycast(ray, maxDistance);
-    //}
+        return Physics.Raycast(ray, maxDistance, jumpLayerMask);
+    }
 
 
 }
