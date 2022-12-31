@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveY;
     [SerializeField]
-    private int attckCount;
+    private int attackCount;
 
     [SerializeField]
     private GameObject standard;
@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject AttackPos;
     [SerializeField]
+    private GameObject SwordTrail;
+    [SerializeField]
     private GameObject SwordWave;
 
     private Coroutine doubleSwordWave;
@@ -39,10 +41,14 @@ public class PlayerController : MonoBehaviour
     private CinemachineFreeLook playerCam;
 
     private bool attacked;
+    private bool BasicAttacked;
+
+    private float BasicAttackTimer;
     private float attackTimer;
+    private float DashTimer;
+    public bool Attacking;
 
-
-    float maxDistance = 1.4f;
+    float maxDistance = 0.7f;
 
     
 
@@ -61,49 +67,94 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        Jump();
         Attack();
+        Jump();
         Interaction();
+        Dash();
     }
+
+
 
     private void Attack()
     {
         if (GameManager.Instance.BuildMode == true)
             return;
 
-        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
-        //{
-        //    Debug.Log("공격중이애오");
-        //    return;
-        //}
+        if (curAnim("comboSlash1") || curAnim("comboSlash2") ||
+            curAnim("comboSlash3") || curAnim("comboSlash4"))
+            SwordTrail.SetActive(true);
+        else
+            SwordTrail.SetActive(false);
 
-        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == true ||
-        //    anim.GetCurrentAnimatorStateInfo(0).IsName("Move") == true)
-        //    return;
 
-        if (Input.GetMouseButtonDown(0) && 
-            anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false &&
-            anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false &&
-            attacked == false)
+        
+
+            if (Input.GetMouseButtonDown(0))
+            {
+
+
+                if (!curAnim("Attack") && !curAnim("Jump") &&
+                    !curAnim("comboSlash1") && !curAnim("comboSlash2"))
+                {
+                    Attacking = true;
+
+                    BasicAttacked = true;
+                    BasicAttackTimer = 0;
+                    anim.SetInteger("BasicAttack", 1);
+                }
+                if (curAnim("comboSlash1"))
+                {
+                    BasicAttacked = true;
+                    BasicAttackTimer = 0;
+                    anim.SetInteger("BasicAttack", 2);
+                }
+                if (curAnim("comboSlash2")/* && anim.GetInteger("BasicAttack") == 2*/)
+                {
+
+                    anim.SetInteger("BasicAttack", 3);
+                }
+            }
+
+            if (BasicAttacked == true)
+            {
+                BasicAttackTimer += Time.deltaTime;
+
+                if (BasicAttackTimer >= 0.6f)
+                {
+                    SwordTrail.SetActive(false);
+
+                    BasicAttacked = false;
+                    BasicAttackTimer = 0;
+                    anim.SetInteger("BasicAttack", 0);
+                }
+            }
+
+
+        if (curAnim("Idle") || curAnim("Move"))
         {
+            if (Input.GetKeyDown(KeyCode.Z) &&
+                curAnim("Attack") == false &&
+                curAnim("Jump") == false &&
+                attacked == false)
+            {
 
-            attacked = true;
-            anim.SetBool("isMoving", false);
-            anim.SetBool("isAttacking", true);
-            anim.SetTrigger("Attack");
-            Instantiate(SwordWave, AttackPos.transform.position, AttackPos.transform.rotation);
-            attckCount += 1;
+                attacked = true;
+                anim.SetBool("isMoving", false);
+                anim.SetBool("isAttacking", true);
+                anim.SetTrigger("Attack");
+                StartCoroutine(DoubleSwordWave());
 
-            //doubleSwordWave = StartCoroutine(DoubleSwordWave());
+                //doubleSwordWave = StartCoroutine(DoubleSwordWave());
+            }
         }
-
-
 
     }
 
+
+
     private void Move()
     {
-        
+
 
         if (GameManager.Instance.BuildMode == true)
         {
@@ -127,8 +178,14 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
+        if (curAnim("Attack") == false &&
+            curAnim("comboSlash1") == false &&
+            curAnim("comboSlash2") == false &&
+            curAnim("comboSlash3") == false &&
+            curAnim("comboSlash4") == false
+            )
         {
+            Attacking = false;
 
             anim.SetBool("isAttacking", false);
             Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
@@ -167,18 +224,24 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack") == true)
+        if (curAnim("Attack") == true)
         return;
 
 
+        Attacking = false;
 
-        if (Input.GetButtonDown("Jump") && anim.GetBool("isJumping") == false)
+        if (Input.GetButtonDown("Jump") && anim.GetBool("isJumping") == false &&
+            curAnim("comboSlash1") == false &&
+            curAnim("comboSlash2") == false &&
+            curAnim("comboSlash3") == false &&
+            curAnim("comboSlash4") == false)
         {
+
             moveY = jumpSpeed;
             anim.SetBool("isJumping", true);
         }
 
-        else if (IsGround() && moveY < 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Jump") == true)
+        else if (IsGround() && moveY < 0 && curAnim("Jump") == true)
         {
             Debug.Log("착지 완료");
             anim.SetBool("isJumping", false);
@@ -189,13 +252,36 @@ public class PlayerController : MonoBehaviour
         controller.Move(Vector3.up * moveY * Time.deltaTime);
     }
 
+    public void Dash()
+    {
+        if (curAnim("Attack"))
+            return;
+    
+
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            anim.SetBool("isDash", true);
+
+        if (anim.GetBool("isDash") == true)
+        {
+            DashTimer += Time.deltaTime;
+            if (DashTimer >= 0.5f)
+            {
+                anim.SetBool("isDash", false);
+                DashTimer = 0;
+            }
+        }
+    }
+
     public void Interaction()
     {
+        
+
         if (attacked == true)
         {
             attackTimer += Time.deltaTime;
 
-            if (attackTimer >= 1.2)
+            if (attackTimer >= 1)
             {
                 attacked = false;
                 attackTimer = 0;
@@ -221,12 +307,12 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.6f);
             Instantiate(SwordWave, AttackPos.transform.position, AttackPos.transform.rotation);
             anim.SetBool("isMoving", false);
             break;
         }
-        StopCoroutine(doubleSwordWave);
+        //StopCoroutine(doubleSwordWave);
     }
 
     private bool IsGround()
@@ -238,16 +324,21 @@ public class PlayerController : MonoBehaviour
 
         if (moveY < 0)
         {
-            var ray = new Ray(standard.transform.position + Vector3.up * 0.5f, Vector3.down);
+            var ray = new Ray(standard.transform.position + Vector3.down * 0.3f, Vector3.down);
 
 
-            Debug.DrawRay(standard.transform.position + Vector3.up * 0.5f, Vector3.down * maxDistance, Color.red);
+            Debug.DrawRay(standard.transform.position + Vector3.down * 0.3f, Vector3.down * maxDistance, Color.red);
 
             return Physics.Raycast(ray, maxDistance, jumpLayerMask);
         }
 
         return false;
 
+    }
+
+    bool curAnim(string name)
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
 
