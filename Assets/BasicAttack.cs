@@ -10,6 +10,11 @@ public class BasicAttack : MonoBehaviour
 
     private Animator anim;
 
+    [SerializeField]
+    private GameObject hitEffect;
+
+    [SerializeField]
+    private GameObject hitPos;
     private void Start()
     {
         col = GetComponent<BoxCollider>();
@@ -22,9 +27,13 @@ public class BasicAttack : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                Debug.Log("적과 충돌");
+                Debug.Log("기본공격 적중");
                 target = other.GetComponent<Enemy>();
-                target.TakeDamage(1);
+                Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
+                if (curAnim("comboSlash4"))
+                    target.TakeDamage(3);
+                else
+                    target.TakeDamage(1);
             }
         }
     }

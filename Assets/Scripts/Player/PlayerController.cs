@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     float maxDistance = 0.7f;
 
-    
+    public Sword sword;
 
     private void Awake()
     {
@@ -267,7 +267,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isJumping", true);
         }
 
-        else if (IsGround() && moveY < 0 && curAnim("Jump") == true)
+        else if (IsGround()/* && moveY < 0 */&& curAnim("Jump") == true)
         {
             Debug.Log("ÂøÁö ¿Ï·á");
             anim.SetBool("isJumping", false);
@@ -305,6 +305,16 @@ public class PlayerController : MonoBehaviour
                 isDash = false;
             }
         }
+    }
+
+    public void OnAttackStart()
+    {
+        sword.enableSwordCollider();
+    }
+
+    public void OnAttackEnd()
+    {
+        sword.disableSwordCollider();
     }
 
     public void Interaction()
