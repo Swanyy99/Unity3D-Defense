@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
     private float DashTimer;
     public bool Attacking;
 
+    [SerializeField]
+    private GameObject DashTrail;
+
+    public bool isDash;
+
     float maxDistance = 0.7f;
 
     
@@ -175,7 +180,26 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isMoving", false);
         }
 
+        if (curAnim("comboSlash1") == true ||
+            curAnim("comboSlash2") == true ||
+            curAnim("comboSlash3") == true ||
+            curAnim("comboSlash4") == true)
+        {
+            Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
+            Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0f, Camera.main.transform.right.z).normalized;
 
+            Vector3 moveInput = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
+            if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
+
+            Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
+
+            controller.Move(moveVec * 0.3f * Time.deltaTime);
+
+            if (moveVec.sqrMagnitude != 0)
+            {
+                transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
+            }
+        }
 
 
         if (curAnim("Attack") == false &&
@@ -222,6 +246,8 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded == true)
             moveY = 0;
 
+        if (GameManager.Instance.BuildMode == true)
+            return;
 
 
         if (curAnim("Attack") == true)
@@ -256,19 +282,27 @@ public class PlayerController : MonoBehaviour
     {
         if (curAnim("Attack"))
             return;
-    
 
-        
+        if (curAnim("Jump"))
+            return;
+
+        if (GameManager.Instance.BuildMode == true)
+            return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
             anim.SetBool("isDash", true);
 
         if (anim.GetBool("isDash") == true)
         {
+            isDash = true;
+            moveSpeed = 6f;
             DashTimer += Time.deltaTime;
-            if (DashTimer >= 0.5f)
+            if (DashTimer >= 0.3f)
             {
                 anim.SetBool("isDash", false);
                 DashTimer = 0;
+                moveSpeed = 5f;
+                isDash = false;
             }
         }
     }

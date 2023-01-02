@@ -39,7 +39,7 @@ public class SwordWaveCollision : MonoBehaviour
         {
             Debug.Log("적과 충돌");
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(3);
+            target.TakeDamage(10);
             Instantiate(hitEffect, transform.position, transform.rotation);
         }
     }

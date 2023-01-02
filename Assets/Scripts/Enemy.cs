@@ -23,7 +23,8 @@ public class Enemy : MonoBehaviour
 
         if (WaveManager.Instance.Wave < 10)
         {
-            MaxHp = WaveManager.Instance.Wave + 2;
+            //MaxHp = WaveManager.Instance.Wave + 2;
+            MaxHp = WaveManager.Instance.Wave + 99;
             agent.speed = 5;
         }
 
