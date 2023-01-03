@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     float maxDistance = 0.7f;
 
+    float va;
+
     public Sword sword;
 
     private void Awake()
@@ -74,8 +76,8 @@ public class PlayerController : MonoBehaviour
         Move();
         Attack();
         Jump();
-        Interaction();
         Dash();
+        Interaction();
     }
 
 
@@ -84,6 +86,9 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.BuildMode == true)
             return;
+
+        //if (curAnim("Dash"))
+        //    return;
 
         if (curAnim("comboSlash1") || curAnim("comboSlash2") ||
             curAnim("comboSlash3") || curAnim("comboSlash4"))
@@ -248,11 +253,20 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        //if (curAnim("Dash") == true)
+        if (Input.GetKey(KeyCode.LeftShift))
+            va = 0;
+        else
+            va = 1;
+
         if (controller.isGrounded == false)
-            moveY += Physics.gravity.y * Time.deltaTime;
+            moveY += Physics.gravity.y * Time.deltaTime * va;
+
 
         if (controller.isGrounded == true)
             moveY = 0;
+
+        
 
         if (GameManager.Instance.BuildMode == true)
             return;
@@ -268,20 +282,24 @@ public class PlayerController : MonoBehaviour
             curAnim("comboSlash1") == false &&
             curAnim("comboSlash2") == false &&
             curAnim("comboSlash3") == false &&
-            curAnim("comboSlash4") == false)
+            curAnim("comboSlash4") == false/* && isDash == false*/)
         {
-
-            moveY = jumpSpeed;
+            //anim.SetBool("isDash", false);
+            //isDash = false;
+            moveY = jumpSpeed * va;
             anim.SetBool("isJumping", true);
         }
 
-        else if (IsGround()/* && moveY < 0 */&& curAnim("Jump") == true)
+        //if (anim.GetBool("isJumping"))
+        //    if(Input.GetKeyDown(KeyCode.LeftShift))
+        //        moveY = jumpSpeed * 1.2f;
+
+            else if (IsGround()/* && moveY < 0 */&& curAnim("Jump") == true && curAnim("Dash") == false)
         {
             Debug.Log("ÂøÁö ¿Ï·á");
             anim.SetBool("isJumping", false);
         }
 
-        
 
         controller.Move(Vector3.up * moveY * Time.deltaTime);
     }
@@ -291,17 +309,26 @@ public class PlayerController : MonoBehaviour
         if (curAnim("Attack"))
             return;
 
-        if (curAnim("Jump"))
-            return;
+        //if (curAnim("Jump"))
+        //    return;
 
         if (GameManager.Instance.BuildMode == true)
             return;
 
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.SetBool("isJumping", false);
             anim.SetBool("isDash", true);
+            //moveY-= Physics.gravity.y * Time.deltaTime;
+        }
 
         if (anim.GetBool("isDash") == true)
         {
+            BasicAttacked = false;
+            BasicAttackTimer = 0;
+            anim.SetInteger("BasicAttack", 0);
             isDash = true;
             moveSpeed = 6f;
             DashTimer += Time.deltaTime;
