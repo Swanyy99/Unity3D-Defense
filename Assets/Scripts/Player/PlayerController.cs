@@ -212,6 +212,10 @@ public class PlayerController : MonoBehaviour
             Attacking = false;
 
             anim.SetBool("isAttacking", false);
+
+
+
+
             Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
             Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0f, Camera.main.transform.right.z).normalized;
 
@@ -226,6 +230,10 @@ public class PlayerController : MonoBehaviour
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
             }
+
+
+
+
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ||
                 Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))

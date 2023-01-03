@@ -90,7 +90,7 @@ public class WaveManager : SingleTon<WaveManager>
         {
             GameManager.Instance.GameOn = false;
             Wave += 1;
-            NowWaveText.text = "Wave " + Wave.ToString();
+            NowWaveText.text = "WAVE " + Wave.ToString();
             SpawnedMonster = 0;
             WaveMonsterDeath = 0;
         }

@@ -12,6 +12,7 @@ public class GameManager : SingleTon<GameManager>
     public bool BuildMode;
 
     [Header("UI")]
+    public GameObject TowerPlaceUIOpenButton;
     public GameObject nowTowerImage;
     public GameObject TowerPlaceUI;
     public GameObject StartButtonUI;
