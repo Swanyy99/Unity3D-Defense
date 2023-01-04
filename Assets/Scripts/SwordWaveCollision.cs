@@ -12,6 +12,7 @@ public class SwordWaveCollision : MonoBehaviour
 
 
     private Enemy target;
+    private Monster1 target2;
 
     private void Start()
     {
@@ -38,9 +39,15 @@ public class SwordWaveCollision : MonoBehaviour
         if (other.gameObject.tag.Equals("Enemy"))
         {
             Debug.Log("적과 충돌");
-            target = other.GetComponent<Enemy>();
-            target.TakeDamage(10);
-            Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+            
+                target = other.GetComponent<Enemy>();
+                target.TakeDamage(10);
+                Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+
+            
+                target2 = other.GetComponent<Monster1>();
+                target2.TakeDamage(10);
+                Instantiate(hitEffect, target2.transform.position, target2.transform.rotation);
         }
     }
 

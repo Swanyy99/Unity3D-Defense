@@ -205,6 +205,9 @@ public class PlayerController : MonoBehaviour
         if (curAnim("Attack") == true)
             return;
 
+        if (curAnim("Dash") == true)
+            return;
+
         Attacking = false;
         if (Input.GetButtonDown("Jump") && IsGround()
             && anim.GetBool("isJumping") == false &&
@@ -222,25 +225,28 @@ public class PlayerController : MonoBehaviour
         }
 
         controller.Move(Vector3.up * moveY * Time.deltaTime);
+
     }
     public void Dash()
     {
         if (curAnim("Attack"))
             return;
-        //if (curAnim("Jump"))
-        //    return;
+        
         if (GameManager.Instance.BuildMode == true)
             return;
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             anim.SetBool("isDash", true);
+
         if (anim.GetBool("isDash") == true)
         {
+            anim.SetInteger("BasicAttack", 0);
             anim.SetBool("isJumping", false);
             isDash = true;
             moveSpeed = 6f;
             DashTimer += Time.deltaTime;
-            if (DashTimer >= 0.4f)
+
+            if (DashTimer >= 0.3f)
             {
                 anim.SetBool("isDash", false);
                 DashTimer = 0;

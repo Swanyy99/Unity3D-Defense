@@ -6,13 +6,19 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
+
+    //public GameObject destination;
+
     private int curWayIndex = 0;
 
     public int MaxHp;
     public int Hp;
 
+    //private Rigidbody rigid;
+
     private void Awake()
     {
+        //rigid = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -48,6 +54,13 @@ public class Enemy : MonoBehaviour
             else
                 SetNextPoint();
         }
+
+        //transform.Translate(0f, 0f, 3f * Time.deltaTime);
+
+        //var direction = (destination.transform.position - transform.position).normalized;
+        //this.transform.Translate(0, 0, Time.deltaTime * 2f);
+        //var targetRotation = Quaternion.LookRotation(direction);
+        //rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
     }
 
     private bool IsArrive()
@@ -80,6 +93,7 @@ public class Enemy : MonoBehaviour
     {
         curWayIndex++;
         agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
+        //destination.transform.position = WaveManager.Instance.WayPoints[curWayIndex].position;
     }
 
     public void TakeDamage(int damage)
