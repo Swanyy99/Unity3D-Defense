@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private Rigidbody rigid;
+    //private Rigidbody rigid;
     private Animator anim;
     [SerializeField]
     private float moveY;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rigid = GetComponent<Rigidbody>();
+        //rigid = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
     }
@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
             }
         }
+
         if (curAnim("Attack") == false &&
             curAnim("comboSlash1") == false &&
             curAnim("comboSlash2") == false &&
@@ -178,6 +179,7 @@ public class PlayerController : MonoBehaviour
             Vector3 moveInput = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
             if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
             Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
+            //rigid.velocity = moveVec * moveSpeed;
             controller.Move(moveVec * moveSpeed * Time.deltaTime);
             if (moveVec.sqrMagnitude != 0)
             {
@@ -216,6 +218,8 @@ public class PlayerController : MonoBehaviour
             curAnim("comboSlash3") == false &&
             curAnim("comboSlash4") == false)
         {
+            //rigid.AddForce(Vector3.up * moveY, ForceMode.Impulse);
+
             moveY = jumpSpeed;
             anim.SetBool("isJumping", true);
         }
@@ -327,4 +331,9 @@ public class PlayerController : MonoBehaviour
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
+
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    hit.
+    //}
 }

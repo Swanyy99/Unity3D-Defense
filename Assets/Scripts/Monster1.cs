@@ -8,7 +8,8 @@ public class Monster1 : MonoBehaviour
     public int MaxHp;
     public int Hp;
 
-
+    private CharacterController player;
+    private Vector3 moveVec;
     private void Start()
     {
 
@@ -33,6 +34,17 @@ public class Monster1 : MonoBehaviour
             Destroy(gameObject);
 
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        //if (collision.gameObject.tag.Equals("Player"))
+        //{
+        //    Debug.Log("ø¿»£");
+        //    player = collision.gameObject.GetComponent<CharacterController>();
+        //    moveVec = new Vector3(0f, 0f, 1f);
+        //    player.Move(moveVec * Time.deltaTime);
+        //}
     }
 
 
