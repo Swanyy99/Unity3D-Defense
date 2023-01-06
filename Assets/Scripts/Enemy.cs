@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
 
     private float Distance;
 
+    [SerializeField]
+    private GameObject Weapon;
+
     Vector3 moveVec;
 
     //private Rigidbody rigid;
@@ -135,6 +138,9 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("Death");
         rigid.useGravity = false;
         col.enabled = false;
+        Weapon.GetComponent<Rigidbody>().useGravity = true;
+        Weapon.GetComponent<Rigidbody>().isKinematic = false;
+        Weapon.GetComponent<Collider>().isTrigger = false;
         StartCoroutine(Death());
     }
 

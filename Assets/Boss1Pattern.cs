@@ -17,6 +17,8 @@ public class Boss1Pattern : MonoBehaviour
     [SerializeField]
     private LayerMask obstacleMask;
 
+
+
     [SerializeField]
     public GameObject AxeEffect;
 
