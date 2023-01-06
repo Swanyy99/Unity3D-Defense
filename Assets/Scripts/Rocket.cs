@@ -42,7 +42,7 @@ public class Rocket : MonoBehaviour
        
         if (Mytarget != null)
         {
-            var direction = (Mytarget.transform.position - transform.position).normalized;
+            var direction = (Mytarget.transform.GetChild(0).position - transform.position).normalized;
             rigid.velocity = transform.forward * RocketSpeed;
             var targetRotation = Quaternion.LookRotation(direction);
             rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));

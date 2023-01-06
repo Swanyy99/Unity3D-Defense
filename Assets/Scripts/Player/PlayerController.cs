@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(moveVec * moveSpeed * Time.deltaTime);
             if (moveVec.sqrMagnitude != 0)
             {
-                transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.8f);
+                transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.5f);
             }
 
 
