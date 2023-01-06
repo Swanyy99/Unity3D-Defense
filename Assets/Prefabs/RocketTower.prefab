@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topParts: {fileID: 3681238302166585391}
   bottomParts: {fileID: 3681238302008746117}
-  range: 6
+  range: 8
   fireRate: 1
   cost: 1
   Rocket: {fileID: 607044502571872380, guid: b2e97ad1458ef394eba40517077fe861, type: 3}

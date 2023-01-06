@@ -57,5 +57,12 @@ public class BoomEffect : MonoBehaviour
             target = other.GetComponent<Enemy>();
             target.TakeDamage(1);
         }
+
+        if (other.gameObject.tag.Equals("Boss"))
+        {
+            Debug.Log("堡开 单固瘤 户具");
+            target = other.GetComponent<Enemy>();
+            target.TakeDamage(1);
+        }
     }
 }

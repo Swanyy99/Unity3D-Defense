@@ -490,6 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 3
   Hp: 3
+  player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
 --- !u!33 &4348956227543026839
 MeshFilter:
   m_ObjectHideFlags: 0

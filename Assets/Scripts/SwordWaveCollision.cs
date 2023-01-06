@@ -41,13 +41,19 @@ public class SwordWaveCollision : MonoBehaviour
             Debug.Log("적과 충돌");
             
                 target = other.GetComponent<Enemy>();
-                target.TakeDamage(10);
+                target.TakeDamage(20);
                 Instantiate(hitEffect, target.transform.position, target.transform.rotation);
 
-            
-                target2 = other.GetComponent<Monster1>();
-                target2.TakeDamage(10);
-                Instantiate(hitEffect, target2.transform.position, target2.transform.rotation);
+        }
+
+        if (other.gameObject.tag.Equals("Boss"))
+        {
+            Debug.Log("보스와 충돌");
+
+            target = other.GetComponent<Enemy>();
+            target.TakeDamage(20);
+            Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+
         }
     }
 

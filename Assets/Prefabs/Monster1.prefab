@@ -2320,7 +2320,10 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  AxeEffect: {fileID: 4269200528300084780, guid: 7b06ad276e2d76f4793dd7d76e427308, type: 3}
+  AxePos: {fileID: 0}
   TargetTransform: {fileID: 0}
+  player: {fileID: 0}
 --- !u!54 &5034118256243995136
 Rigidbody:
   m_ObjectHideFlags: 0

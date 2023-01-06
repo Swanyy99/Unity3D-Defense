@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isAttacking", true);
                 anim.SetTrigger("Attack");
                 StartCoroutine(DoubleSwordWave());
-                //doubleSwordWave = StartCoroutine(DoubleSwordWave());
             }
         }
     }

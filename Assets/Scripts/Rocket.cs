@@ -74,6 +74,18 @@ public class Rocket : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        if (other.gameObject.tag.Equals("Boss"))
+        {
+            Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
+            Instantiate(BoomEffect, transform.position, transform.rotation);
+            target = other.GetComponent<Enemy>();
+
+            if (isGlobalAttack == false)
+                target.TakeDamage(RocketDamage);
+
+            Destroy(gameObject);
+        }
     }
 
 }

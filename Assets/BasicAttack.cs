@@ -5,7 +5,6 @@ using UnityEngine;
 public class BasicAttack : MonoBehaviour
 {
     private Enemy target;
-    private Monster1 target2;
 
     private BoxCollider col;
 
@@ -28,28 +27,58 @@ public class BasicAttack : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                Debug.Log("기본공격 적중");
-                //target = other.GetComponent<Enemy>();
-                target2 = other.GetComponent<Monster1>();
-                Debug.Log(target2.gameObject.name);
+                target = other.GetComponent<Enemy>();
+                Debug.Log(target.gameObject.name + "을(를) 공격했습니다.");
                 Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
                 if (curAnim("comboSlash1"))
                 {
-                    target2.TakeDamage(1);
+                    target.TakeDamage(1);
                 }
                 else if (curAnim("comboSlash2"))
                 {
-                    target2.TakeDamage(2);
+                    target.TakeDamage(2);
                 }
 
                 else if (curAnim("comboSlash3"))
                 {
-                    target2.TakeDamage(3);
+                    target.TakeDamage(3);
                 }
 
                 else if (curAnim("comboSlash4"))
                 {
-                    target2.TakeDamage(5);
+                    target.TakeDamage(5);
+                }
+            }
+
+            if (other.gameObject.tag.Equals("Boss"))
+            {
+                target = other.GetComponent<Enemy>();
+                Debug.Log(target.gameObject.name + "을(를) 공격했습니다.");
+                if (curAnim("comboSlash1"))
+                {
+                    Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
+
+                    target.TakeDamage(1);
+                }
+                else if (curAnim("comboSlash2"))
+                {
+                    Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
+
+                    target.TakeDamage(2);
+                }
+
+                else if (curAnim("comboSlash3"))
+                {
+                    Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
+
+                    target.TakeDamage(3);
+                }
+
+                else if (curAnim("comboSlash4"))
+                {
+                    Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+
+                    target.TakeDamage(5);
                 }
             }
         }
