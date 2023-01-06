@@ -33,15 +33,23 @@ public class BasicAttack : MonoBehaviour
                 target2 = other.GetComponent<Monster1>();
                 Debug.Log(target2.gameObject.name);
                 Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
-                if (curAnim("comboSlash4"))
+                if (curAnim("comboSlash1"))
                 {
-                    //target.TakeDamage(3);
+                    target2.TakeDamage(1);
+                }
+                else if (curAnim("comboSlash2"))
+                {
+                    target2.TakeDamage(2);
+                }
+
+                else if (curAnim("comboSlash3"))
+                {
                     target2.TakeDamage(3);
                 }
-                else
+
+                else if (curAnim("comboSlash4"))
                 {
-                    //target.TakeDamage(1);
-                    target2.TakeDamage(1);
+                    target2.TakeDamage(5);
                 }
             }
         }

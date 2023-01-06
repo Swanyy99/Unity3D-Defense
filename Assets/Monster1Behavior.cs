@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster1Behavior : MonoBehaviour
@@ -31,13 +32,16 @@ public class Monster1Behavior : MonoBehaviour
     private ParticleSystem AxeVFX;
 
     private float attackTimer;
+    private float stopTimer;
 
     private Animator anim;
     private MonsterPushScript mon;
 
     private Coroutine axeAttack;
 
-    private CharacterController player;
+    public CharacterController player;
+
+    private float Distance;
 
     Vector3 moveVec;
 
@@ -49,8 +53,6 @@ public class Monster1Behavior : MonoBehaviour
 
     private void Update()
     {
-
-
         //FindTarget();
     }
 
@@ -93,36 +95,51 @@ public class Monster1Behavior : MonoBehaviour
             if (target != null)
             {
                 mon = GetComponentInChildren<MonsterPushScript>();
-                
-                //gameObject.transform.LookAt(TargetTransform.position);
+                attackTimer += Time.deltaTime;
+
+                Distance = Vector3.Distance(target.transform.position, transform.position);
+
                 var direction = (TargetTransform.transform.position - transform.position).normalized;
-                // = new Vector3(0f, 0f, 10f);
+                direction = new Vector3(((TargetTransform.transform.position - transform.position).normalized).x, 0f, ((TargetTransform.transform.position - transform.position).normalized).z);
                 var targetRotation = Quaternion.LookRotation(direction);
-                //var targetRotation = Quaternion.Euler(target.transform.rotation.x, target.transform.rotation.y, target.transform.rotation.z);
-                //if (transform.rotation.x != 0 || transform.rotation.z != 0) transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+                
                 if (curAnim("Attack") == false)
                     rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
 
-                if (attackTimer > 2 && attackTimer < 3) anim.ResetTrigger("Attack");
 
-                if (attackTimer > 3)
+                if (Distance < 1f)
                 {
-                    anim.SetTrigger("Attack");
-                    //AxeVFX.Play();
-                    StartCoroutine(AxeAtttack());
-                    attackTimer = 0;
+                    Debug.Log("보스가 당신을 밀어내고 있습니다.");
+                    player = target.gameObject.GetComponent<CharacterController>();
+                    Vector3 fowardVec = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+                    Vector3 moveInput = Vector3.forward * 5f;
+                    moveVec = fowardVec * moveInput.z;
+                    player.Move(moveVec * Time.deltaTime);
+                    //player.transform.Translate(moveVec * Time.deltaTime);
                 }
-                //this.transform.Translate(0, 0, Time.deltaTime * 2f);
-                if (mon.PlayerCollisionOn == false && curAnim("Attack") == false)
+
+
+                if (Distance <= 2f)
+                {
+                    anim.SetBool("Move", false);
+                    stopTimer += Time.deltaTime;
+                }
+
+
+                if (curAnim("Attack") == false && Distance > 2f)
                 {
                     anim.SetBool("Move", true);
-                    this.transform.Translate(0, 0, Time.deltaTime * 3f);
+                    this.transform.Translate(0, 0, Time.deltaTime * 4f);
+                    stopTimer = 0;
                     return;
                 }
 
-
-                anim.SetBool("Move", false);
-                attackTimer += Time.deltaTime;
+                else if (attackTimer > 2.5 && stopTimer > 0.3f)
+                {
+                    attackTimer = 0;
+                    stopTimer = 0;
+                    StartCoroutine(AxeAtttack());
+                }
 
 
             }
@@ -168,27 +185,12 @@ public class Monster1Behavior : MonoBehaviour
     {
         while (true)
         {
+            anim.SetTrigger("Attack");
             yield return new WaitForSeconds(0.55f);
             Instantiate(AxeEffect, AxePos.transform.position, AxePos.transform.rotation);
+            
             break;
         }
-        //StopCoroutine(doubleSwordWave);
     }
 
-
-
-    //private void OnCollisionStay(Collision other)
-    //{
-    //    if (other.gameObject.tag.Equals("Player"))
-    //    {
-    //        //if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
-    //        //moveVec = new Vector3(0f, 0f, 1f);
-    //        Debug.Log("보스가 민당.");
-    //        player = other.gameObject.GetComponent<CharacterController>();
-    //        Vector3 fowardVec = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-    //        Vector3 moveInput = Vector3.forward * 2f;
-    //        moveVec = fowardVec * moveInput.z;
-    //        player.Move(moveVec * Time.deltaTime);
-    //    }
-    //}
 }

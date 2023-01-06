@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 2254839602432979362}
   - component: {fileID: 9170171156215887926}
   m_Layer: 9
-  m_Name: HpCanvas
+  m_Name: InfoCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -865,6 +865,7 @@ MonoBehaviour:
   AxePos: {fileID: 0}
   TargetTransform: {fileID: 0}
   AxeVFX: {fileID: 0}
+  player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
 --- !u!54 &1161770593889501141
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1097,7 +1098,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBBF8\uCE5C\uB188"
+  m_text: "\uACE0\uBE14\uB9B0 \uC871\uC7A5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42daf4895402b7f4c81a5255dca3d042, type: 2}
   m_sharedMaterial: {fileID: -4389658752561097753, guid: 42daf4895402b7f4c81a5255dca3d042, type: 2}
@@ -3203,7 +3204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2935209745194971164}
   m_Layer: 9
-  m_Name: HpBarPos
+  m_Name: InfoUIPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
