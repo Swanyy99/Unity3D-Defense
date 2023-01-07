@@ -783,6 +783,7 @@ MonoBehaviour:
   Hp: 100
   player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
   Weapon: {fileID: 4906232141248091500}
+  DeathEffect: {fileID: 9206383620626935351, guid: 1bc9939d8a25de143a2bc7f5692b9149, type: 3}
 --- !u!114 &1161770593889501138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,9 +836,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.59301513
-  m_Height: 2.3030276
+  m_Height: 2.2341325
   m_Direction: 1
-  m_Center: {x: 0.014097095, y: 1.1328299, z: -0.043622255}
+  m_Center: {x: 0.014097095, y: 1.1672775, z: -0.043622255}
 --- !u!1 &2193568349908981272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1041,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACE0\uBE14\uB9B0 \uC871\uC7A5"
+  m_text: "\uC624\uD06C \uC871\uC7A5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 42daf4895402b7f4c81a5255dca3d042, type: 2}
   m_sharedMaterial: {fileID: -4389658752561097753, guid: 42daf4895402b7f4c81a5255dca3d042, type: 2}
@@ -2819,7 +2820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.003, y: 0.202}
+  m_AnchoredPosition: {x: 0.003, y: 0.199}
   m_SizeDelta: {x: 2, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6809940132035932601
@@ -2852,8 +2853,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3 / 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28665f9ab6c07874eba7d0cb089f7c6b, type: 2}
-  m_sharedMaterial: {fileID: 9166915654818206293, guid: 28665f9ab6c07874eba7d0cb089f7c6b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cc2da2cffa4931347aaa6b1fee95e1a9, type: 2}
+  m_sharedMaterial: {fileID: -3227491331015530662, guid: cc2da2cffa4931347aaa6b1fee95e1a9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

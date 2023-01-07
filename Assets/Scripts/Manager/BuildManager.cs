@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 public class BuildManager : SingleTon<BuildManager>
 {
-    [Header("Energy")]
+    [Header("Gold")]
     [SerializeField]
-    private int energy;
+    public int gold;
 
     [Header("Build")]
     [SerializeField]
@@ -16,7 +16,7 @@ public class BuildManager : SingleTon<BuildManager>
     public Tower TowerList1;
     public Tower TowerList2;
 
-    public UnityAction<int> OnChangeEnergy;
+    public UnityAction<int> OnChangeGold;
 
 
     public Tower SelectedTower
@@ -25,34 +25,41 @@ public class BuildManager : SingleTon<BuildManager>
         set { selectedTower = value; }  
     }
 
-    public int Energy
+    public int Gold
     {
-        get { return energy; }
-        private set { energy = value; OnChangeEnergy?.Invoke(energy); }
+        get { return gold; }
+        private set { gold = value; OnChangeGold?.Invoke(gold); }
     }
+
 
     public void Build(TowerPlace place)
     {
         if (null == SelectedTower)
             return;
 
-        if (Energy < SelectedTower.Cost)
+        if (Gold < SelectedTower.Cost)
             return;
 
         Tower tower = Instantiate(selectedTower, place.transform.position, place.transform.rotation);
         place.tower = tower;
-        Energy -= tower.Cost;
+        Gold -= tower.Cost;
     }
 
     public void Sell(TowerPlace place)
     {
         Destroy(place.tower.gameObject);
-        Energy += place.tower.Cost;
+        Gold += place.tower.SellCost;
         Debug.Log("타워를 판매했습니다.");
     }
 
-    public void GainEnergy(int energy)
+    public void GoldUpdate()
     {
-        Energy += energy;
+        Gold += 1;
+        Gold -= 1;
+    }
+
+    public void GainEnergy(int gold)
+    {
+        Gold += gold;
     }
 }

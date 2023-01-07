@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine doubleSwordWave;
     [SerializeField]
     private CinemachineFreeLook playerCam;
+    [SerializeField]
+    private CinemachineFreeLook BuildCam;
     private bool attacked;
     private bool BasicAttacked;
     private float BasicAttackTimer;
@@ -40,7 +42,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject DashTrail;
     public bool isDash;
-    float maxDistance = 0.7f;
     public Sword sword;
 
     public Transform groundCheck;
@@ -130,11 +131,13 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.BuildMode == true)
         {
             playerCam.enabled = false;
+            BuildCam.enabled = true;
             return;
         }
         else if (GameManager.Instance.BuildMode == false)
         {
             playerCam.enabled = true;
+            BuildCam.enabled = false;
         }
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
@@ -285,11 +288,13 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.BuildMode = false;
+            GameManager.Instance.TooltipOn = false;
         }
         else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false)
         {
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.BuildMode = true;
+            GameManager.Instance.TooltipOn = true;
         }
     }
     private IEnumerator DoubleSwordWave()

@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject Weapon;
 
+    //[SerializeField]
+    //private GameObject DeathEffect;
+
     Vector3 moveVec;
 
     //private Rigidbody rigid;
@@ -125,7 +128,6 @@ public class Enemy : MonoBehaviour
             if (Type("Boss"))
             {
                 Die();
-                DeathFadeOut();
             }
             else
                 Destroy(gameObject);
@@ -166,25 +168,10 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
+            //Instantiate(DeathEffect, transform.GetChild(0).position, transform.GetChild(0).rotation);
             Destroy(gameObject);
             break;
         }
     }
 
-    private IEnumerator DeathFadeOut()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //if (other.gameObject.tag.Equals("Player"))
-    //    //{
-
-    //    //}
-
-    //}
 }

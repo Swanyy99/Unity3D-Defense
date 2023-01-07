@@ -8,15 +8,15 @@ public class PlayerStateUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI heartUI;
     [SerializeField]
-    private TextMeshProUGUI energyUI;
+    private TextMeshProUGUI goldUI;
 
     private void Start()
     {
         WaveManager.Instance.OnHeartChanged += ChangeHeart;
-        BuildManager.Instance.OnChangeEnergy += ChangeEnergy;
+        BuildManager.Instance.OnChangeGold += ChangeGold;
 
         ChangeHeart(WaveManager.Instance.Heart);
-        ChangeEnergy(BuildManager.Instance.Energy);
+        ChangeGold(BuildManager.Instance.Gold);
     }
 
     public void ChangeHeart(int heart)
@@ -24,8 +24,8 @@ public class PlayerStateUI : MonoBehaviour
         heartUI.text = heart.ToString();
     }
 
-    public void ChangeEnergy(int energy)
+    public void ChangeGold(int gold)
     {
-        energyUI.text = energy.ToString();
+        goldUI.text = gold.ToString();
     }
 }

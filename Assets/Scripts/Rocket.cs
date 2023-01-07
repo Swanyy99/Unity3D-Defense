@@ -24,6 +24,8 @@ public class Rocket : MonoBehaviour
 
     private Coroutine autoDestoryRoutine;
 
+    private Tower tower;
+
     [SerializeField]
     private bool isGlobalAttack;
 
@@ -33,6 +35,7 @@ public class Rocket : MonoBehaviour
     }
     private void Start()
     {
+        tower = GetComponentInParent<Tower>();
         Mytarget = GameManager.Instance.target;
         autoDestoryRoutine = StartCoroutine(AutoDestoryRoutine());
     }
@@ -70,7 +73,7 @@ public class Rocket : MonoBehaviour
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
-                target.TakeDamage(RocketDamage);
+                target.TakeDamage(tower.damage);
 
             Destroy(gameObject);
         }
@@ -82,7 +85,7 @@ public class Rocket : MonoBehaviour
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
-                target.TakeDamage(RocketDamage);
+                target.TakeDamage(tower.damage);
 
             Destroy(gameObject);
         }
