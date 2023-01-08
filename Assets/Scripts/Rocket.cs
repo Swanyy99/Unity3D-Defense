@@ -73,7 +73,10 @@ public class Rocket : MonoBehaviour
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
+            {
                 target.TakeDamage(tower.damage);
+                tower.durability -= 1;
+            }
 
             Destroy(gameObject);
         }
@@ -85,7 +88,10 @@ public class Rocket : MonoBehaviour
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
+            {
                 target.TakeDamage(tower.damage);
+                tower.durability -= 1;
+            }
 
             Destroy(gameObject);
         }

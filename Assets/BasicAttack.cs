@@ -76,7 +76,7 @@ public class BasicAttack : MonoBehaviour
 
                 else if (curAnim("comboSlash4"))
                 {
-                    Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+                    Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
                     target.TakeDamage(5);
                 }

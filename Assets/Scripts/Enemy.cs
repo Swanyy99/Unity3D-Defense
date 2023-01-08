@@ -143,6 +143,7 @@ public class Enemy : MonoBehaviour
         Weapon.GetComponent<Rigidbody>().useGravity = true;
         Weapon.GetComponent<Rigidbody>().isKinematic = false;
         Weapon.GetComponent<Collider>().isTrigger = false;
+        Weapon.transform.parent = Weapon.transform;
         StartCoroutine(Death());
     }
 

@@ -7,46 +7,47 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField]
-    private int level;
+    [Header("Tower")]
     [SerializeField]
     private string prefName;
+    [SerializeField]
+    private int level;
 
-    [Header("General")]
-    [SerializeField]
-    private Transform topParts;
-    [SerializeField]
-    private Transform bottomParts;
 
     [Header("Spec")]
     [SerializeField]
+    private GameObject Rocket;
+    [SerializeField]
     public int damage;
     [SerializeField]
-    private int durability;
+    private string type;
+    [SerializeField]
+    public int durability;
     [SerializeField]
     private int maxdurability;
     [SerializeField]
     private float range;
     [SerializeField]
     private float fireRate;
+
+    [Header("Price")]
     [SerializeField]
     private int cost;
     [SerializeField]
     private int sellcost;
     [SerializeField]
     private int upgradecost;
-    [SerializeField]
-    private string type;
 
-    [SerializeField]
-    private GameObject Rocket;
 
+    [Header("General")]
+    [SerializeField]
+    private Transform topParts;
+    [SerializeField]
+    private Transform bottomParts;
     [SerializeField]
     private Transform LauncherPosition;
-
     [SerializeField]
     private GameObject TooltipUI;
-
     [SerializeField]
     private Button UpgradeButton;
 
@@ -106,7 +107,7 @@ public class Tower : MonoBehaviour
         lastShootTime = Time.time;
 
         GameManager.Instance.target = target;
-        durability -= 1;
+        //durability -= 1;
         GameObject temp = Instantiate(Rocket, LauncherPosition.position, LauncherPosition.rotation);
         temp.transform.parent = this.transform;
         //target.TakeDamage(damage);
@@ -131,11 +132,13 @@ public class Tower : MonoBehaviour
         if (BuildManager.Instance.gold >= Upgradecost)
         {
             BuildManager.Instance.gold -= Upgradecost;
+            cost += (int)(Upgradecost / 2);
             Upgradecost = Upgradecost + (Upgradecost * 1 / 3);
             level += 1;
             damage += 1;
             maxdurability += 10;
             durability = maxdurability;
+            sellcost = (int)(cost / 3);
             BuildManager.Instance.GoldUpdate();
         }
     }
