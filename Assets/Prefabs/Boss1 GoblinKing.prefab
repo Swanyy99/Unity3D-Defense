@@ -741,6 +741,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1066272123479831448}
+  - {fileID: 9039109503475319812}
   - {fileID: 6612862613226682386}
   - {fileID: 2497523340152271590}
   - {fileID: 2935209745194971164}
@@ -760,7 +761,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b6d7606ba1ffd614494c6d8f98e7fa42, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -804,8 +805,11 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  moveSpeed: 0
   AxeEffect: {fileID: 4269200528300084780, guid: 7b06ad276e2d76f4793dd7d76e427308, type: 3}
   AxePos: {fileID: 8591042456252961726}
+  DashAttackEffect: {fileID: 4269200528300084780, guid: 4de0e694f703817409b3eb9613497562, type: 3}
+  DashAttackPos: {fileID: 6750872997968722499}
   TargetTransform: {fileID: 0}
   player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
 --- !u!54 &1161770593889501141
@@ -940,7 +944,7 @@ Transform:
   - {fileID: 7007612414564093741}
   - {fileID: 6894274724878879617}
   m_Father: {fileID: 1699485771684649094}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2351929916304631324
 GameObject:
@@ -3012,7 +3016,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1699485771684649094}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3499531419837208063
 SkinnedMeshRenderer:
@@ -3197,7 +3201,7 @@ Transform:
   m_Children:
   - {fileID: 94692279694418185}
   m_Father: {fileID: 1699485771684649094}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6487747293743541522
 GameObject:
@@ -3263,6 +3267,37 @@ Transform:
   m_Father: {fileID: 696612055155638437}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6750872997968722499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9039109503475319812}
+  m_Layer: 12
+  m_Name: DashAttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9039109503475319812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750872997968722499}
+  m_LocalRotation: {x: 0, y: 0, z: 0.60876137, w: 0.7933534}
+  m_LocalPosition: {x: 0.356, y: 1.33, z: 2.164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1699485771684649094}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 75}
 --- !u!1 &6830364962481996208
 GameObject:
   m_ObjectHideFlags: 0

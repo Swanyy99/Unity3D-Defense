@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     public Sword sword;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.2f;
     public float respawnDistance = 0.1f;
     public LayerMask groundMask;
     public LayerMask RespawnMask;

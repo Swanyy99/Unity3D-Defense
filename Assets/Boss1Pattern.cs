@@ -18,12 +18,19 @@ public class Boss1Pattern : MonoBehaviour
     private LayerMask obstacleMask;
 
 
-
+    [SerializeField]
+    private float moveSpeed;
     [SerializeField]
     public GameObject AxeEffect;
 
     [SerializeField]
     public GameObject AxePos;
+
+    [SerializeField]
+    public GameObject DashAttackEffect;
+
+    [SerializeField]
+    public GameObject DashAttackPos;
 
     private Rigidbody rigid;
 
@@ -32,6 +39,7 @@ public class Boss1Pattern : MonoBehaviour
 
     private float attackTimer;
     private float stopTimer;
+    private float dashTimer;
 
     private Animator anim;
 
@@ -71,6 +79,8 @@ public class Boss1Pattern : MonoBehaviour
 
         if (!curAnim("Death"))
         {
+            
+
 
             // 1. 범위내에 있는가
             Collider[] targets = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
@@ -93,17 +103,23 @@ public class Boss1Pattern : MonoBehaviour
 
                 TargetTransform = targets[i].GetComponent<Transform>();
 
+                
+
                 if (target != null)
                 {
-                    attackTimer += Time.deltaTime;
+                    //rigid.constraints = ~RigidbodyConstraints.FreezeRotationY;
+                    rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+                    if (!curAnim("DashAttack"))
+                        attackTimer += Time.deltaTime;
 
                     Distance = Vector3.Distance(target.transform.position, transform.position);
 
-                    var direction = (TargetTransform.transform.position - transform.position).normalized;
-                    direction = new Vector3(((TargetTransform.transform.position - transform.position).normalized).x, 0f, ((TargetTransform.transform.position - transform.position).normalized).z);
+                    //var direction = (target.transform.position - transform.position).normalized;
+                    var direction = new Vector3(((target.transform.position - transform.position).normalized).x, 0f, ((target.transform.position - transform.position).normalized).z);
                     var targetRotation = Quaternion.LookRotation(direction);
 
-                    if (curAnim("Attack") == false)
+                    if (curAnim("Attack") == false && curAnim("DashAttack") == false)
                         rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
 
 
@@ -122,16 +138,19 @@ public class Boss1Pattern : MonoBehaviour
                     {
                         anim.SetBool("Move", false);
                         stopTimer += Time.deltaTime;
+                        dashTimer = 0;
                     }
 
 
-                    if (curAnim("Attack") == false && Distance > 2f)
+                    if (curAnim("Attack") == false && curAnim("DashAttack") == false && Distance > 2f)
                     {
                         anim.SetBool("Move", true);
-                        this.transform.Translate(0, 0, Time.deltaTime * 4f);
+                        this.transform.Translate(0, 0, Time.deltaTime * moveSpeed);
                         stopTimer = 0;
-                        return;
+                        dashTimer += Time.deltaTime;
+                        //return;
                     }
+
 
                     else if (attackTimer > 3 && stopTimer > 0.3f)
                     {
@@ -140,13 +159,21 @@ public class Boss1Pattern : MonoBehaviour
                         StartCoroutine(AxeAtttack());
                     }
 
+                    if (attackTimer > 3 && dashTimer > 0.3f)
+                    {
+                        //anim.SetBool("Move", false);
+                        attackTimer = 0;
+                        dashTimer = 0;
+                        StartCoroutine(DashAxeAtttack());
+                    }
+
+                    return;
 
                 }
 
-                if (target == null)
-                    transform.rotation = Quaternion.Euler(TargetTransform.rotation.x, TargetTransform.rotation.y, TargetTransform.rotation.z);
+                
 
-                return;
+                //return;
             }
 
             target = null;
@@ -154,6 +181,13 @@ public class Boss1Pattern : MonoBehaviour
             anim.SetBool("Move", false);
         }
 
+        if (target == null)
+        {
+            rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
+            
+            //transform.rotation = Quaternion.Euler(TargetTransform.rotation.x, TargetTransform.rotation.y, TargetTransform.rotation.z);
+
+        }
     }
 
 
@@ -195,6 +229,22 @@ public class Boss1Pattern : MonoBehaviour
 
             Instantiate(AxeEffect, AxePos.transform.position, AxePos.transform.rotation);
             
+            break;
+        }
+    }
+
+    public IEnumerator DashAxeAtttack()
+    {
+        while (true)
+        {
+            anim.SetTrigger("DashAttack");
+            yield return new WaitForSeconds(1.34f);
+
+            if (curAnim("Death"))
+                break;
+
+            //anim.applyRootMotion = false;
+            Instantiate(DashAttackEffect, DashAttackPos.transform.position, DashAttackPos.transform.rotation);
             break;
         }
     }
