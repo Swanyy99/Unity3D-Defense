@@ -42,7 +42,7 @@ public class SwordWaveCollision : MonoBehaviour
             
                 target = other.GetComponent<Enemy>();
                 target.TakeDamage(20);
-                Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+                Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
         }
 
@@ -52,7 +52,7 @@ public class SwordWaveCollision : MonoBehaviour
 
             target = other.GetComponent<Enemy>();
             target.TakeDamage(20);
-            Instantiate(hitEffect, target.transform.position, target.transform.rotation);
+            Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
         }
     }
