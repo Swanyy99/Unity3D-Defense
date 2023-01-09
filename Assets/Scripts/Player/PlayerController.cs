@@ -1,6 +1,8 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -46,7 +48,19 @@ public class PlayerController : MonoBehaviour
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
+    public float respawnDistance = 0.1f;
     public LayerMask groundMask;
+    public LayerMask RespawnMask;
+
+    public Respawn respawn;
+    private float RespawnTimer;
+
+    private bool CanRespawn = true;
+
+    public List<GameObject> FoundObjects;
+    public GameObject RespawnArea;
+    public GameObject RespawnEffect;
+    public float shortDis;
 
 
     private void Awake()
@@ -67,6 +81,27 @@ public class PlayerController : MonoBehaviour
         Jump();
         Interaction();
         Dash();
+
+        //if (OnRespawnArea() && CanRespawn == true)
+        //{
+        //    Debug.Log("헐");
+
+        //    RespawnFunc();
+        //    CanRespawn = false;
+        //}
+
+        //if (CanRespawn == false)
+        //{
+        //    RespawnTimer += Time.deltaTime;
+
+        //    if (RespawnTimer > 0.3f)
+        //    {
+        //        CanRespawn = true;
+        //        RespawnTimer = 0;
+        //    }
+        //}
+
+
 
     }
     private void Attack()
@@ -315,6 +350,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private bool OnRespawnArea()
+    {
+        return Physics.CheckSphere(groundCheck.position, groundDistance, RespawnMask);
+    }
+
     private void GravityCheck()
     {
         if (curAnim("Dash"))
@@ -331,13 +371,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void RespawnFunc()
+    {
+        FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("RespawnArea"));
+        shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position); // 첫번째를 기준으로 잡아주기 
+
+        RespawnArea = FoundObjects[0];
+
+        foreach (GameObject found in FoundObjects)
+        {
+            float Distance = Vector3.Distance(transform.position, found.transform.position);
+
+            if (Distance < shortDis)
+            {
+                RespawnArea = found;
+                shortDis = Distance;
+            }
+        }
+
+        gameObject.transform.position = RespawnArea.transform.position;
+
+        Instantiate(RespawnEffect, transform.position, transform.rotation);
+
+
+    }
+
     bool curAnim(string name)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    hit.
-    //}
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag.Equals("Respawn"))
+        {
+            RespawnFunc();
+            Debug.Log("우왕");
+        }
+
+    }
+
+    private IEnumerator CheckCol()
+    {
+        yield return new WaitForSeconds(1f);
+        CanRespawn = true;
+
+    }
 }
