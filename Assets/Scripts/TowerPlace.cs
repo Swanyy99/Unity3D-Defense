@@ -84,8 +84,8 @@ public class TowerPlace : MonoBehaviour
         if (tower == null)
             BuildManager.Instance.Build(this);
 
-        else if (tower != null)
-            BuildManager.Instance.Sell(this);
+        //else if (tower != null)
+        //    BuildManager.Instance.Sell(this);
     }
 
     

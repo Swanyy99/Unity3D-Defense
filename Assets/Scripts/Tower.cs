@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,11 +46,23 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private Transform bottomParts;
     [SerializeField]
+    private Transform EffectPosition;
+    [SerializeField]
     private Transform LauncherPosition;
     [SerializeField]
     private GameObject TooltipUI;
     [SerializeField]
     private Button UpgradeButton;
+    [SerializeField]
+    private GameObject UpgradeEffect;
+    [SerializeField]
+    private Button RepairButton;
+    [SerializeField]
+    private GameObject RepairEffect;
+    [SerializeField]
+    private Button SellButton;
+    [SerializeField]
+    private GameObject SellEffect;
 
     private Enemy target;
     private float lastShootTime = 0f;
@@ -69,6 +82,8 @@ public class Tower : MonoBehaviour
     private void Awake()
     {
         UpgradeButton.onClick.AddListener(Upgrade);
+        RepairButton.onClick.AddListener(Repair);
+        SellButton.onClick.AddListener(Sell);
 
     }
 
@@ -132,15 +147,42 @@ public class Tower : MonoBehaviour
         if (BuildManager.Instance.gold >= Upgradecost)
         {
             BuildManager.Instance.gold -= Upgradecost;
-            cost += (int)(Upgradecost / 2);
             Upgradecost = Upgradecost + (Upgradecost * 1 / 3);
+            cost += (int)(Upgradecost / 5);
             level += 1;
-            damage += 1;
+
+            if (level < 5)
+                damage += 1;
+            else if (level >= 5 && level < 10)
+                damage += 2;
+            else
+                damage += 3;
+
             maxdurability += 10;
             durability = maxdurability;
             sellcost = (int)(cost / 3);
             BuildManager.Instance.GoldUpdate();
+            Instantiate(UpgradeEffect, transform.position, transform.rotation);
         }
+    }
+
+    private void Repair()
+    {
+        if (BuildManager.Instance.gold >= cost && durability != maxdurability)
+        {
+            BuildManager.Instance.gold -= cost;
+            BuildManager.Instance.GoldUpdate();
+            durability = maxdurability;
+            Instantiate (RepairEffect, EffectPosition.position, EffectPosition.rotation);
+        }
+    }
+
+    private void Sell()
+    {
+        BuildManager.Instance.gold += sellcost;
+        BuildManager.Instance.GoldUpdate();
+        Instantiate(SellEffect, EffectPosition.position, EffectPosition.rotation);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

@@ -11,6 +11,8 @@ public class BuildManager : SingleTon<BuildManager>
     [Header("Build")]
     [SerializeField]
     public Tower selectedTower;
+    [SerializeField]
+    private GameObject BuildEffect;
 
     [Header("BuildableTowerList")]
     public Tower TowerList1;
@@ -40,9 +42,9 @@ public class BuildManager : SingleTon<BuildManager>
         if (Gold < SelectedTower.Cost)
             return;
 
-        Tower tower = Instantiate(selectedTower, place.transform.position, place.transform.rotation);
-        place.tower = tower;
-        Gold -= tower.Cost;
+        Instantiate(BuildEffect, place.transform.position, place.transform.rotation);
+        StartCoroutine(BuildTower(place));
+        
     }
 
     public void Sell(TowerPlace place)
@@ -61,5 +63,19 @@ public class BuildManager : SingleTon<BuildManager>
     public void GainEnergy(int gold)
     {
         Gold += gold;
+    }
+
+    public IEnumerator BuildTower(TowerPlace place)
+    {
+        while (true)
+        {
+            Tower tower = Instantiate(selectedTower, place.transform.position, place.transform.rotation);
+            place.tower = tower;
+            Gold -= tower.Cost;
+            tower.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.35f);
+            tower.gameObject.SetActive(true);
+            break;
+        }
     }
 }

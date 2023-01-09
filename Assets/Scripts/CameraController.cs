@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        transform.Translate(zoomSpeed * scroll * Vector3.forward * DT(), Space.Self);
+        transform.Translate(zoomSpeed * scroll * Vector3.back * DT(), Space.Self);
     }
 
     private float DT()

@@ -754,7 +754,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2244819155210550802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0030000056}
+  m_LocalPosition: {x: 0, y: 0, z: -0.002000011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -763,7 +763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.67599994, y: -0.161}
+  m_AnchoredPosition: {x: -0.745, y: -0.161}
   m_SizeDelta: {x: 0.53, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &34221611189701612
@@ -1444,6 +1444,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7914074086673412284}
   - {fileID: 3681238302527431979}
   - {fileID: 4857271585669921892}
   m_Father: {fileID: 0}
@@ -1475,9 +1476,15 @@ MonoBehaviour:
   upgradecost: 30
   topParts: {fileID: 3681238302166585391}
   bottomParts: {fileID: 3681238302008746117}
+  EffectPosition: {fileID: 7914074086673412284}
   LauncherPosition: {fileID: 5925029181959427540}
   TooltipUI: {fileID: 6193634345055257036}
   UpgradeButton: {fileID: 5816800994741513358}
+  UpgradeEffect: {fileID: 3704967048545542168, guid: b3d5feb2f088b384db166325574f27a5, type: 3}
+  RepairButton: {fileID: 737719359483351249}
+  RepairEffect: {fileID: 5487650720231781904, guid: 1000eec795ef060419bec6ba01f6c80f, type: 3}
+  SellButton: {fileID: 4627730934280222493}
+  SellEffect: {fileID: 9103970747111968568, guid: 82630d1289afcaa4499ab5391fc3bcbd, type: 3}
 --- !u!1 &3681238302527431978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1516,7 @@ Transform:
   - {fileID: 3681238302166585391}
   - {fileID: 3681238302008746117}
   m_Father: {fileID: 3681238301214024106}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3747081817280368895
 GameObject:
@@ -1781,6 +1788,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4444970342435036347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7914074086673412284}
+  m_Layer: 0
+  m_Name: EffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7914074086673412284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444970342435036347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.883, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3681238301214024106}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4606572997916179552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2095,7 @@ Transform:
   m_Children:
   - {fileID: 3752689933468542566}
   m_Father: {fileID: 3681238301214024106}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &85309355559463213
 MonoBehaviour:
@@ -2317,7 +2355,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6853742446614365608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.003}
+  m_LocalPosition: {x: 0, y: 0, z: -0.002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2326,7 +2364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.676, y: -0.0036803484}
+  m_AnchoredPosition: {x: -0.745, y: -0.0036803484}
   m_SizeDelta: {x: 0.53, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7355133743163178052
@@ -2537,7 +2575,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 4
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -2958,7 +2996,7 @@ GameObject:
   - component: {fileID: 2137576584107871623}
   - component: {fileID: 4627730934280222493}
   m_Layer: 9
-  m_Name: SellButton (1)
+  m_Name: SellButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
