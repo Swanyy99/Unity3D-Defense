@@ -138,8 +138,11 @@ public class Tower : MonoBehaviour
 
     private void TowerDestory()
     {
-        if (durability <= 0) 
+        if (durability <= 0)
+        {
+            Instantiate(SellEffect, EffectPosition.position, EffectPosition.rotation);
             Destroy(gameObject);
+        }
     }
 
     private void Upgrade()

@@ -51,14 +51,14 @@ public class Enemy : MonoBehaviour
             if (WaveManager.Instance.Wave < 10)
             {
                 //MaxHp = WaveManager.Instance.Wave + 2;
-                MaxHp = WaveManager.Instance.Wave + 99;
-                agent.speed = 5;
+                MaxHp = WaveManager.Instance.Wave + 2;
+                agent.speed = 2.5f;
             }
 
             if (WaveManager.Instance.Wave >= 10)
             {
                 MaxHp = WaveManager.Instance.Wave * 2;
-                agent.speed = 7;
+                agent.speed = 3f;
             }
         }
 

@@ -59,8 +59,16 @@ public class TowerPlace : MonoBehaviour
         }
         else
         {
-            isOver = true;
-            mesh.material.color = highlight;
+            if (tower == null)
+            {
+                isOver = true;
+                mesh.material.color = highlight;
+            }
+            else
+            {
+                isOver = true;
+                mesh.material.color = full;
+            }
         }
     }
 
