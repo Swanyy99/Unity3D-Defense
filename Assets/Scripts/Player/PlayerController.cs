@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     public Respawn respawn;
     private float RespawnTimer;
 
-    private bool CanRespawn = true;
+    private bool CanRespawnVFX = true;
 
     public List<GameObject> FoundObjects;
     public GameObject RespawnArea;
@@ -391,6 +391,7 @@ public class PlayerController : MonoBehaviour
 
         gameObject.transform.position = RespawnArea.transform.position;
 
+        
         Instantiate(RespawnEffect, transform.position, transform.rotation);
 
 
@@ -408,15 +409,14 @@ public class PlayerController : MonoBehaviour
         if (hit.gameObject.tag.Equals("Respawn"))
         {
             RespawnFunc();
-            Debug.Log("¿ì¿Õ");
         }
 
     }
 
     private IEnumerator CheckCol()
     {
-        yield return new WaitForSeconds(1f);
-        CanRespawn = true;
+        yield return new WaitForSeconds(0.5f);
+        CanRespawnVFX = true;
 
     }
 }

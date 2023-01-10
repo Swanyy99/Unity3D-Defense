@@ -780,6 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a16c40e95b9bb4ca68a5f3c6b9e0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Level: {fileID: 5423239180486786015}
   MaxHp: 1000
   Hp: 1000
   player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}

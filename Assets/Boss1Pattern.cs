@@ -108,7 +108,7 @@ public class Boss1Pattern : MonoBehaviour
                 if (target != null)
                 {
                     //rigid.constraints = ~RigidbodyConstraints.FreezeRotationY;
-                    rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                    //rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
                     if (!curAnim("DashAttack"))
                         attackTimer += Time.deltaTime;
@@ -137,8 +137,9 @@ public class Boss1Pattern : MonoBehaviour
                     if (Distance <= 2f)
                     {
                         anim.SetBool("Move", false);
+                        rigid.velocity = new Vector3(0f, 0f, 0f);
                         stopTimer += Time.deltaTime;
-                        dashTimer = 0;
+                        dashTimer = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
                     }
 
 
@@ -167,12 +168,15 @@ public class Boss1Pattern : MonoBehaviour
                         StartCoroutine(DashAxeAtttack());
                     }
 
-                    return;
 
                 }
 
-                
+                else
+                {
+                    rigid.MoveRotation(Quaternion.Euler(0f, 0f, 0f));
+                }
 
+                return;
                 //return;
             }
 
@@ -181,13 +185,15 @@ public class Boss1Pattern : MonoBehaviour
             anim.SetBool("Move", false);
         }
 
-        if (target == null)
-        {
-            rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
+        //if (target == null)
+        //{
+        //    rigid.MoveRotation(Quaternion.Euler(0f,0f,0f));
+        //    rigid.
+        //    //rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
             
-            //transform.rotation = Quaternion.Euler(TargetTransform.rotation.x, TargetTransform.rotation.y, TargetTransform.rotation.z);
+        //    //transform.rotation = Quaternion.Euler(TargetTransform.rotation.x, TargetTransform.rotation.y, TargetTransform.rotation.z);
 
-        }
+        //}
     }
 
 

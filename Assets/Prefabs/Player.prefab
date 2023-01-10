@@ -10200,9 +10200,18 @@ MonoBehaviour:
   sword: {fileID: 349850078955588108}
   groundCheck: {fileID: 349850080541444583}
   groundDistance: 0.2
+  respawnDistance: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 2147483647
+  RespawnMask:
+    serializedVersion: 2
+    m_Bits: 0
+  respawn: {fileID: 0}
+  FoundObjects: []
+  RespawnArea: {fileID: 0}
+  RespawnEffect: {fileID: 0}
+  shortDis: 0
 --- !u!114 &349850079153359993
 MonoBehaviour:
   m_ObjectHideFlags: 0

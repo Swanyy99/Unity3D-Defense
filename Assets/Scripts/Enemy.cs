@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     private int curWayIndex = 0;
 
+    public TextMeshProUGUI Level;
+    private int level;
     public int MaxHp;
     public int Hp;
 
@@ -37,9 +40,9 @@ public class Enemy : MonoBehaviour
     {
         //rigid = GetComponent<Rigidbody>();
         if (Type("Enemy"))  agent = GetComponent<NavMeshAgent>();
-        if (Type("Boss"))  anim = GetComponent<Animator>();
-        if (Type("Boss")) rigid = GetComponent<Rigidbody>();
-        if (Type("Boss")) col = GetComponent<Collider>();
+        if (Type("Boss"))   anim = GetComponent<Animator>();
+        if (Type("Boss"))   rigid = GetComponent<Rigidbody>();
+        if (Type("Boss"))   col = GetComponent<Collider>();
     }
 
     private void Start()
@@ -51,18 +54,21 @@ public class Enemy : MonoBehaviour
             if (WaveManager.Instance.Wave < 10)
             {
                 //MaxHp = WaveManager.Instance.Wave + 2;
-                MaxHp = WaveManager.Instance.Wave + 2;
+                MaxHp = WaveManager.Instance.Wave + WaveManager.Instance.Wave + 3;
                 agent.speed = 2.5f;
             }
 
             if (WaveManager.Instance.Wave >= 10)
             {
-                MaxHp = WaveManager.Instance.Wave * 2;
+                MaxHp = WaveManager.Instance.Wave * 4;
                 agent.speed = 3f;
             }
         }
 
         Hp = MaxHp;
+        level = WaveManager.Instance.Wave;
+
+        Level.text = "Lv. " + level.ToString();
 
     }
 
