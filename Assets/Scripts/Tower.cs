@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
@@ -54,15 +55,26 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private Button UpgradeButton;
     [SerializeField]
-    private GameObject UpgradeEffect;
-    [SerializeField]
     private Button RepairButton;
+    [SerializeField]
+    private Button SellButton;
+
+    [Header("Effect")]
+    [SerializeField]
+    private GameObject HighLevelEffect1;
+    [SerializeField]
+    private GameObject HighLevelEffect2;
+    [SerializeField]
+    private GameObject UpgradeEffect;
     [SerializeField]
     private GameObject RepairEffect;
     [SerializeField]
-    private Button SellButton;
-    [SerializeField]
     private GameObject SellEffect;
+    [SerializeField]
+    private Material Level5Effect;
+    [SerializeField]
+    private Material Level10Effect;
+
 
     private Enemy target;
     private float lastShootTime = 0f;
@@ -86,6 +98,8 @@ public class Tower : MonoBehaviour
         SellButton.onClick.AddListener(Sell);
 
     }
+
+
 
     private void Update()
     {
@@ -145,6 +159,7 @@ public class Tower : MonoBehaviour
         }
     }
 
+
     private void Upgrade()
     {
         if (BuildManager.Instance.gold >= Upgradecost)
@@ -166,6 +181,20 @@ public class Tower : MonoBehaviour
             sellcost = (int)(cost / 3);
             BuildManager.Instance.GoldUpdate();
             Instantiate(UpgradeEffect, transform.position, transform.rotation);
+
+            if (level >= 5 && level < 10)
+            {
+                topParts.GetComponent<MeshRenderer>().material = Level5Effect;
+                bottomParts.GetComponent<MeshRenderer>().material = Level5Effect;
+                HighLevelEffect1.SetActive(true);
+                HighLevelEffect2.SetActive(true);
+            }
+
+            else if (level >= 10)
+            {
+                topParts.GetComponent<MeshRenderer>().material = Level10Effect;
+                bottomParts.GetComponent<MeshRenderer>().material = Level10Effect;
+            }
         }
     }
 
