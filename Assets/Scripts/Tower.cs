@@ -51,6 +51,14 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private Transform LauncherPosition;
     [SerializeField]
+    private Transform LauncherPosition2;
+    [SerializeField]
+    private Transform LauncherPosition3;
+    [SerializeField]
+    private Transform LauncherPosition4;
+    [SerializeField]
+    private Transform LauncherPosition5;
+    [SerializeField]
     private GameObject TooltipUI;
     [SerializeField]
     private Button UpgradeButton;
@@ -137,8 +145,32 @@ public class Tower : MonoBehaviour
 
         GameManager.Instance.target = target;
         //durability -= 1;
-        GameObject temp = Instantiate(Rocket, LauncherPosition.position, LauncherPosition.rotation);
-        temp.transform.parent = this.transform;
+
+        Vector3 NuclearPos = new Vector3(target.transform.position.x, target.transform.position.y + 20, target.transform.position.z);
+
+        if (PrefName == "NuclearTower")
+        {
+            GameObject temp = Instantiate(Rocket, NuclearPos, target.transform.rotation);
+            temp.transform.parent = this.transform;
+        }
+        else
+        {
+            GameObject temp = Instantiate(Rocket, LauncherPosition.position, LauncherPosition.rotation);
+            temp.transform.parent = this.transform;
+        }
+
+        if (prefName == "LauncherTower")
+        {
+            GameObject temp2 = Instantiate(Rocket, LauncherPosition2.position, LauncherPosition2.rotation);
+            temp2.transform.parent = this.transform;
+            GameObject temp3 = Instantiate(Rocket, LauncherPosition3.position, LauncherPosition3.rotation);
+            temp3.transform.parent = this.transform;
+            GameObject temp4 = Instantiate(Rocket, LauncherPosition4.position, LauncherPosition4.rotation);
+            temp4.transform.parent = this.transform;
+            GameObject temp5 = Instantiate(Rocket, LauncherPosition5.position, LauncherPosition5.rotation);
+            temp5.transform.parent = this.transform;
+        }
+
         //target.TakeDamage(damage);
 
     }
@@ -166,7 +198,7 @@ public class Tower : MonoBehaviour
         {
             BuildManager.Instance.gold -= Upgradecost;
             Upgradecost = Upgradecost + (Upgradecost * 1 / 3);
-            cost += (int)(Upgradecost / 5);
+            cost += (int)(Upgradecost / 10);
             level += 1;
 
             if (level < 5)
@@ -176,7 +208,11 @@ public class Tower : MonoBehaviour
             else
                 damage += 3;
 
-            maxdurability += 10;
+            if (prefName == "LauncherTower")
+                maxdurability += maxdurability * 1 / 10;
+            else
+                maxdurability += 10;
+
             durability = maxdurability;
             sellcost = (int)(cost / 3);
             BuildManager.Instance.GoldUpdate();

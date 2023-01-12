@@ -11,6 +11,8 @@ public class Rocket : MonoBehaviour
 
     [SerializeField]
     private float RocketSpeed;
+    [SerializeField]
+    private float RotateSpeed;
 
     [SerializeField]
     private int RocketDamage;
@@ -25,6 +27,8 @@ public class Rocket : MonoBehaviour
     private Coroutine autoDestoryRoutine;
 
     private Tower tower;
+
+    
 
     [SerializeField]
     private bool isGlobalAttack;
@@ -48,7 +52,7 @@ public class Rocket : MonoBehaviour
             var direction = (Mytarget.transform.GetChild(0).position - transform.position).normalized;
             rigid.velocity = transform.forward * RocketSpeed;
             var targetRotation = Quaternion.LookRotation(direction);
-            rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
+            rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, RotateSpeed));
         }
 
         if (Mytarget == null)
@@ -59,8 +63,9 @@ public class Rocket : MonoBehaviour
 
     private IEnumerator AutoDestoryRoutine()
     {
-        yield return new WaitForSeconds(3f / Time.timeScale);
-        Instantiate(BoomEffect, transform.position, transform.rotation);
+        yield return new WaitForSeconds(3f);
+        GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
+        temp.transform.parent = this.transform.parent.transform;
         Destroy(gameObject);
     }
 
@@ -69,7 +74,9 @@ public class Rocket : MonoBehaviour
         if (other.gameObject.tag.Equals("Enemy"))
         {
             Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
-            Instantiate(BoomEffect, transform.position, transform.rotation);
+            GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
+            temp.transform.parent = this.transform.parent.transform;
+
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
@@ -79,12 +86,15 @@ public class Rocket : MonoBehaviour
             }
 
             Destroy(gameObject);
+            //gameObject.SetActive(false);
         }
 
         if (other.gameObject.tag.Equals("Boss"))
         {
             Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
-            Instantiate(BoomEffect, transform.position, transform.rotation);
+            GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
+            temp.transform.parent = this.transform.parent.transform;
+
             target = other.GetComponent<Enemy>();
 
             if (isGlobalAttack == false)
@@ -93,6 +103,7 @@ public class Rocket : MonoBehaviour
                 tower.durability -= 1;
             }
 
+            //gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

@@ -28,10 +28,16 @@ public class WhatTowerBuild : MonoBehaviour
             BuildManager.Instance.selectedTower = BuildManager.Instance.TowerList1;
         }
 
-        else if (BTname == "SuperRocketTowerButton")
+        else if (BTname == "LauncherTowerButton")
         {
             Debug.Log("Tower2 선택");
             BuildManager.Instance.selectedTower = BuildManager.Instance.TowerList2;
+        }
+
+        else if (BTname == "NuclearTowerButton")
+        {
+            Debug.Log("Tower3 선택");
+            BuildManager.Instance.selectedTower = BuildManager.Instance.TowerList3;
         }
     }
 }

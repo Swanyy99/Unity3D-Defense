@@ -15,11 +15,14 @@ public class BoomEffect : MonoBehaviour
 
     private Enemy target;
 
+    private Tower tower;
+
     [SerializeField]
     private bool isGlobalAttack;
 
     private void Start()
     {
+        tower = GetComponentInParent<Tower>();
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
 
@@ -35,7 +38,7 @@ public class BoomEffect : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             Destroy(gameObject);
         }
     }
@@ -55,14 +58,16 @@ public class BoomEffect : MonoBehaviour
         {
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(1);
+            target.TakeDamage(tower.damage);
+            tower.durability -= 1;
         }
 
         if (other.gameObject.tag.Equals("Boss"))
         {
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(1);
+            target.TakeDamage(tower.damage);
+            tower.durability -= 1;
         }
     }
 }

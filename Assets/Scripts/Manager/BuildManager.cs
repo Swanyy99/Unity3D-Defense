@@ -17,6 +17,7 @@ public class BuildManager : SingleTon<BuildManager>
     [Header("BuildableTowerList")]
     public Tower TowerList1;
     public Tower TowerList2;
+    public Tower TowerList3;
 
     public UnityAction<int> OnChangeGold;
 

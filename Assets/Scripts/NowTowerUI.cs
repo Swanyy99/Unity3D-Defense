@@ -27,8 +27,11 @@ public class NowTowerUI : MonoBehaviour /*IPointerMoveHandler*/
         if (BuildManager.Instance.selectedTower.name == "RocketTower")
             NowTowerText.text = "Rocket";
 
-        else if (BuildManager.Instance.selectedTower.name == "SuperRocketTower")
-            NowTowerText.text = "SuperRocket";
+        else if (BuildManager.Instance.selectedTower.name == "LauncherTower")
+            NowTowerText.text = "Launcher";
+
+        else if (BuildManager.Instance.selectedTower.name == "NuclearTower")
+            NowTowerText.text = "Nuclear";
 
         else
             NowTowerText.text = "None";

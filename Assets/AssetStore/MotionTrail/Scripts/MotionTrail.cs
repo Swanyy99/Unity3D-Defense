@@ -5,26 +5,25 @@ using UnityEngine;
 
 public class MotionTrail : MonoBehaviour {
     
-    [Header("타겟 스킨메쉬")]
+    [Header("Target")]
     public GameObject TargetSkinMesh;
 
-    [Header("이펙트 출력할 속도간격. 낮을 수록 부하가 심해집니다.")]
+    [Header("EffectSpeed")]
     [Range(0, 1)]
     public float ExportSpeedDelay = 0.1f;
 
-    [Header("이펙트 출력시간. 체크할 경우 EffectLifeTime(초)동안 이펙트를 출력합니다. 체크 해제시 영구적으로 출력합니다.")]
+    [Header("EffectTime")]
     public bool UseLifeTime = false; 
     public float EffectLifeTime = 3;
 
-    [Header("------------------------------------------------------------------------------------------------------------------------------------------------------")]
-    [Header("쉐이더 변수 이름. 0~1까지 올라갑니다.")]
+    [Header("ShaderName")]
     public string ValueName;
 
-    [Header("0 -> 1 속도 딜레이. 낮을 수록 빨라집니다. 0값이 되지 않도록 해주세요.")]
+    [Header("TimeDelay")]
     [Range(0, 1)]
     public float ValueTimeDelay = 0.1f;
 
-    [Header("변수 더할 값. 0.1이라면 1이 될때까지 10번 반복됨. 값이 높을 수록 가볍습니다.")]
+    [Header("Adder")]
     [Range(0, 1)]
     public float ValueDetail = 0.1f;
 

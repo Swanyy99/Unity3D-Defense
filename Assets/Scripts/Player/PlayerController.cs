@@ -392,6 +392,7 @@ public class PlayerController : MonoBehaviour
         moveY = 0;
         gameObject.transform.position = RespawnArea.transform.position;
         Instantiate(RespawnEffect, transform.position, transform.rotation);
+        Debug.Log("«ÿ¿ß");
 
 
     }
