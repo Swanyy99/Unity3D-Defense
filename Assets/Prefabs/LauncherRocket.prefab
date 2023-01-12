@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e5f9eb235d81c41ab62eda887c59c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RocketSpeed: 10
-  RotateSpeed: 5
+  RocketSpeed: 15
+  RotateSpeed: 10
   RocketDamage: 1
   BoomEffect: {fileID: 2700165819444924018, guid: 9f0b8775fc7b17547a920e51250b009c, type: 3}
   isGlobalAttack: 0

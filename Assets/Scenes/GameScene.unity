@@ -5316,7 +5316,7 @@ MonoBehaviour:
   way: {fileID: 235500635}
   heart: 100
   enemyPrefab: {fileID: 1464064001800209793, guid: 7cfe3f748cb116247a363d2ccf700e4d, type: 3}
-  spawnDelay: 2
+  spawnDelay: 1.8
   Wave: 1
   SpawnedMonster: 0
   WaveMonsterDeath: 0
@@ -14577,7 +14577,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888613480}
-  m_LocalRotation: {x: 0.2756825, y: -1e-45, z: -0, w: 0.96124876}
+  m_LocalRotation: {x: 0.2756825, y: 3e-45, z: -1e-45, w: 0.96124876}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16046,7 +16046,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.16050364, y: -0.000000033966614, z: 0.0000000055233738, w: 0.9870353}
+  m_LocalRotation: {x: 0.16050364, y: 0.000000033966614, z: -0.0000000055233738, w: 0.9870353}
   m_LocalPosition: {x: 1.98, y: 2.641, z: -58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22873,7 +22873,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320294689}
-  m_LocalRotation: {x: 0.16050361, y: -0.000000016983307, z: 0.0000000027616862, w: 0.9870353}
+  m_LocalRotation: {x: 0.16050361, y: 0.000000016983307, z: -0.0000000027616862, w: 0.9870353}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
