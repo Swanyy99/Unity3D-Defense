@@ -31,6 +31,9 @@ public class BoomEffect : MonoBehaviour
 
         if (isGlobalAttack == true)
             col.enabled = true;
+
+        tower.durability -= 1;
+
     }
 
 
@@ -59,7 +62,6 @@ public class BoomEffect : MonoBehaviour
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
             target.TakeDamage(tower.damage);
-            tower.durability -= 1;
         }
 
         if (other.gameObject.tag.Equals("Boss"))
@@ -67,7 +69,6 @@ public class BoomEffect : MonoBehaviour
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
             target.TakeDamage(tower.damage);
-            tower.durability -= 1;
         }
     }
 }

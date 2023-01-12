@@ -28,6 +28,7 @@ public class Rocket : MonoBehaviour
 
     private Tower tower;
 
+    private int MaxTarget;
     
 
     [SerializeField]
@@ -73,9 +74,14 @@ public class Rocket : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
+            MaxTarget += 1;
             Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
-            GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
-            temp.transform.parent = this.transform.parent.transform;
+
+            if (MaxTarget <= 1)
+            {
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
+                temp.transform.parent = this.transform.parent.transform;
+            }
 
             target = other.GetComponent<Enemy>();
 
@@ -91,9 +97,14 @@ public class Rocket : MonoBehaviour
 
         if (other.gameObject.tag.Equals("Boss"))
         {
+            MaxTarget += 1;
             Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
-            GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
-            temp.transform.parent = this.transform.parent.transform;
+
+            if (MaxTarget <= 1)
+            {
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
+                temp.transform.parent = this.transform.parent.transform;
+            }
 
             target = other.GetComponent<Enemy>();
 
