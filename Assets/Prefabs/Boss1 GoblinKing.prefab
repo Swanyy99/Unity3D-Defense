@@ -784,6 +784,8 @@ MonoBehaviour:
   MaxHp: 1000
   Hp: 1000
   player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
+  MainGate: {fileID: 0}
+  damage: 30
   Weapon: {fileID: 4906232141248091500}
 --- !u!114 &1161770593889501138
 MonoBehaviour:

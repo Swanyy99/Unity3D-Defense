@@ -233,8 +233,8 @@ public class Boss1Pattern : MonoBehaviour
             if (curAnim("Death"))
                 break;
 
-            Instantiate(AxeEffect, AxePos.transform.position, AxePos.transform.rotation);
-            
+            GameObject temp = Instantiate(AxeEffect, AxePos.transform.position, AxePos.transform.rotation);
+            temp.transform.parent = this.transform;
             break;
         }
     }
@@ -250,7 +250,8 @@ public class Boss1Pattern : MonoBehaviour
                 break;
 
             //anim.applyRootMotion = false;
-            Instantiate(DashAttackEffect, DashAttackPos.transform.position, DashAttackPos.transform.rotation);
+            GameObject temp = Instantiate(DashAttackEffect, DashAttackPos.transform.position, DashAttackPos.transform.rotation);
+            temp.transform.parent = this.transform;
             break;
         }
     }
