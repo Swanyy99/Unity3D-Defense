@@ -282,8 +282,17 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance.BuildMode == true)
             return;
 
+        //if (curAnim("Dash"))
+        //    return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
-            anim.SetBool("isDash", true);
+        {
+            if (!curAnim("Dash") && PlayerManager.Instance.MP >= 5)
+            {
+                PlayerManager.Instance.UseMana(5);
+                anim.SetBool("isDash", true);
+            }
+        }
 
         if (anim.GetBool("isDash") == true)
         {
@@ -293,7 +302,7 @@ public class PlayerController : MonoBehaviour
             moveSpeed = 6f;
             DashTimer += Time.deltaTime;
 
-            if (DashTimer >= 0.3f)
+            if (DashTimer >= 0.45f)
             {
                 anim.SetBool("isDash", false);
                 DashTimer = 0;

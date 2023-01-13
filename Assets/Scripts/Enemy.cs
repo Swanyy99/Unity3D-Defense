@@ -217,7 +217,7 @@ public class Enemy : MonoBehaviour
     private void OnArriveEndPoint()
     {
         Debug.Log("À¸¾Ç");
-        PlayerManager.Instance.TakeDamage(1);
+        PlayerManager.Instance.TakeDamage(damage * 2);
         Destroy(gameObject);
     }
 
@@ -263,7 +263,7 @@ public class Enemy : MonoBehaviour
         Weapon.GetComponent<Rigidbody>().useGravity = true;
         Weapon.GetComponent<Rigidbody>().isKinematic = false;
         Weapon.GetComponent<Collider>().isTrigger = false;
-        Weapon.transform.parent = Weapon.transform;
+        Weapon.transform.parent = null;
         StartCoroutine(Death());
     }
 

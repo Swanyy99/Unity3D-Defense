@@ -7,21 +7,25 @@ public class MonsterAxeEffectDestroy : MonoBehaviour
 {
     private Collider col;
     private Enemy me;
-    private void Awake()
+
+
+    void Start()
     {
         col = GetComponent<Collider>();
         me = GetComponentInParent<Enemy>();
-    }
-    void Start()
-    {
+        col.enabled = true;
         StartCoroutine(AxeVFXgone());
         StartCoroutine(Attack());
-        col.enabled = true;
     }
 
-    void Update()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log("보스 도끼에 맞음");
+            PlayerManager.Instance.TakeDamage(me.Damage);
+        }
     }
 
     public IEnumerator Attack()
@@ -32,6 +36,7 @@ public class MonsterAxeEffectDestroy : MonoBehaviour
             if (gameObject == null)
                 break;
             col.enabled = false;
+            this.transform.parent = null;
             break;
         }
     }
@@ -47,12 +52,5 @@ public class MonsterAxeEffectDestroy : MonoBehaviour
         //StopCoroutine(doubleSwordWave);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            Debug.Log("보스 도끼에 맞음");
-            PlayerManager.Instance.TakeDamage(me.Damage);
-        }
-    }
+    
 }
