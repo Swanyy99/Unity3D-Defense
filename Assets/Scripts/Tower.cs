@@ -93,7 +93,7 @@ public class Tower : MonoBehaviour
     public int MaxDurability { get { return maxdurability; } private set { maxdurability = value; } }
     public int Cost { get { return cost; } private set { cost = value; } }
     public int SellCost { get { return sellcost; } private set { sellcost = value; } }
-    public int Damage { get { return damage; } private set { damage = value; } }
+    public int Damage { get { return damage; } set { damage = value; } }
     public int Upgradecost { get { return upgradecost; } private set { upgradecost = value; } }
     public string Type { get { return type; } private set { type = value; } }
     public string PrefName { get { return prefName; } private set { prefName = value; } }

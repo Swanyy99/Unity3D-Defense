@@ -12,11 +12,11 @@ public class WaveManager : SingleTon<WaveManager>
     private Transform way;
     public List<Transform> WayPoints { get; private set; }
 
-    [Header("Heart")]
-    [SerializeField]
-    private int heart;
+    //[Header("Heart")]
+    //[SerializeField]
+    //private int heart;
 
-    public UnityAction<int> OnHeartChanged;
+    //public UnityAction<int> OnHeartChanged;
 
     [Header("Enemy")]
     [SerializeField]
@@ -35,11 +35,11 @@ public class WaveManager : SingleTon<WaveManager>
 
     public bool WaveStart ;
 
-    public int Heart
-    {
-        get { return heart; }
-        private set { heart = value; OnHeartChanged?.Invoke(heart); }
-    }
+    //public int Heart
+    //{
+    //    get { return heart; }
+    //    private set { heart = value; OnHeartChanged?.Invoke(heart); }
+    //}
 
     private void Awake()
     {
@@ -129,10 +129,10 @@ public class WaveManager : SingleTon<WaveManager>
         }
     }
 
-    public void TakeDamage(int damage)
-    {
-        Heart -= damage;
+    //public void TakeDamage(int damage)
+    //{
+    //    Heart -= damage;
 
-        // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
-    }
+    //    // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
+    //}
 }

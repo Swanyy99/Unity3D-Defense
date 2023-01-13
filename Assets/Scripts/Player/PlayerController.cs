@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
         Interaction();
         Dash();
 
+        if (Input.GetKeyDown(KeyCode.LeftBracket))
+            PlayerManager.Instance.GainHp(30);
+        if (Input.GetKeyDown(KeyCode.RightBracket))
+            PlayerManager.Instance.GainMp(30);
+
         //if (OnRespawnArea() && CanRespawn == true)
         //{
         //    Debug.Log("Çæ");
@@ -151,8 +156,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z) &&
                 curAnim("Attack") == false &&
                 curAnim("Jump") == false &&
-                attacked == false)
+                attacked == false && PlayerManager.Instance.MP >= 30)
             {
+                PlayerManager.Instance.UseMana(30);
                 attacked = true;
                 anim.SetBool("isMoving", false);
                 anim.SetBool("isAttacking", true);

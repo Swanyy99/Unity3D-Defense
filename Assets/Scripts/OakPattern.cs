@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 public class OakPattern : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject AttackVFX;
+
+    [SerializeField]
+    private Transform AttackPos;
+
     [SerializeField]
     private GameObject oakFinger1;
     [SerializeField]
@@ -16,6 +23,8 @@ public class OakPattern : MonoBehaviour
     private GameObject oakFinger5;
 
     private Animator anim;
+
+    private bool attack1time;
 
     private void Awake()
     {
@@ -42,11 +51,35 @@ public class OakPattern : MonoBehaviour
             oakFinger4.SetActive(false);
             oakFinger5.SetActive(false);
         }
+
+
+        if (curAnim("Attack") && attack1time == false)
+        {
+            StartCoroutine(Attack());
+            attack1time = true;
+        }
+
+        if (curAnim("Move") || curAnim("Idle"))
+            attack1time = false;
     }
 
 
     bool curAnim(string name)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
+    }
+
+
+    public IEnumerator Attack()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (gameObject == null)
+                break;
+            GameObject att = Instantiate(AttackVFX, AttackPos.transform.position, AttackPos.transform.rotation);
+            att.transform.parent = this.transform;
+            break;
+        }
     }
 }

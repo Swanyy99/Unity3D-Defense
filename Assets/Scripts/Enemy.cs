@@ -25,13 +25,20 @@ public class Enemy : MonoBehaviour
     public int Hp;
 
     public GameObject player;
+    public GameObject MainGate;
 
     private float distance;
+    private float distance2;
 
     private float AttackTimer;
+    private float GateAttackTimer;
     private float StopTimer;
 
+
     private Vector3 playerpos;
+
+    [SerializeField]
+    private int damage;
 
     [SerializeField]
     private GameObject Weapon;
@@ -42,6 +49,9 @@ public class Enemy : MonoBehaviour
     Vector3 moveVec;
 
     //private Rigidbody rigid;
+
+
+    public int Damage { get { return damage; } private set { damage = value; } }
 
     private void Awake()
     {
@@ -56,6 +66,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
+        MainGate = GameObject.Find("MainGate");
 
         if (Type("Enemy"))
         {
@@ -87,6 +98,7 @@ public class Enemy : MonoBehaviour
 
         MoveRoad();
         DetectPlayer();
+        //DetectGate();
 
     }
 
@@ -131,7 +143,7 @@ public class Enemy : MonoBehaviour
     {
         if (Type("Enemy"))
         {
-            if(curAnim("Attack"))
+            if (curAnim("Attack"))
             {
                 anim.SetBool("Move", false);
                 agent.SetDestination(gameObject.transform.position);
@@ -146,7 +158,6 @@ public class Enemy : MonoBehaviour
                 PlayerDetect = true;
                 anim.SetBool("Move", false);
                 agent.SetDestination(gameObject.transform.position);
-                StopTimer += Time.deltaTime;
 
                 if (AttackTimer >= 4)
                 {
@@ -168,6 +179,8 @@ public class Enemy : MonoBehaviour
                 PlayerDetect = false;
                 anim.ResetTrigger("Attack");
                 anim.SetBool("Move", true);
+                //SetNextPoint();
+                curWayIndex = WaveManager.Instance.WayPoints.Count - 1;
                 agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
 
             }
@@ -175,12 +188,35 @@ public class Enemy : MonoBehaviour
             
         }
 
+        
+    }
+
+    private void DetectGate()
+    {
+        if (Type("Enemy") && PlayerDetect == false)
+        {
+            GateAttackTimer += Time.deltaTime;
+            distance2 = Vector3.Distance(MainGate.transform.position, gameObject.transform.position);
+
+            if (distance2 <= 1.2f)
+            {
+                anim.SetBool("Move", false);
+                agent.SetDestination(gameObject.transform.position);
+
+                if (GateAttackTimer >= 4)
+                {
+                    anim.SetBool("Move", false);
+                    anim.SetTrigger("Attack");
+                    GateAttackTimer = 0;
+                }
+            }
+        }
     }
 
     private void OnArriveEndPoint()
     {
         Debug.Log("À¸¾Ç");
-        WaveManager.Instance.TakeDamage(1);
+        PlayerManager.Instance.TakeDamage(1);
         Destroy(gameObject);
     }
 
@@ -193,7 +229,6 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            curWayIndex--;
             agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
         }
         //destination.transform.position = WaveManager.Instance.WayPoints[curWayIndex].position;

@@ -6,26 +6,130 @@ using UnityEngine;
 public class PlayerStateUI : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI heartUI;
+    private TextMeshProUGUI LevelUI;
     [SerializeField]
-    private TextMeshProUGUI goldUI;
+    private TextMeshProUGUI Exp;
+    [SerializeField]
+    private TextMeshProUGUI HpUI;
+    [SerializeField]
+    private TextMeshProUGUI MpUI;
+    [SerializeField]
+    private TextMeshProUGUI GoldUI;
+
+    [Header("Bar")]
+    [SerializeField]
+    private GameObject HPBAR;
+    [SerializeField]
+    private GameObject MPBAR;
+
+
+    private List<GameObject> Obj;
 
     private void Start()
     {
-        WaveManager.Instance.OnHeartChanged += ChangeHeart;
+        PlayerManager.Instance.OnCurHpChanged += ChangeCurHp;
+        PlayerManager.Instance.OnCurMpChanged += ChangeCurMp;
+        PlayerManager.Instance.OnExpChanged += GainEXP;
         BuildManager.Instance.OnChangeGold += ChangeGold;
 
-        ChangeHeart(WaveManager.Instance.Heart);
+        ChangeCurHp(PlayerManager.Instance.HP);
+        ChangeCurMp(PlayerManager.Instance.MP);
         ChangeGold(BuildManager.Instance.Gold);
     }
 
-    public void ChangeHeart(int heart)
+    public void ChangeCurHp(int hp)
     {
-        heartUI.text = heart.ToString();
+        Debug.Log("호출이당");
+        
+
+        float v = Mhp() / 14f;
+        int count = 0;
+        float h = hp / v;
+        if (h > 14)
+            h = 14;
+        //if (hp % v > 0)
+        //    h++;
+
+
+        for (int i = 0; i < (int)h; i++) 
+        {
+            HPBAR.transform.GetChild(i).gameObject.SetActive(true);
+            count++;
+        }
+
+        for (int i = 0; i < 14 - count; i++) 
+        {
+            HPBAR.transform.GetChild(count + i).gameObject.SetActive(false);
+        }
+
+        if (hp > Mhp())
+        {
+            hp = Mhp();
+        }
+
+        HpUI.text = hp.ToString();
+    }
+
+    public void ChangeCurMp(int mp)
+    {
+        Debug.Log("호출이당");
+
+
+        float v = Mmp() / 14f;
+        int count = 0;
+        float h = mp / v;
+        if (h > 14)
+            h = 14;
+        
+
+
+        for (int i = 0; i < (int)h; i++)
+        {
+            MPBAR.transform.GetChild(i).gameObject.SetActive(true);
+            count++;
+        }
+
+        for (int i = 0; i < 14 - count; i++)
+        {
+            MPBAR.transform.GetChild(count + i).gameObject.SetActive(false);
+        }
+
+        if (mp > Mmp())
+        {
+            mp = Mmp();
+        }
+
+        MpUI.text = mp.ToString();
+    }
+
+    public void GainEXP(int exp)
+    {
+        Debug.Log("호출이당");
+        HpUI.text = exp.ToString();
     }
 
     public void ChangeGold(int gold)
     {
-        goldUI.text = gold.ToString();
+        GoldUI.text = gold.ToString() + " G";
+    }
+
+    private float nowHP()
+    {
+        return PlayerManager.Instance.HP / PlayerManager.Instance.MAXHP * 1.4f;
+    }
+
+    private int Mhp()
+    {
+        return PlayerManager.Instance.MAXHP;
+    }
+
+    private int Mmp()
+    {
+        return PlayerManager.Instance.MAXMP;
+    }
+
+    private bool CheckHP(float a, float b)
+    {
+        return a < nowHP() && nowHP() > b;
     }
 }
