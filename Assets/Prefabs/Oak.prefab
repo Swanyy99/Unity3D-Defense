@@ -96,7 +96,8 @@ MonoBehaviour:
   MaxHp: 3
   Hp: 3
   player: {fileID: 0}
-  damage: 3
+  MainGate: {fileID: 0}
+  damage: 5
   Weapon: {fileID: 0}
 --- !u!195 &4561595026006828631
 NavMeshAgent:
@@ -130,10 +131,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.5287524
   m_Height: 2.0804496
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0675718, z: 0}
+  m_Center: {x: -0.0027664502, y: 1.0675718, z: 0}
 --- !u!54 &2729568869372250969
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private int attackCount;
     [SerializeField]
     private GameObject standard;
+
     [Header("Basic")]
     [SerializeField]
     private float moveSpeed;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed;
     [SerializeField]
     private LayerMask jumpLayerMask;
+
     [Header("Attack")]
     [SerializeField]
     private GameObject AttackPos;
@@ -35,6 +39,16 @@ public class PlayerController : MonoBehaviour
     private CinemachineFreeLook playerCam;
     [SerializeField]
     private CinemachineFreeLook BuildCam;
+
+    [Header("InterAction")]
+    [SerializeField]
+    private bool showInterActionGizmos;
+    [SerializeField]
+    private float interActionRange;
+    [SerializeField, Range(0f, 360f)]
+    private float interActionAngle;
+
+    [Header("Etc")]
     private bool attacked;
     private bool BasicAttacked;
     private float BasicAttackTimer;
@@ -45,7 +59,6 @@ public class PlayerController : MonoBehaviour
     private GameObject DashTrail;
     public bool isDash;
     public Sword sword;
-
     public Transform groundCheck;
     public float groundDistance = 0.2f;
     public float respawnDistance = 0.1f;
@@ -53,9 +66,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask RespawnMask;
 
     public Respawn respawn;
-    private float RespawnTimer;
+    //private float RespawnTimer;
 
-    private bool CanRespawnVFX = true;
+    //private bool CanRespawnVFX = true;
 
     public List<GameObject> FoundObjects;
     public GameObject RespawnArea;
@@ -79,7 +92,8 @@ public class PlayerController : MonoBehaviour
         Attack();
         GravityCheck();
         Jump();
-        Interaction();
+        Behave();
+        InterAction();
         Dash();
 
         if (Input.GetKeyDown(KeyCode.LeftBracket))
@@ -111,8 +125,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Attack()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (GameManager.Instance.BuildMode == true)
             return;
+
         if (curAnim("comboSlash1") || curAnim("comboSlash2") ||
             curAnim("comboSlash3") || curAnim("comboSlash4"))
             SwordTrail.SetActive(true);
@@ -302,7 +320,7 @@ public class PlayerController : MonoBehaviour
             moveSpeed = 6f;
             DashTimer += Time.deltaTime;
 
-            if (DashTimer >= 0.45f)
+            if (DashTimer >= 0.43f)
             {
                 anim.SetBool("isDash", false);
                 DashTimer = 0;
@@ -319,7 +337,7 @@ public class PlayerController : MonoBehaviour
     {
         sword.disableSwordCollider();
     }
-    public void Interaction()
+    public void Behave()
     {
 
         if (attacked == true)
@@ -347,6 +365,47 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.TooltipOn = true;
         }
     }
+
+    private void InterAction()
+    {
+        if (!Input.GetKeyDown(KeyCode.E))
+            return;
+
+        // 1. 범위내에 있는가
+        Collider[] colliders = Physics.OverlapSphere(transform.position, interActionRange);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Vector3 dirToTarget = (colliders[i].transform.position - transform.position).normalized;
+
+            // 2. 각도내에 있는가
+            if (Vector3.Dot(transform.forward, dirToTarget) < Mathf.Cos(interActionAngle * 0.5f * Mathf.Deg2Rad))
+                continue;
+
+            IInteractable target = colliders[i].GetComponent<IInteractable>();
+            target?.Interaction(this);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (showInterActionGizmos)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, interActionRange);
+
+            Vector3 rightDir = AngleToDir(transform.eulerAngles.y + interActionAngle * 0.5f);
+            Vector3 leftDir = AngleToDir(transform.eulerAngles.y - interActionAngle * 0.5f);
+            Debug.DrawRay(transform.position, rightDir * interActionRange, Color.blue);
+            Debug.DrawRay(transform.position, leftDir * interActionRange, Color.blue);
+        }
+    }
+
+    private Vector3 AngleToDir(float angle)
+    {
+        float radian = angle * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Sin(radian), 0, Mathf.Cos(radian));
+    }
+
     private IEnumerator DoubleSwordWave()
     {
         while (true)
@@ -407,7 +466,6 @@ public class PlayerController : MonoBehaviour
         moveY = 0;
         gameObject.transform.position = RespawnArea.transform.position;
         Instantiate(RespawnEffect, transform.position, transform.rotation);
-        Debug.Log("해위");
 
 
     }
@@ -428,10 +486,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private IEnumerator CheckCol()
-    {
-        yield return new WaitForSeconds(0.5f);
-        CanRespawnVFX = true;
 
-    }
 }

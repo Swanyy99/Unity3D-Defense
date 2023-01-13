@@ -69,7 +69,8 @@ public class PlayerManager : SingleTon<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(RecoverHP());
+        StartCoroutine(RecoverMP());
     }
 
     // Update is called once per frame
@@ -122,5 +123,23 @@ public class PlayerManager : SingleTon<PlayerManager>
 
 
         // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
+    }
+
+    private IEnumerator RecoverHP()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            GainHp(hpRecover);
+        }
+    }
+
+    private IEnumerator RecoverMP()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            GainMp(mpRecover);
+        }
     }
 }

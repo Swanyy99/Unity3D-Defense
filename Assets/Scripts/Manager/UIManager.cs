@@ -12,6 +12,8 @@ public class UIManager : SingleTon<UIManager>
 
     private List<Inventory> inventoryList;
 
+    public bool InventoryOn;
+
 
     private void Awake()
     {
@@ -20,15 +22,21 @@ public class UIManager : SingleTon<UIManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-            CreateInventory();
+        //if(Input.GetKeyDown(KeyCode.I))
+        //    CreateInventory();
     }
 
     public void CreateInventory()
     {
-        Inventory inventory = Instantiate(inventoryPrefab);
-        inventory.transform.SetParent(windowCanvas.transform, false);
-        inventoryList.Add(inventory);
+        if (InventoryOn == false)
+        {
+
+            Inventory inventory = Instantiate(inventoryPrefab);
+            inventory.transform.SetParent(windowCanvas.transform, false);
+            InventoryOn = true;
+        }
+        
+        //inventoryList.Add(inventory);
     }
 
     //public void SetFocusWindow(Inventory inventory)

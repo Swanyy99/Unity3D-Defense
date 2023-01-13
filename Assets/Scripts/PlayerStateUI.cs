@@ -39,7 +39,6 @@ public class PlayerStateUI : MonoBehaviour
 
     public void ChangeCurHp(int hp)
     {
-        Debug.Log("호출이당");
         
 
         float v = Mhp() / 14f;
@@ -72,7 +71,6 @@ public class PlayerStateUI : MonoBehaviour
 
     public void ChangeCurMp(int mp)
     {
-        Debug.Log("호출이당");
 
 
         float v = Mmp() / 14f;
@@ -104,7 +102,6 @@ public class PlayerStateUI : MonoBehaviour
 
     public void GainEXP(int exp)
     {
-        Debug.Log("호출이당");
         HpUI.text = exp.ToString();
     }
 
