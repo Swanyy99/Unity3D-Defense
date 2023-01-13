@@ -154,7 +154,8 @@ public class Enemy : MonoBehaviour
             if (distance <= 1.2f)
             {
                 playerpos = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
-                gameObject.transform.LookAt(playerpos);
+                if (!curAnim("Attack"))
+                    gameObject.transform.LookAt(playerpos);
                 PlayerDetect = true;
                 anim.SetBool("Move", false);
                 agent.SetDestination(gameObject.transform.position);
