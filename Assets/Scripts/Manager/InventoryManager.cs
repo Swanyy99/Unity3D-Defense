@@ -6,10 +6,15 @@ public class InventoryManager : SingleTon<InventoryManager>
 {
     [SerializeField]
     private InventoryUI Inventory;
+    [SerializeField]
+    private GameObject TooltipUI;
     public List<InventoryItem> items = new List<InventoryItem>();
 
     private GameObject player;
 
+    public bool InventoryOn;
+
+    //public ItemData.type Type;
     //Vector3 PlayerPos;
     //Vector3 PlayerRot;
 
@@ -28,11 +33,14 @@ public class InventoryManager : SingleTon<InventoryManager>
             if (Inventory.gameObject.activeSelf)
             {
                 Inventory.gameObject.SetActive(false);
+                InventoryOn = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 Inventory.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
+                InventoryOn = true;
+                Cursor.lockState = CursorLockMode.Confined;
             }
         }
     }
@@ -41,6 +49,13 @@ public class InventoryManager : SingleTon<InventoryManager>
     {
         Inventory.UpdateUI();
 
+        if (Inventory.gameObject.activeSelf)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            TooltipUI.SetActive(false);
+        }
     }
 
     public void AddItem(InventoryItem inventoryItem)
@@ -56,4 +71,33 @@ public class InventoryManager : SingleTon<InventoryManager>
 
         Instantiate(inventoryItem.data.prefab, player.transform.position, player.transform.rotation);
     }
+
+    public void UseItem(InventoryItem inventoryItem)
+    {
+        string Type = inventoryItem.data.Itemtype.ToString();
+
+        switch (Type)
+        {
+            case "Potion":
+                Debug.Log("포션이 발동한다");
+                items.Remove(inventoryItem);
+                PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
+                PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
+                break;
+
+            default: 
+                break;
+
+        }
+
+        //if (inventoryItem.data.Itemtype.ToString() == "Potion")
+        //{
+        //    Debug.Log("포션이 발동한다");
+        //    items.Remove(inventoryItem);
+        //    PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
+        //}
+
+        Inventory.UpdateUI();
+    }
+
 }

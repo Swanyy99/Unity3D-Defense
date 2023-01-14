@@ -17,6 +17,10 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private Image image;
 
+    private void OnEnable()
+    {
+        //gameObject.transform.SetAsLastSibling();
+    }
 
     private void Start()
     {
@@ -51,7 +55,7 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        
+
         FirstMousePos = eventData.position;
         GAP = transform.position - FirstMousePos;
         gameObject.transform.SetAsLastSibling();
@@ -62,6 +66,7 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         UIManager.Instance.InventoryOn = false;
         gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
    

@@ -352,18 +352,26 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
             GameManager.Instance.GameOn = true;
-        if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true)
+
+        if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true/* && InventoryManager.Instance.InventoryOn == false*/)
         {
             Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.BuildMode = false;
             GameManager.Instance.TooltipOn = false;
         }
-        else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false)
+        else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false/* && InventoryManager.Instance.InventoryOn == false*/)
         {
             Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.BuildMode = true;
             GameManager.Instance.TooltipOn = true;
         }
+
+        //else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false && InventoryManager.Instance.InventoryOn == true)
+        //{
+        //    Cursor.lockState = CursorLockMode.Confined;
+        //    GameManager.Instance.BuildMode = true;
+        //    GameManager.Instance.TooltipOn = true;
+        //}
     }
 
     private void InterAction()

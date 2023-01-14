@@ -8,6 +8,8 @@ public class InventoryItem
 
     public virtual void Use()
     {
-        InventoryManager.Instance.DropItem(this);
+        InventoryManager.Instance.UseItem(this);
     }
+
+
 }

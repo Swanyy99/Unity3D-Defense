@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Types;
+using Unity.Mathematics;
 using UnityEngine;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
@@ -21,6 +23,11 @@ public class OakPattern : MonoBehaviour
     private GameObject oakFinger4;
     [SerializeField]
     private GameObject oakFinger5;
+    [Header("DropItem")]
+    [SerializeField]
+    private GameObject dropItem1;
+    [SerializeField]
+    private GameObject dropItem2;
 
     private Animator anim;
 
@@ -80,6 +87,23 @@ public class OakPattern : MonoBehaviour
             GameObject att = Instantiate(AttackVFX, AttackPos.transform.position, AttackPos.transform.rotation);
             att.transform.parent = this.transform;
             break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        int a = UnityEngine.Random.Range(0, 5);
+        switch (a)
+        {
+            case 0:
+                Instantiate(dropItem1, transform.position, transform.rotation);
+                break;
+            case 1:
+                Instantiate(dropItem2, transform.position, transform.rotation);
+                break;
+            default:
+                break;
+
         }
     }
 }
