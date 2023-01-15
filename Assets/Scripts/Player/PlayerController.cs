@@ -355,13 +355,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true/* && InventoryManager.Instance.InventoryOn == false*/)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.BuildMode = false;
             GameManager.Instance.TooltipOn = false;
         }
         else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false/* && InventoryManager.Instance.InventoryOn == false*/)
         {
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.lockState = CursorLockMode.None;
             GameManager.Instance.BuildMode = true;
             GameManager.Instance.TooltipOn = true;
         }

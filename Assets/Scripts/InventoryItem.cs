@@ -6,12 +6,12 @@ public class InventoryItem
 {
     public ItemData data;
 
-    public virtual void Use()
+    public void Use()
     {
         InventoryManager.Instance.UseItem(this);
     }
 
-    public virtual void UseEliminate()
+    public void UseEliminate()
     {
         InventoryManager.Instance.EliminateItem(this);
     }

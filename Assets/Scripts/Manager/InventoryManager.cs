@@ -9,7 +9,9 @@ public class InventoryManager : SingleTon<InventoryManager>
     private InventoryUI Inventory;
     [SerializeField]
     private GameObject TooltipUI;
+
     public List<InventoryItem> items = new List<InventoryItem>();
+
 
     private GameObject player;
 
@@ -24,58 +26,51 @@ public class InventoryManager : SingleTon<InventoryManager>
     //Vector3 PlayerPos;
     //Vector3 PlayerRot;
 
+
+
     private void Start()
     {
         Inventory.UpdateUI();
         player = GameObject.Find("Player");
     }
 
+
     private void Update()
     {
-        //PlayerPos = new Vector3 (player.transform.position.x , player.transform.position.y, player.transform.position.z + 2);
-        //PlayerRot = new Vector3 (player.transform.rotation.x , player.transform.rotation.y, player.transform.rotation.z + 2);
+        inven = Inventory.GetComponentsInChildren<InventoryUnit>();
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (Inventory.gameObject.activeSelf)
             {
                 Inventory.gameObject.SetActive(false);
                 InventoryOn = false;
-                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
                 Inventory.gameObject.SetActive(true);
                 InventoryOn = true;
-                Cursor.lockState = CursorLockMode.Confined;
             }
         }
-    }
 
-    private void FixedUpdate()
-    {
-
-        inven = Inventory.GetComponentsInChildren<InventoryUnit>();
-
-        //Inventory.UpdateUI();
-
-        if (Inventory.gameObject.activeSelf)
+        if (Inventory.gameObject.activeSelf == true || GameManager.Instance.BuildMode == true)
+        {
             Cursor.lockState = CursorLockMode.Confined;
-        else
+        }
+        else if (Inventory.gameObject.activeSelf == false || GameManager.Instance.BuildMode == false)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            TooltipUI.SetActive(false);
         }
+
+
     }
 
 
     public void AddItem(InventoryItem inventoryItem)
     {
-        Debug.Log("호출됐음");
-        
+
         for (int i = 0; i < inven.Length; i++)
         {
-            Debug.Log("발동했음");
-
             if (inven[i].Item != null)
             {
                 if (inven[i].Item.data.name == inventoryItem.data.name)
@@ -98,9 +93,6 @@ public class InventoryManager : SingleTon<InventoryManager>
         }
 
         
-
-        //Inventory.UpdateUI();
-        ///*Inventory.*/UpdateUI();
     }
 
     public void DropItem(InventoryItem inventoryItem)
@@ -119,21 +111,19 @@ public class InventoryManager : SingleTon<InventoryManager>
         {
             case "Potion":
                 Debug.Log("포션이 발동한다");
-                //items.Remove(inventoryItem);
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
                 break;
 
-            default:
+            case "Equipment":
                 Debug.Log("검을 분해시켰다");
-                //items.Remove(inventoryItem);
+                break;
+
+            default:
                 break;
 
         }
 
-
-
-        Inventory.UpdateUI();
     }
 
     public void EliminateItem(InventoryItem inventoryItem)
@@ -143,23 +133,30 @@ public class InventoryManager : SingleTon<InventoryManager>
         switch (Type)
         {
             case "Potion":
-                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 items.Remove(inventoryItem);
+                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
                 break;
 
-            default:
-                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
-                Debug.Log("검을 분해시켰다");
+            case "Equipment":
                 items.Remove(inventoryItem);
+                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
+                break;
+
+            default:
                 break;
 
         }
 
-
-
         Inventory.UpdateUI();
+    }
+
+    private IEnumerator WaitUpdate()
+    {
+        yield return new WaitForSeconds (0.1f);
+        Inventory.UpdateUI();
+
     }
 
 }

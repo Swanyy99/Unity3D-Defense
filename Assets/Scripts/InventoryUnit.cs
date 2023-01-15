@@ -35,39 +35,11 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
     public void AddItem(InventoryItem inventoryItem)
     {
+        Debug.Log("add 발동");
         useButton.interactable = true;
         icon.sprite = inventoryItem.data.icon;
         icon.color = new Color(255, 255, 255, 255);
         this.Item = inventoryItem;
-
-        //if(this.Item != null)
-        //    Debug.Log("먹기 전 아이템 " + this.Item.data.name);
-
-        //Debug.Log("들어올 아이템 " + inventoryItem.data.name);
-
-        //if (this.Item != null)
-        //{
-        //    if (this.Item.data.name == inventoryItem.data.name)
-        //    {
-        //        SetItemCount(inventoryItem, 1);
-        //        return;
-        //    }
-        //}
-
-        //if (this.Item == null)
-        //{
-        //    SetItemCount(inventoryItem, 1);
-        //}
-
-        //else if (this.Item != null && this.Item.data.name == inventoryItem.data.name)
-        //{
-        //    SetItemCount(inventoryItem, 1);
-        //}
-
-        //Debug.Log("획득 후 아이템 " + this.Item.data.name);
-
-
-
     }
 
     public void SetItemCount(InventoryItem inventoryItem, int num)
@@ -80,11 +52,12 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
     public void RemoveItem()
     {
-        this.Item = null;
-        useButton.interactable = false;
+        Debug.Log("remove 발동");
         icon.sprite = null;
         icon.color = new Color(255, 255, 255, 0);
         count.text = "";
+        this.Item = null;
+        useButton.interactable = false;
     }
 
     public void UseItem()
@@ -93,19 +66,20 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         {
             Item.Use();
             SetItemCount(Item, -1);
+            Debug.Log("아이템 갯수가 2개이상이라 발동");
         }
 
-        else
+        else if (ItemCount == 1)
         {
             Item.UseEliminate();
             icon.sprite = null;
             icon.color = new Color(255, 255, 255, 0);
-            this.Item = null;
             count.text = "";
             useButton.interactable = false;
+            this.Item = null;
+            Debug.Log("아이템 갯수가 1개라 발동");
         }
-        
-        //Item.ReUpdate();
+
     }
 
 
@@ -118,7 +92,6 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     {
         if (this.Item != null)
         {
-            Debug.Log("마우스올라감");
             ItemTooltipUI.SetActive(true);
             ItemName.text = this.Item.data.name;
             ItemDescriprion.text = this.Item.data.description;
