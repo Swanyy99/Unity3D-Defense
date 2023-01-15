@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
     {
         InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.data = data;
+        //InventoryManager.Instance.NowItem = inventoryItem;
         InventoryManager.Instance.AddItem(inventoryItem);
 
         Destroy(gameObject);

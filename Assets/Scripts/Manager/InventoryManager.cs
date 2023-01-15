@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class InventoryManager : SingleTon<InventoryManager>
@@ -13,6 +14,11 @@ public class InventoryManager : SingleTon<InventoryManager>
     private GameObject player;
 
     public bool InventoryOn;
+
+    [SerializeField]
+    private InventoryUnit[] inven;
+
+    public InventoryItem NowItem;
 
     //public ItemData.type Type;
     //Vector3 PlayerPos;
@@ -47,7 +53,10 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     private void FixedUpdate()
     {
-        Inventory.UpdateUI();
+
+        inven = Inventory.GetComponentsInChildren<InventoryUnit>();
+
+        //Inventory.UpdateUI();
 
         if (Inventory.gameObject.activeSelf)
             Cursor.lockState = CursorLockMode.Confined;
@@ -58,10 +67,40 @@ public class InventoryManager : SingleTon<InventoryManager>
         }
     }
 
+
     public void AddItem(InventoryItem inventoryItem)
     {
-        items.Add(inventoryItem);
-        Inventory.UpdateUI();
+        Debug.Log("호출됐음");
+        
+        for (int i = 0; i < inven.Length; i++)
+        {
+            Debug.Log("발동했음");
+
+            if (inven[i].Item != null)
+            {
+                if (inven[i].Item.data.name == inventoryItem.data.name)
+                {
+                    inven[i].SetItemCount(items[i], 1);
+                    Inventory.UpdateUI();
+                    return;
+                }
+            }
+        }
+
+        for (int i = 0; i< inven.Length; i++)
+        {
+            if (inven[i].Item == null)
+            {
+                items.Add(inventoryItem);
+                Inventory.UpdateUI();
+                return;
+            }
+        }
+
+        
+
+        //Inventory.UpdateUI();
+        ///*Inventory.*/UpdateUI();
     }
 
     public void DropItem(InventoryItem inventoryItem)
@@ -80,22 +119,45 @@ public class InventoryManager : SingleTon<InventoryManager>
         {
             case "Potion":
                 Debug.Log("포션이 발동한다");
+                //items.Remove(inventoryItem);
+                PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
+                PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
+                break;
+
+            default:
+                Debug.Log("검을 분해시켰다");
+                //items.Remove(inventoryItem);
+                break;
+
+        }
+
+
+
+        Inventory.UpdateUI();
+    }
+
+    public void EliminateItem(InventoryItem inventoryItem)
+    {
+        string Type = inventoryItem.data.Itemtype.ToString();
+
+        switch (Type)
+        {
+            case "Potion":
+                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 items.Remove(inventoryItem);
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
                 break;
 
-            default: 
+            default:
+                Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
+                Debug.Log("검을 분해시켰다");
+                items.Remove(inventoryItem);
                 break;
 
         }
 
-        //if (inventoryItem.data.Itemtype.ToString() == "Potion")
-        //{
-        //    Debug.Log("포션이 발동한다");
-        //    items.Remove(inventoryItem);
-        //    PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
-        //}
+
 
         Inventory.UpdateUI();
     }

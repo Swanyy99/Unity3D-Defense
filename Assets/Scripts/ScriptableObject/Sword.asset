@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62ccc832ab686e4b853bb904018072d, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8219111493277299648, guid: 0a0a0a5f621bfb2408fb81e9844c5c0b, type: 3}
-  icon: {fileID: 21300060, guid: 7ab74e659e1f0a34d9cfec21c478fc12, type: 3}
   Itemtype: 0
   name: "\uAC80"
   RecoverHp: 0
   RecoverMp: 0
   description: "\uC384\uB2E4"
+  prefab: {fileID: 8219111493277299648, guid: 0a0a0a5f621bfb2408fb81e9844c5c0b, type: 3}
+  icon: {fileID: 21300000, guid: 29f90cd6202745c448e74a1398b1c731, type: 3}

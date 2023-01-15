@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "Item/Item")]
 public class ItemData : ScriptableObject
 {
-    public GameObject prefab;
-    public Sprite icon;
     public enum type
     {
         Equipment,
@@ -19,5 +17,7 @@ public class ItemData : ScriptableObject
     public int RecoverMp;
     [TextArea(1, 4)]
     public string description;
+    public GameObject prefab;
+    public Sprite icon;
 
 }

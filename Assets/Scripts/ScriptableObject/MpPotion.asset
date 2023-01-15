@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62ccc832ab686e4b853bb904018072d, type: 3}
   m_Name: MpPotion
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
-  icon: {fileID: 21300000, guid: 8ce793dbd83cd7245a492b749b8b3567, type: 3}
   Itemtype: 1
-  name: "MP \uBB3C\uC57D"
+  name: "MP \uD3EC\uC158"
   RecoverHp: 0
   RecoverMp: 30
   description: "MP\uB97C 30 \uD68C\uBCF5\uC2DC\uD0A8\uB2E4\n\uB9DB\uC788\uC5B4 \uBCF4\uC778\uB2E4!\n\uADFC\uB370
     \uB9DB\uC5C6\uB2E4.."
+  prefab: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
+  icon: {fileID: 21300000, guid: 8ce793dbd83cd7245a492b749b8b3567, type: 3}

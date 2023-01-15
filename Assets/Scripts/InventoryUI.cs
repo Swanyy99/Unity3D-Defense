@@ -6,6 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     private InventoryUnit[] inventoryUnits;
 
+    //private InventoryItem item;
 
     public void UpdateUI()
     {
@@ -16,6 +17,10 @@ public class InventoryUI : MonoBehaviour
             if (i < InventoryManager.Instance.items.Count)
             {
                 inventoryUnits[i].AddItem(InventoryManager.Instance.items[i]);
+                //if (inventoryUnits[i].Item == null)
+                //else if (inventoryUnits[i].Item != null && inventoryUnits[i].Item.data.name != InventoryManager.Instance.items[i].data.name)
+                    //inventoryUnits[i].SetItemCount(InventoryManager.Instance.items[i], 1);
+
             }
             else
             {
