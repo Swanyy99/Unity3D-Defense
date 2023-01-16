@@ -11,6 +11,8 @@ public class InventoryManager : SingleTon<InventoryManager>
 {
     [SerializeField]
     private InventoryUI Inventory;
+
+
     [SerializeField]
     private GameObject TooltipUI;
 
@@ -25,6 +27,7 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     [SerializeField]
     private InventoryUnit[] inven;
+
 
     public InventoryItem NowItem;
 
@@ -103,6 +106,9 @@ public class InventoryManager : SingleTon<InventoryManager>
         }
 
 
+        
+
+
     }
 
     public void DropItem(InventoryItem inventoryItem)
@@ -169,5 +175,7 @@ public class InventoryManager : SingleTon<InventoryManager>
         yield return new WaitForSeconds (0.1f);
 
     }
+
+
 
 }

@@ -25,17 +25,46 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     public int ItemCount = 0;
 
-    private InventoryUI inven;
+    private InventoryUnit[] QuickInven;
+
+    [SerializeField]
+    private InventoryUnit quickSlot1;
+
+    [SerializeField]
+    private InventoryUnit quickSlot2;
+
+    [SerializeField]
+    private InventoryUnit quickSlot3;
+
+    [SerializeField]
+    private InventoryUnit quickSlot4;
+
+    [SerializeField]
+    private InventoryUI QuickInventory;
 
     [SerializeField]
     private GameObject ItemTooltipUI;
+
+    [SerializeField]
+    private ItemTooltipUI tooltip;
 
     [SerializeField]
     private TextMeshProUGUI ItemName;
     [SerializeField]
     private TextMeshProUGUI ItemDescriprion;
 
+
+
     public void AddItem(InventoryItem inventoryItem)
+    {
+        useButton.interactable = true;
+        icon.sprite = inventoryItem.data.icon;
+        icon.color = new Color(255, 255, 255, 255);
+        this.Item = inventoryItem;
+        QuickSlotAdd();
+    }
+
+    public void AddItem2(InventoryItem inventoryItem)
     {
         useButton.interactable = true;
         icon.sprite = inventoryItem.data.icon;
@@ -105,7 +134,9 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             ItemName.text = this.Item.data.name;
             ItemDescriprion.text = this.Item.data.description;
         }
+
     }
+
 
     public void HideToolTip()
     {
@@ -163,17 +194,39 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         InventoryItem _tempItem = this.Item;
         int _tempItemCount = ItemCount;
 
-        AddItem(DragSlot.instance.dragSlot.Item);
+        AddItem2(DragSlot.instance.dragSlot.Item);
         SetCount(DragSlot.instance.dragSlot.ItemCount);
 
         if (_tempItem != null)
         {
-            DragSlot.instance.dragSlot.AddItem(_tempItem);
+            DragSlot.instance.dragSlot.AddItem2(_tempItem);
             DragSlot.instance.dragSlot.SetCount(_tempItemCount);
         }
         else
         {
             DragSlot.instance.dragSlot.RemoveItem();
+        }
+    }
+
+    private void QuickSlotAdd()
+    {
+        QuickInven = QuickInventory.GetComponentsInChildren<InventoryUnit>();
+
+        for (int i = 0; i < QuickInven.Length; i++)
+        {
+            if (QuickInven[i].Item != null)
+            {
+                if (this.Item.data.Itemtype.ToString() != "Equipment")
+                {
+                    if (QuickInven[i].Item.data.name == this.Item.data.name)
+                    {
+                        //int _tempItemCount = ItemCount;
+                        QuickInven[i].SetItemCount(Item, 1);
+                        RemoveItem();
+                        return;
+                    }
+                }
+            }
         }
     }
 }
