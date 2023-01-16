@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,46 +14,30 @@ public class InventoryManager : SingleTon<InventoryManager>
     [SerializeField]
     private GameObject TooltipUI;
 
-    public List<InventoryItem> items = new List<InventoryItem>();
-    //public List<int> itemsCount = new List<int>();
-
-    //public Dictionary<InventoryItem, int> itemList = new Dictionary<InventoryItem, int>();
-
+    //public List<InventoryItem> items = new List<InventoryItem>();
 
     private GameObject player;
 
     public bool InventoryOn;
 
     [SerializeField]
+    private CinemachineFreeLook playerCam;
+
+    [SerializeField]
     private InventoryUnit[] inven;
 
     public InventoryItem NowItem;
 
-    //public ItemData.type Type;
-    //Vector3 PlayerPos;
-    //Vector3 PlayerRot;
-
-
 
     private void Start()
     {
-        //Inventory.UpdateUI();
-
-        //for (int i = 0; i < inven.Length; i++)
-        //{
-        //    if (inven[i].Item == null)
-        //    {
-        //        inven[i].RemoveItem();
-        //    }
-        //}
-
         player = GameObject.Find("Player");
+        inven = Inventory.GetComponentsInChildren<InventoryUnit>();
     }
 
 
     private void Update()
     {
-        inven = Inventory.GetComponentsInChildren<InventoryUnit>();
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -60,20 +45,26 @@ public class InventoryManager : SingleTon<InventoryManager>
             {
                 Inventory.gameObject.SetActive(false);
                 InventoryOn = false;
+                
             }
             else
             {
                 Inventory.gameObject.SetActive(true);
                 InventoryOn = true;
+                
             }
         }
 
         if (Inventory.gameObject.activeSelf == true || GameManager.Instance.BuildMode == true)
         {
+            playerCam.m_XAxis.m_MaxSpeed = 0;
+            playerCam.m_YAxis.m_MaxSpeed = 0;
             Cursor.lockState = CursorLockMode.Confined;
         }
         else if (Inventory.gameObject.activeSelf == false || GameManager.Instance.BuildMode == false)
         {
+            playerCam.m_XAxis.m_MaxSpeed = 200;
+            playerCam.m_YAxis.m_MaxSpeed = 2;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -89,34 +80,31 @@ public class InventoryManager : SingleTon<InventoryManager>
         {
             if (inven[i].Item != null)
             {
-                if (inven[i].Item.data.name == inventoryItem.data.name)
+                if (inventoryItem.data.Itemtype.ToString() != "Equipment")
                 {
-                    inven[i].SetItemCount(items[i], 1);
-                    //Inventory.UpdateUI();
-                    return;
+                    if (inven[i].Item.data.name == inventoryItem.data.name)
+                    {
+                        inven[i].SetItemCount(inventoryItem, 1);
+                        return;
+                    }
                 }
             }
         }
 
-        for (int i = 0; i< inven.Length; i++)
+        for (int i = 0; i < inven.Length; i++)
         {
             if (inven[i].Item == null)
             {
-                items.Add(inventoryItem);
                 inven[i].AddItem(inventoryItem);
-                //itemsCount.Add(inven[i].ItemCount);
-                //Inventory.UpdateUI();
                 return;
             }
         }
 
-        
+
     }
 
     public void DropItem(InventoryItem inventoryItem)
     {
-        items.Remove(inventoryItem);
-        //Inventory.UpdateUI();
 
         Instantiate(inventoryItem.data.prefab, player.transform.position, player.transform.rotation);
     }
@@ -151,14 +139,12 @@ public class InventoryManager : SingleTon<InventoryManager>
         switch (Type)
         {
             case "Potion":
-                items.Remove(inventoryItem);
                 Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
                 break;
 
             case "Equipment":
-                items.Remove(inventoryItem);
                 Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 break;
 
@@ -179,7 +165,6 @@ public class InventoryManager : SingleTon<InventoryManager>
     private IEnumerator WaitUpdate()
     {
         yield return new WaitForSeconds (0.1f);
-        //Inventory.UpdateUI();
 
     }
 

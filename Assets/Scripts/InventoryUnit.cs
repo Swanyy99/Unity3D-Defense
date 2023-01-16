@@ -12,14 +12,12 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
     [SerializeField]
     private Button useButton;
-    //[SerializeField]
-    //private TextMeshProUGUI textUI;
+
     [SerializeField]
     private Image icon;
 
     [SerializeField]
     private TextMeshProUGUI count;
-
 
     public int ItemCount = 1;
 
@@ -33,14 +31,12 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private TextMeshProUGUI ItemDescriprion;
 
-    public void AddItem(InventoryItem inventoryItem/*, int val*/)
+    public void AddItem(InventoryItem inventoryItem)
     {
-        Debug.Log("add 발동");
         useButton.interactable = true;
         icon.sprite = inventoryItem.data.icon;
         icon.color = new Color(255, 255, 255, 255);
         this.Item = inventoryItem;
-        //ItemCount = val;
     }
 
     public void SetItemCount(InventoryItem inventoryItem, int num)
@@ -53,7 +49,6 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
 
     public void RemoveItem()
     {
-        Debug.Log("remove 발동");
         icon.sprite = null;
         icon.color = new Color(255, 255, 255, 0);
         count.text = "";
@@ -67,7 +62,7 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
         {
             Item.Use();
             SetItemCount(Item, -1);
-            Debug.Log("아이템 갯수가 2개이상이라 발동");
+            Debug.Log("아이템 갯수가 2개이상일때 사용했습니다.");
         }
 
         else if (ItemCount == 1)
@@ -78,7 +73,7 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             count.text = "";
             useButton.interactable = false;
             this.Item = null;
-            Debug.Log("아이템 갯수가 1개라 발동");
+            Debug.Log("아이템 갯수가 1개일때 사용했습니다.");
         }
 
     }
