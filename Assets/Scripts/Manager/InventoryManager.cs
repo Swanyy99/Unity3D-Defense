@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : SingleTon<InventoryManager>
 {
@@ -11,6 +14,9 @@ public class InventoryManager : SingleTon<InventoryManager>
     private GameObject TooltipUI;
 
     public List<InventoryItem> items = new List<InventoryItem>();
+    //public List<int> itemsCount = new List<int>();
+
+    //public Dictionary<InventoryItem, int> itemList = new Dictionary<InventoryItem, int>();
 
 
     private GameObject player;
@@ -30,7 +36,16 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     private void Start()
     {
-        Inventory.UpdateUI();
+        //Inventory.UpdateUI();
+
+        //for (int i = 0; i < inven.Length; i++)
+        //{
+        //    if (inven[i].Item == null)
+        //    {
+        //        inven[i].RemoveItem();
+        //    }
+        //}
+
         player = GameObject.Find("Player");
     }
 
@@ -63,6 +78,7 @@ public class InventoryManager : SingleTon<InventoryManager>
         }
 
 
+
     }
 
 
@@ -76,7 +92,7 @@ public class InventoryManager : SingleTon<InventoryManager>
                 if (inven[i].Item.data.name == inventoryItem.data.name)
                 {
                     inven[i].SetItemCount(items[i], 1);
-                    Inventory.UpdateUI();
+                    //Inventory.UpdateUI();
                     return;
                 }
             }
@@ -87,7 +103,9 @@ public class InventoryManager : SingleTon<InventoryManager>
             if (inven[i].Item == null)
             {
                 items.Add(inventoryItem);
-                Inventory.UpdateUI();
+                inven[i].AddItem(inventoryItem);
+                //itemsCount.Add(inven[i].ItemCount);
+                //Inventory.UpdateUI();
                 return;
             }
         }
@@ -98,7 +116,7 @@ public class InventoryManager : SingleTon<InventoryManager>
     public void DropItem(InventoryItem inventoryItem)
     {
         items.Remove(inventoryItem);
-        Inventory.UpdateUI();
+        //Inventory.UpdateUI();
 
         Instantiate(inventoryItem.data.prefab, player.transform.position, player.transform.rotation);
     }
@@ -149,13 +167,19 @@ public class InventoryManager : SingleTon<InventoryManager>
 
         }
 
-        Inventory.UpdateUI();
+        for (int i = 0; i < inven.Length; i++)
+        {
+            if (inven[i].Item == null)
+            {
+                inven[i].RemoveItem();
+            }
+        }
     }
 
     private IEnumerator WaitUpdate()
     {
         yield return new WaitForSeconds (0.1f);
-        Inventory.UpdateUI();
+        //Inventory.UpdateUI();
 
     }
 

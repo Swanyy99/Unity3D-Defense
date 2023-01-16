@@ -21,7 +21,7 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     private TextMeshProUGUI count;
 
 
-    private int ItemCount = 1;
+    public int ItemCount = 1;
 
     private InventoryUI inven;
 
@@ -33,13 +33,14 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private TextMeshProUGUI ItemDescriprion;
 
-    public void AddItem(InventoryItem inventoryItem)
+    public void AddItem(InventoryItem inventoryItem/*, int val*/)
     {
         Debug.Log("add ¹ßµ¿");
         useButton.interactable = true;
         icon.sprite = inventoryItem.data.icon;
         icon.color = new Color(255, 255, 255, 255);
         this.Item = inventoryItem;
+        //ItemCount = val;
     }
 
     public void SetItemCount(InventoryItem inventoryItem, int num)
