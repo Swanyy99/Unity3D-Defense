@@ -5,8 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
-public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
+public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler /*, IPointerEnterHandler, IPointerExitHandler*/
 {
     public InventoryItem Item;
 
@@ -17,9 +18,12 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
     private Image icon;
 
     [SerializeField]
+    private Image dragIcon;
+
+    [SerializeField]
     private TextMeshProUGUI count;
 
-    public int ItemCount = 1;
+    public int ItemCount = 0;
 
     private InventoryUI inven;
 
@@ -47,35 +51,44 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             count.text = "";
     }
 
+    public void SetCount(int num)
+    {
+        ItemCount = num;
+        count.text = ItemCount.ToString();
+        if (count.text == "1")
+            count.text = "";
+    }
+
     public void RemoveItem()
     {
         icon.sprite = null;
         icon.color = new Color(255, 255, 255, 0);
         count.text = "";
         this.Item = null;
-        useButton.interactable = false;
+        ItemCount = 0;
     }
 
     public void UseItem()
     {
-        if (ItemCount > 1)
+        if (this.Item != null)
         {
-            Item.Use();
-            SetItemCount(Item, -1);
-            Debug.Log("아이템 갯수가 2개이상일때 사용했습니다.");
-        }
+            if (ItemCount > 1)
+            {
+                Item.Use();
+                SetItemCount(Item, -1);
+                Debug.Log("아이템 갯수가 2개이상일때 사용했습니다.");
+            }
 
-        else if (ItemCount == 1)
-        {
-            Item.UseEliminate();
-            icon.sprite = null;
-            icon.color = new Color(255, 255, 255, 0);
-            count.text = "";
-            useButton.interactable = false;
-            this.Item = null;
-            Debug.Log("아이템 갯수가 1개일때 사용했습니다.");
+            else if (ItemCount == 1)
+            {
+                Item.UseEliminate();
+                icon.sprite = null;
+                icon.color = new Color(255, 255, 255, 0);
+                count.text = "";
+                this.Item = null;
+                Debug.Log("아이템 갯수가 1개일때 사용했습니다.");
+            }
         }
-
     }
 
 
@@ -106,7 +119,61 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             HideToolTip();
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right) 
+        {
+            if (this.Item != null)
+                UseItem();
+        }
+    }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (this.Item != null)
+        {
+            DragSlot.instance.dragSlot = this;
+            DragSlot.instance.DragSetImage(this.icon);
+            DragSlot.instance.transform.position = eventData.position;
+        }
 
+    }
 
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (this.Item != null)
+            DragSlot.instance.transform.position = eventData.position;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        DragSlot.instance.SetColor(0);
+        DragSlot.instance.dragSlot = null;
+        ItemTooltipUI.gameObject.SetActive(false);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (DragSlot.instance.dragSlot != null)
+            ChangeSlot();
+    }
+
+    private void ChangeSlot()
+    {
+        InventoryItem _tempItem = this.Item;
+        int _tempItemCount = ItemCount;
+
+        AddItem(DragSlot.instance.dragSlot.Item);
+        SetCount(DragSlot.instance.dragSlot.ItemCount);
+
+        if (_tempItem != null)
+        {
+            DragSlot.instance.dragSlot.AddItem(_tempItem);
+            DragSlot.instance.dragSlot.SetCount(_tempItemCount);
+        }
+        else
+        {
+            DragSlot.instance.dragSlot.RemoveItem();
+        }
+    }
 }

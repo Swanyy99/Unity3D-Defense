@@ -101,27 +101,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightBracket))
             PlayerManager.Instance.GainMp(30);
 
-        //if (OnRespawnArea() && CanRespawn == true)
-        //{
-        //    Debug.Log("Çæ");
-
-        //    RespawnFunc();
-        //    CanRespawn = false;
-        //}
-
-        //if (CanRespawn == false)
-        //{
-        //    RespawnTimer += Time.deltaTime;
-
-        //    if (RespawnTimer > 0.3f)
-        //    {
-        //        CanRespawn = true;
-        //        RespawnTimer = 0;
-        //    }
-        //}
-
-
-
     }
     private void Attack()
     {

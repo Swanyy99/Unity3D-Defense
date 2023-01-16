@@ -97,6 +97,7 @@ public class InventoryManager : SingleTon<InventoryManager>
             if (inven[i].Item == null)
             {
                 inven[i].AddItem(inventoryItem);
+                inven[i].SetCount(1);
                 return;
             }
         }
@@ -154,13 +155,13 @@ public class InventoryManager : SingleTon<InventoryManager>
 
         }
 
-        for (int i = 0; i < inven.Length; i++)
-        {
-            if (inven[i].Item == null)
-            {
-                inven[i].RemoveItem();
-            }
-        }
+        //for (int i = 0; i < inven.Length; i++)
+        //{
+        //    if (inven[i].Item == null)
+        //    {
+        //        inven[i].RemoveItem();
+        //    }
+        //}
     }
 
     private IEnumerator WaitUpdate()
