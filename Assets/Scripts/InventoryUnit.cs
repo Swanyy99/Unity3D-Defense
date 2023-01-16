@@ -100,6 +100,12 @@ public class InventoryUnit : MonoBehaviour/*, IPointerEnterHandler, IPointerExit
             ItemTooltipUI.SetActive(false);
     }
 
+    public void IsThereITEM()
+    {
+        if (this.Item == null)
+            HideToolTip();
+    }
+
 
 
 

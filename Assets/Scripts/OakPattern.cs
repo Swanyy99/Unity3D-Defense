@@ -28,6 +28,8 @@ public class OakPattern : MonoBehaviour
     private GameObject dropItem1;
     [SerializeField]
     private GameObject dropItem2;
+    [SerializeField]
+    private GameObject dropItem3;
 
     private Animator anim;
 
@@ -92,7 +94,7 @@ public class OakPattern : MonoBehaviour
 
     private void OnDestroy()
     {
-        int a = UnityEngine.Random.Range(0, 5);
+        int a = UnityEngine.Random.Range(0, 6);
         switch (a)
         {
             case 0:
@@ -100,6 +102,9 @@ public class OakPattern : MonoBehaviour
                 break;
             case 1:
                 Instantiate(dropItem2, transform.position, transform.rotation);
+                break;
+            case 2:
+                Instantiate(dropItem3, transform.position, transform.rotation);
                 break;
             default:
                 break;

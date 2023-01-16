@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
+    private float SavedmoveSpeed;
+
     [SerializeField]
     private float dragSpeed;
 
@@ -27,6 +29,10 @@ public class CameraController : MonoBehaviour
 
     Vector2 m_Input;
 
+    private void Start()
+    {
+        SavedmoveSpeed = moveSpeed;
+    }
     private void Update()
     {
         Move();
@@ -52,25 +58,6 @@ public class CameraController : MonoBehaviour
 
         Vector2 pos = Input.mousePosition;
 
-        //if (0 <= pos.x && pos.x <= padding)
-        //{
-        //    transform.Translate(moveSpeed * Vector3.left * DT(), Space.Self);
-        //}
-        //if (Screen.width - padding <= pos.x && pos.x <= Screen.width)
-        //{
-        //    transform.Translate(moveSpeed * Vector3.right * DT(), Space.Self);
-        //}
-
-        //if (0 <= pos.y && pos.y <= padding)
-        //{
-        //    transform.Translate(moveSpeed * Vector3.down * DT(), Space.Self);
-        //}
-        //if (Screen.height - padding <= pos.y && pos.y <= Screen.height)
-        //{
-        //    transform.Translate(moveSpeed * Vector3.up * DT(), Space.Self);
-        //}
-
-
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(moveSpeed * Vector3.right * DT(), Space.Self);
@@ -89,6 +76,15 @@ public class CameraController : MonoBehaviour
             transform.Translate(moveSpeed * Vector3.back * DT(), Space.Self);
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = SavedmoveSpeed * 3;
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift)) 
+        {
+            moveSpeed = SavedmoveSpeed;
+        }
+
     }
 
     private void Zoom()
@@ -102,47 +98,6 @@ public class CameraController : MonoBehaviour
     {
         return Time.deltaTime;
     }
-
-    //private void DragMove()
-    //{
-
-    //    if (Input.GetMouseButtonDown(0)) clickPoint = Input.mousePosition;
-    //    if (Input.GetMouseButtonDown(0)) prevPoint = clickPoint;
-
-    //    //if (prevPoint == clickPoint) DragTimer = 0;
-
-    //    if (Input.GetMouseButton(0))
-    //    {
-    //        DragTimer += Time.deltaTime;
-
-    //        //isTouched = true;
-
-    //        if (DragTimer < 0.2)
-    //        {
-
-    //        Vector3 position = Camera.main.ScreenToViewportPoint((Vector2)Input.mousePosition - clickPoint);
-
-    //        position.z = position.y;
-    //        position.y = .0f;
-
-    //        Vector3 move = -position * (Time.deltaTime * dragSpeed);
-
-    //        float y = transform.position.y;
-
-    //        transform.Translate(move);
-    //        transform.transform.position = new Vector3(transform.position.x, y, transform.position.z);
-    //        }
-
-    //    }
-
-    //    if (Input.GetMouseButtonUp(0))
-    //    {
-    //        isTouched= false;
-    //        DragTimer = 0;
-    //    }
-    //}
-
-
 
     void Rotate()
     {

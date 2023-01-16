@@ -44,6 +44,7 @@ public class InventoryManager : SingleTon<InventoryManager>
             if (Inventory.gameObject.activeSelf)
             {
                 Inventory.gameObject.SetActive(false);
+                TooltipUI.SetActive(false);
                 InventoryOn = false;
                 
             }

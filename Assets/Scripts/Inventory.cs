@@ -15,7 +15,13 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField]
     private Button CloseButton;
 
+    [SerializeField]
+    private GameObject TooltipUI;
+
     private Image image;
+
+
+
 
     private void OnEnable()
     {
@@ -66,6 +72,7 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         UIManager.Instance.InventoryOn = false;
         gameObject.SetActive(false);
+        TooltipUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
