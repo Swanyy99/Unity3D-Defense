@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class PlayerManager : SingleTon<PlayerManager>
 {
@@ -10,7 +12,14 @@ public class PlayerManager : SingleTon<PlayerManager>
     [SerializeField]
     private int level;
     [SerializeField]
+    private TextMeshProUGUI LevelUI;
+    [SerializeField]
     private int exp;
+    [SerializeField]
+    private int maxExp;
+    private int ExpPercent;
+    [SerializeField]
+    private TextMeshProUGUI ExpPercentageUI;
     [SerializeField]
     private int hp;
     [SerializeField]
@@ -37,6 +46,7 @@ public class PlayerManager : SingleTon<PlayerManager>
     private int mpRecover;
 
     public UnityAction<int> OnExpChanged;
+    public UnityAction<int> OnMaxExpChanged;
     public UnityAction<int> OnMaxHpChanged;
     public UnityAction<int> OnCurHpChanged;
     public UnityAction<int> OnMaxMpChanged;
@@ -58,6 +68,12 @@ public class PlayerManager : SingleTon<PlayerManager>
     {
         get { return exp; }
         private set { exp = value; OnExpChanged?.Invoke(exp); }
+    }
+
+    public int MaxEXP
+    {
+        get { return maxExp; }
+        private set { maxExp = value; OnMaxExpChanged?.Invoke(maxExp); }
     }
 
     public int MP
@@ -135,6 +151,55 @@ public class PlayerManager : SingleTon<PlayerManager>
         else
             MP += mp;
 
+
+        // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
+    }
+
+    public void GainExp(int xp)
+    {
+
+        this.EXP += xp;
+        LogManager.Instance.logText.text += "<#32CD32>[알림]</color><#FFFFFF></color> " + xp + " 경험치 획득\n";
+        LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
+
+        if (EXP >= maxExp)
+        {
+            EXP -= MaxEXP;
+            MaxEXP = (int)(MaxEXP + MaxEXP * 1 / 2);
+            level += 1;
+            LevelUI.text = level.ToString();
+            LogManager.Instance.logText.text += "<#32CD32>[알림]</color><#FFFFFF></color> 레벨 업! <#00FF7F>" + level + " 레벨</color><#FFFFFF></color> 이 되었습니다!\n";
+            LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
+
+        }
+
+        
+
+        if (EXP == 0)
+            ExpPercentageUI.text = "0 %";
+        else
+        {
+            Debug.Log("경험치 발동인뎅");
+            Debug.Log("경험치: " + exp);
+            Debug.Log("최대 경험치: " + maxExp);
+            Debug.Log("경험치 퍼센트: " + (float)exp / maxExp * 100 + " %" );
+            Debug.Log((int)(exp / maxExp * 100));
+            ExpPercentageUI.text = ((float)exp / maxExp * 100).ToString("F0") + " %";
+        }
+
+        //try
+        //{
+        //    ExpPercentageUI.text = (EXP / MaxEXP * 100).ToString() + " %";
+        //}
+        //catch (DivideByZeroException exception)
+        //{
+        //    Debug.Log(exception);
+        //    ExpPercentageUI.text = "0 %";
+        //}
+        //finally
+        //{
+        //    ExpPercentageUI.text = (EXP / MaxEXP * 100).ToString() + " %";
+        //}
 
         // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }

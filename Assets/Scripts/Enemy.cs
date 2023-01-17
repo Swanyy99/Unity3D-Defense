@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using Unity.Mathematics;
+using System;
+using Random = UnityEngine.Random;
+
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent agent;
@@ -21,8 +25,11 @@ public class Enemy : MonoBehaviour
 
     public TextMeshProUGUI Level;
     private int level;
+    public int Exp;
     public int MaxHp;
     public int Hp;
+    [SerializeField]
+    private int damage;
 
     public GameObject player;
     public GameObject MainGate;
@@ -38,10 +45,13 @@ public class Enemy : MonoBehaviour
     private Vector3 playerpos;
 
     [SerializeField]
-    private int damage;
+    private GameObject Standard;
 
     [SerializeField]
     private GameObject Weapon;
+
+    [SerializeField]
+    private GameObject expVFX;
 
     //[SerializeField]
     //private GameObject DeathEffect;
@@ -76,13 +86,34 @@ public class Enemy : MonoBehaviour
             {
                 //MaxHp = WaveManager.Instance.Wave + 2;
                 MaxHp = WaveManager.Instance.Wave + WaveManager.Instance.Wave + 3;
+                //Exp = WaveManager.Instance.Wave;
                 agent.speed = 2.5f;
+                damage = WaveManager.Instance.Wave + 4;
             }
 
-            if (WaveManager.Instance.Wave >= 10)
+            if (WaveManager.Instance.Wave >= 5)
             {
-                MaxHp = WaveManager.Instance.Wave * 4;
+                MaxHp = WaveManager.Instance.Wave * 5;
+                //Exp = (int)(WaveManager.Instance.Wave * 1.5f);
+                damage = WaveManager.Instance.Wave * 3;
                 agent.speed = 3f;
+            }
+
+            if (NowWave(1, 4))
+            {
+                Exp = 1;
+            }
+            else if (NowWave(5, 7))
+            {
+                Exp = 2;
+            }
+            else if (NowWave(8, 10))
+            {
+                Exp = 3;
+            }
+            else
+            {
+                Exp = 5;
             }
         }
 
@@ -249,8 +280,18 @@ public class Enemy : MonoBehaviour
             {
                 Die();
             }
+
             else
-                Destroy(gameObject);
+            {
+                int a = Random.Range(0, 90);
+                int b = Random.Range(0, 360);
+                int c = Random.Range(-90, 90);
+                quaternion random = quaternion.Euler(-a, b, c);
+                GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
+                temp.transform.parent = this.transform;
+                Debug.Log("exp 생성했음");
+                Destroy(gameObject, 0.1f);
+            }
 
         }
     }
@@ -287,6 +328,13 @@ public class Enemy : MonoBehaviour
     bool curAnim(string name)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
+    }
+
+    bool NowWave(int a, int b)
+    {
+        if (WaveManager.Instance.Wave >= a && WaveManager.Instance.Wave < b)
+            return true;
+        else return false;
     }
 
     private IEnumerator Death()

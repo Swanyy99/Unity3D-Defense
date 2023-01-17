@@ -61,7 +61,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 238782823353415057}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349850079223821624
 GameObject:
@@ -9928,7 +9928,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 238782823353415057}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &358739695482788995
 GameObject:
@@ -10026,10 +10026,10 @@ Transform:
   m_LocalScale: {x: 0.49999997, y: 0.5, z: 0.49999997}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 349850079121738273}
   - {fileID: 349850080541444583}
   - {fileID: 5475172647434401407}
   - {fileID: 5692551555979384069}
-  - {fileID: 349850079121738273}
   - {fileID: 349850080230822750}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -10079,6 +10079,9 @@ MonoBehaviour:
   SwordWave: {fileID: 6868529286367642522, guid: 2dfe2ac5ea9d13a45ab226d506d3e3bc, type: 3}
   playerCam: {fileID: 0}
   BuildCam: {fileID: 0}
+  showInterActionGizmos: 0
+  interActionRange: 0
+  interActionAngle: 0
   Attacking: 0
   DashTrail: {fileID: 0}
   isDash: 0
@@ -10220,7 +10223,7 @@ Transform:
   - {fileID: 8468333711004017210}
   - {fileID: 5433866375929390742}
   m_Father: {fileID: 238782823353415057}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252991519206178497
 GameObject:
@@ -11598,7 +11601,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 238782823353415057}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1485629632107594292
 SkinnedMeshRenderer:

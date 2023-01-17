@@ -8,7 +8,7 @@ public class PlayerStateUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI LevelUI;
     [SerializeField]
-    private TextMeshProUGUI Exp;
+    private TextMeshProUGUI ExpUI;
     [SerializeField]
     private TextMeshProUGUI HpUI;
     [SerializeField]
@@ -30,9 +30,12 @@ public class PlayerStateUI : MonoBehaviour
         PlayerManager.Instance.OnCurHpChanged += ChangeCurHp;
         PlayerManager.Instance.OnCurMpChanged += ChangeCurMp;
         PlayerManager.Instance.OnExpChanged += GainEXP;
+        PlayerManager.Instance.OnMaxExpChanged += ChangeMaxEXP;
         BuildManager.Instance.OnChangeGold += ChangeGold;
 
         ChangeCurHp(PlayerManager.Instance.HP);
+        GainEXP(PlayerManager.Instance.EXP);
+        ChangeMaxEXP(PlayerManager.Instance.MaxEXP);
         ChangeCurMp(PlayerManager.Instance.MP);
         ChangeGold(BuildManager.Instance.Gold);
     }
@@ -102,7 +105,14 @@ public class PlayerStateUI : MonoBehaviour
 
     public void GainEXP(int exp)
     {
-        HpUI.text = exp.ToString();
+        //ExpUI.text = (PlayerManager.Instance.EXP / PlayerManager.Instance.MaxEXP * 100).ToString();
+            
+        //exp.ToString();
+    }
+
+    public void ChangeMaxEXP(int MaxEXP)
+    {
+        //ExpUI.text = (PlayerManager.Instance.EXP / PlayerManager.Instance.MaxEXP * 100).ToString();
     }
 
     public void ChangeGold(int gold)
