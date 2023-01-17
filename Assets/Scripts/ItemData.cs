@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
     public int RecoverMp;
     [TextArea(1, 4)]
     public string description;
+    public GameObject UseEffect;
     public GameObject prefab;
     public Sprite icon;
 

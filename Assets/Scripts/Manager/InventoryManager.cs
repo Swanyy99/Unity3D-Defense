@@ -20,6 +20,8 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     private GameObject player;
 
+    public GameObject UseEffectPos;
+
     public bool InventoryOn;
 
     [SerializeField]
@@ -88,7 +90,7 @@ public class InventoryManager : SingleTon<InventoryManager>
                 {
                     if (inven[i].Item.data.name == inventoryItem.data.name)
                     {
-                        inven[i].SetItemCount(inventoryItem, 1);
+                        inven[i].SetItemCount(1);
                         return;
                     }
                 }
@@ -127,6 +129,7 @@ public class InventoryManager : SingleTon<InventoryManager>
                 Debug.Log("포션이 발동한다");
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
+                Instantiate(inventoryItem.data.UseEffect, UseEffectPos.transform.position, UseEffectPos.transform.rotation);
                 break;
 
             case "Equipment":
@@ -150,6 +153,7 @@ public class InventoryManager : SingleTon<InventoryManager>
                 Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
                 PlayerManager.Instance.GainHp(inventoryItem.data.RecoverHp);
                 PlayerManager.Instance.GainMp(inventoryItem.data.RecoverMp);
+                Instantiate(inventoryItem.data.UseEffect, UseEffectPos.transform.position, UseEffectPos.transform.rotation);
                 break;
 
             case "Equipment":

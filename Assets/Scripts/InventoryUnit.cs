@@ -72,7 +72,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         this.Item = inventoryItem;
     }
 
-    public void SetItemCount(InventoryItem inventoryItem, int num)
+    public void SetItemCount(int num)
     {
         ItemCount += num;
         count.text = ItemCount.ToString();
@@ -104,7 +104,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             if (ItemCount > 1)
             {
                 Item.Use();
-                SetItemCount(Item, -1);
+                SetItemCount(-1);
                 Debug.Log("아이템 갯수가 2개이상일때 사용했습니다.");
             }
 
@@ -220,8 +220,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
                 {
                     if (QuickInven[i].Item.data.name == this.Item.data.name)
                     {
-                        //int _tempItemCount = ItemCount;
-                        QuickInven[i].SetItemCount(Item, 1);
+                        QuickInven[i].SetItemCount(1);
                         RemoveItem();
                         return;
                     }
