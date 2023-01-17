@@ -21,13 +21,19 @@ public class PlayerManager : SingleTon<PlayerManager>
     private int maxMp;
 
     [Header("Stat")]
-    [SerializeField]
-    private int str;
-    [SerializeField]
-    private int def;
-    [SerializeField]
+    [SerializeField, Tooltip("캐릭터의 힘\nㄴ 기본공격 대미지와 스킬 대미지에 영향을 미칩니다.")]
+    private int Str;
+    [SerializeField, Tooltip("캐릭터의 지능\nㄴ 마나를 소모하는 모든 행동에 영향을 미칩니다.")]
+    private int Int;
+    [SerializeField, Tooltip("캐릭터의 방어력\nㄴ 피격 시 대미지 감소량에 영향을 미칩니다.")]
+    private int Def;
+    [SerializeField, Tooltip("캐릭터의 최대체력\nㄴ 내 최대체력에 영향을 미칩니다.")]
+    private int MaxHp;
+    [SerializeField, Tooltip("캐릭터의 최대마나\nㄴ 내 최대마나에 영향을 미칩니다.")]
+    private int MaxMp;
+    [SerializeField, Tooltip("캐릭터의 체력회복량\nㄴ 3초마다 자동 회복되는 HP량에 영향을 미칩니다.")]
     private int hpRecover;
-    [SerializeField]
+    [SerializeField, Tooltip("캐릭터의 마나회복량\nㄴ 1초마다 자동 회복되는 MP량에 영향을 미칩니다.")]
     private int mpRecover;
 
     public UnityAction<int> OnExpChanged;
@@ -82,9 +88,17 @@ public class PlayerManager : SingleTon<PlayerManager>
     public void TakeDamage(int damage)
     {
         if (HP - damage > 0)
+        {
+            LogManager.Instance.logText.text += "<#DC143C>[알림]</color><#FFFFFF></color> " + damage + " 의 대미지를 받았습니다. \n";
+            LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
             HP -= damage;
+        }
         else
+        {
+            LogManager.Instance.logText.text += "<#DC143C>[알림]</color><#FFFFFF></color> " + damage + " 의 대미지를 받고 <#DC143C>사망</color><#FFFFFF></color>했습니다. \n";
+            LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
             HP = 0;
+        }
 
         // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }

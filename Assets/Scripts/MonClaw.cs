@@ -35,6 +35,7 @@ public class MonClaw : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             Debug.Log("클로 맞음");
+            
             PlayerManager.Instance.TakeDamage(me.Damage);
         }
     }

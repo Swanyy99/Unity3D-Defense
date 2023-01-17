@@ -24,6 +24,7 @@ public class MonsterAxeEffectDestroy : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             Debug.Log("보스 도끼에 맞음");
+            
             PlayerManager.Instance.TakeDamage(me.Damage);
         }
     }

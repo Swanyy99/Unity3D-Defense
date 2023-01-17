@@ -166,6 +166,8 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             DragSlot.instance.dragSlot = this;
             DragSlot.instance.DragSetImage(this.icon);
             DragSlot.instance.transform.position = eventData.position;
+            //gameObject.transform.SetAsLastSibling();
+            //icon.color = new Color(255, 255, 255, 0);
         }
 
     }
@@ -181,6 +183,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         DragSlot.instance.SetColor(0);
         DragSlot.instance.dragSlot = null;
         ItemTooltipUI.gameObject.SetActive(false);
+        //icon.color = new Color(255, 255, 255, 255);
     }
 
     public void OnDrop(PointerEventData eventData)
