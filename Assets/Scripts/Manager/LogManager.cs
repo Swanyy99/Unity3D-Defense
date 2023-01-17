@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LogManager : SingleTon<LogManager>
 {
+    public GameObject LogUI;
 
     public TextMeshProUGUI logText;
 
@@ -15,8 +16,6 @@ public class LogManager : SingleTon<LogManager>
 
     public void Start()
     {
-        //ogText = GameObject.Find("logText").GetComponent<Text>();
-        //scroll_rect = GameObject.Find("LogUI").GetComponent<ScrollRect>();
 
         if (logText != null)
             logText.text += "<#1E90FF>[알림]</color><#FFFFFF> 게임을 시작했습니다.</color>" + "\n";
@@ -24,9 +23,27 @@ public class LogManager : SingleTon<LogManager>
         StartCoroutine(updateScroll());
     }
 
+    private void Update()
+    {
+        //if (logText != null)
+        ShowLogDetect();
+
+    }
+
     public void ScrollToBottom()
     {
         scroll_rect.normalizedPosition = new Vector2(0, 0);
+    }
+
+    public void ShowLogDetect()
+    {
+        if (!Input.GetKeyDown(KeyCode.F2))
+            return;
+
+        bool val = LogUI.activeSelf ? false : true;
+        LogUI.SetActive(val);
+        
+
     }
 
     public IEnumerator updateScroll()
