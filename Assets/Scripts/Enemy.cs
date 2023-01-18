@@ -6,7 +6,7 @@ using TMPro;
 using Unity.Mathematics;
 using System;
 using Random = UnityEngine.Random;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using System.Security.Cryptography;
 
 public class Enemy : MonoBehaviour
 {
@@ -183,11 +183,14 @@ public class Enemy : MonoBehaviour
 
             AttackTimer += Time.deltaTime;
             distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
+            //float ds = Random.Range(0.5f, 1.2f);
             if (distance <= 1.2f)
             {
                 playerpos = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
                 if (!curAnim("Attack"))
+                {
                     gameObject.transform.LookAt(playerpos);
+                }
                 PlayerDetect = true;
                 anim.SetBool("Move", false);
                 agent.SetDestination(gameObject.transform.position);

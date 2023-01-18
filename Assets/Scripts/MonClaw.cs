@@ -21,6 +21,7 @@ public class MonClaw : MonoBehaviour
         me = GetComponentInParent<Enemy>();
         player = GameObject.Find("Player");
         col.enabled = true;
+        transform.parent = null;
         StartCoroutine(Attack());
 
     }
