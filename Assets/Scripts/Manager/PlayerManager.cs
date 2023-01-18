@@ -32,6 +32,8 @@ public class PlayerManager : SingleTon<PlayerManager>
     [Header("Stat")]
     [SerializeField, Tooltip("캐릭터의 힘\nㄴ 기본공격 대미지와 스킬 대미지에 영향을 미칩니다.")]
     private int Str;
+    [SerializeField, Tooltip("캐릭터의 민첩\nㄴ 크리티컬 확률과 이동속도에 영향을 미칩니다.")]
+    private int Dex;
     [SerializeField, Tooltip("캐릭터의 지능\nㄴ 마나를 소모하는 모든 행동에 영향을 미칩니다.")]
     private int Int;
     [SerializeField, Tooltip("캐릭터의 방어력\nㄴ 피격 시 대미지 감소량에 영향을 미칩니다.")]

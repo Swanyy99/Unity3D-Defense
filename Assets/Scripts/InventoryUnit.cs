@@ -194,16 +194,16 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     private void ChangeSlot()
     {
-        InventoryItem _tempItem = this.Item;
-        int _tempItemCount = ItemCount;
+        InventoryItem tempItem = this.Item;
+        int tempItemCount = ItemCount;
 
         AddItem2(DragSlot.instance.dragSlot.Item);
         SetCount(DragSlot.instance.dragSlot.ItemCount);
 
-        if (_tempItem != null)
+        if (tempItem != null)
         {
-            DragSlot.instance.dragSlot.AddItem2(_tempItem);
-            DragSlot.instance.dragSlot.SetCount(_tempItemCount);
+            DragSlot.instance.dragSlot.AddItem2(tempItem);
+            DragSlot.instance.dragSlot.SetCount(tempItemCount);
         }
         else
         {
