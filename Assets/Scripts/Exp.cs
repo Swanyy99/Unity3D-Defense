@@ -1,3 +1,4 @@
+using ObjectPool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,16 +14,18 @@ public class Exp : MonoBehaviour
     [SerializeField]
     private GameObject ExpVFX;
 
-    // Start is called before the first frame update
-    private void Start()
+    private PoolableObject pool;
+
+    private void OnEnable()
     {
         me = GetComponentInParent<Enemy>();
-        playerStandard = GameObject.Find("Player").transform.GetChild(0).gameObject;
         rigid = GetComponent<Rigidbody>();
+        pool = GetComponent<PoolableObject>();
         this.transform.parent = null;
+        playerStandard = GameObject.Find("Player").transform.GetChild(0).gameObject;
     }
 
-    // Update is called once per frame
+
     private void Update()
     {
         var direction = (playerStandard.transform.position - transform.position).normalized;
@@ -37,7 +40,8 @@ public class Exp : MonoBehaviour
         {
             PlayerManager.Instance.GainExp(me.Exp);
             Instantiate(ExpVFX, playerStandard.transform.position, transform.rotation);
-            Destroy(gameObject);
+            pool.Return();
+            //Destroy(gameObject);
         }
     }
 }

@@ -98,13 +98,28 @@ public class OakPattern : MonoBehaviour
         switch (a)
         {
             case 0:
-                Instantiate(dropItem1, transform.position, transform.rotation);
+                GameObject instance = PoolManager.Instance.Get(dropItem1, transform.position, transform.rotation);
+                if (instance == null)
+                    return;
+                //instance.transform.position = transform.position;
+                //instance.transform.rotation = transform.rotation;
+                //Instantiate(dropItem1, transform.position, transform.rotation);
                 break;
             case 1:
-                Instantiate(dropItem2, transform.position, transform.rotation);
+                GameObject instance2 = PoolManager.Instance.Get(dropItem2, transform.position, transform.rotation);
+                if (instance2 == null)
+                    return;
+                //instance2.transform.position = transform.position;
+                //instance2.transform.rotation = transform.rotation;
+                //Instantiate(dropItem2, transform.position, transform.rotation);
                 break;
             case 2:
-                Instantiate(dropItem3, transform.position, transform.rotation);
+                GameObject instance3 = PoolManager.Instance.Get(dropItem3, transform.position, transform.rotation);
+                if (instance3 == null)
+                    return;
+                //instance3.transform.position = transform.position;
+                //instance3.transform.rotation = transform.rotation;
+                //Instantiate(dropItem3, transform.position, transform.rotation);
                 break;
             default:
                 break;

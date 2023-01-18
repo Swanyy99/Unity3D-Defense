@@ -6,6 +6,7 @@ using TMPro;
 using Unity.Mathematics;
 using System;
 using Random = UnityEngine.Random;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Enemy : MonoBehaviour
 {
@@ -99,7 +100,7 @@ public class Enemy : MonoBehaviour
                 agent.speed = 3f;
             }
 
-            if (NowWave(1, 4))
+            if (NowWave(1, 5))
             {
                 Exp = 1;
             }
@@ -107,7 +108,7 @@ public class Enemy : MonoBehaviour
             {
                 Exp = 2;
             }
-            else if (NowWave(8, 10))
+            else if (NowWave(7, 10))
             {
                 Exp = 3;
             }
@@ -199,14 +200,14 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            else if (distance > 1.2f && distance < 3f && !curAnim("Attack"))
+            else if (distance > 1.2f && distance < 3.5f && !curAnim("Attack"))
             {
                 anim.SetBool("Move", true);
                 agent.SetDestination(player.transform.position);
                 PlayerDetect = true;
             }
 
-            else if (distance >= 3f && PlayerDetect == true && !curAnim("Attack"))
+            else if (distance >= 3.5f && PlayerDetect == true && !curAnim("Attack"))
             {
                 PlayerDetect = false;
                 anim.ResetTrigger("Attack");
@@ -287,9 +288,12 @@ public class Enemy : MonoBehaviour
                 int b = Random.Range(0, 360);
                 int c = Random.Range(-90, 90);
                 quaternion random = quaternion.Euler(-a, b, c);
-                GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
-                temp.transform.parent = this.transform;
+                //GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
+                //temp.transform.parent = this.transform;
                 Debug.Log("exp 생성했음");
+                GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
+                if (instance == null)
+                    return;
                 Destroy(gameObject, 0.1f);
             }
 

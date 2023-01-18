@@ -4897,6 +4897,7 @@ GameObject:
   - component: {fileID: 1744512354443294049}
   - component: {fileID: 685660415702015755}
   - component: {fileID: 5697445469825508262}
+  - component: {fileID: 3504919761782090771}
   m_Layer: 0
   m_Name: ExpFlyingVFX
   m_TagString: Untagged
@@ -9930,6 +9931,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.605747, y: 1.5186951, z: 1.6323117}
   m_Center: {x: 0.039767534, y: 0.028226495, z: 0.028673112}
+--- !u!114 &3504919761782090771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286066831248158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4513915c23980459a04201ee3f31a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnTime: 0
 --- !u!1 &1670332986290802
 GameObject:
   m_ObjectHideFlags: 0

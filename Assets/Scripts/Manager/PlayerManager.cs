@@ -177,13 +177,12 @@ public class PlayerManager : SingleTon<PlayerManager>
 
         if (EXP == 0)
             ExpPercentageUI.text = "0 %";
+
         else
+
         {
-            Debug.Log("경험치 발동인뎅");
-            Debug.Log("경험치: " + exp);
-            Debug.Log("최대 경험치: " + maxExp);
-            Debug.Log("경험치 퍼센트: " + (float)exp / maxExp * 100 + " %" );
-            Debug.Log((int)(exp / maxExp * 100));
+            Debug.Log("경험치 퍼센트: " + (float) exp / maxExp * 100 + " %" );
+            //Debug.Log((int)(exp / maxExp * 100));
             ExpPercentageUI.text = ((float)exp / maxExp * 100).ToString("F0") + " %";
         }
 
