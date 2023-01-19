@@ -7,6 +7,7 @@ using Unity.Mathematics;
 using System;
 using Random = UnityEngine.Random;
 using System.Security.Cryptography;
+using ObjectPool;
 
 public class Enemy : MonoBehaviour
 {
@@ -54,6 +55,14 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject expVFX;
 
+    private PoolableObject pool;
+
+    private OakPattern oak;
+
+    bool isDead;
+
+
+
     //[SerializeField]
     //private GameObject DeathEffect;
 
@@ -64,20 +73,22 @@ public class Enemy : MonoBehaviour
 
     public int Damage { get { return damage; } private set { damage = value; } }
 
-    private void Awake()
+    
+
+    private void OnEnable()
     {
-        //rigid = GetComponent<Rigidbody>();
-        if (Type("Enemy")) agent = GetComponent<NavMeshAgent>();
-        /*if (Type("Boss"))   */
+        isDead = false;
+        curWayIndex = 0;
         anim = GetComponent<Animator>();
         if (Type("Boss")) rigid = GetComponent<Rigidbody>();
         if (Type("Boss")) col = GetComponent<Collider>();
-    }
+        if (Type("Enemy")) pool = GetComponent<PoolableObject>();
+        if (Type("Enemy")) oak = GetComponent<OakPattern>();
 
-    private void Start()
-    {
+
         player = GameObject.Find("Player");
         MainGate = GameObject.Find("MainGate");
+
 
         if (Type("Enemy"))
         {
@@ -122,7 +133,12 @@ public class Enemy : MonoBehaviour
         level = WaveManager.Instance.Wave;
 
         Level.text = "Lv. " + level.ToString();
+    }
 
+
+    private void Awake()
+    {
+        if (Type("Enemy")) agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -130,7 +146,6 @@ public class Enemy : MonoBehaviour
 
         MoveRoad();
         DetectPlayer();
-        //DetectGate();
 
     }
 
@@ -152,10 +167,10 @@ public class Enemy : MonoBehaviour
     //            SetNextPoint();
     //    }
     //}
-    private void OutOfRangeDetect()
-    {
-        agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
-    }
+    //private void OutOfRangeDetect()
+    //{
+    //    agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
+    //}
     private void MoveRoad()
     {
         if (Type("Enemy") && PlayerDetect == false)
@@ -258,14 +273,17 @@ public class Enemy : MonoBehaviour
 
     private void SetNextPoint()
     {
-        if (curWayIndex <= WaveManager.Instance.WayPoints.Count - 1)
+        if (Type("Enemy") && agent.enabled == true)
         {
-            curWayIndex++;
-            agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
-        }
-        else
-        {
-            agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
+            if (curWayIndex <= WaveManager.Instance.WayPoints.Count - 1)
+            {
+                curWayIndex++;
+                agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
+            }
+            else
+            {
+                agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
+            }
         }
         //destination.transform.position = WaveManager.Instance.WayPoints[curWayIndex].position;
     }
@@ -294,10 +312,19 @@ public class Enemy : MonoBehaviour
                 //GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
                 //temp.transform.parent = this.transform;
                 Debug.Log("exp 생성했음");
-                GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
-                if (instance == null)
-                    return;
-                Destroy(gameObject, 0.1f);
+
+
+                if (isDead == false)
+                {
+                    oak.dropItem();
+                    GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
+                    isDead = true;
+                    if (instance == null)
+                        return;
+                }
+
+                pool.StartCoroutine(pool.DelayToReturn());
+                //Destroy(gameObject, 0.1f);
             }
 
         }

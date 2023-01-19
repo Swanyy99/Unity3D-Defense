@@ -34,6 +34,7 @@ public class PoolManager : SingleTon<PoolManager>
                 instance.transform.parent = poolPrefab[i].container;
                 stack.Push(instance);
             }
+
             poolDic.Add(poolPrefab[i].prefab.name, stack);
         }
     }

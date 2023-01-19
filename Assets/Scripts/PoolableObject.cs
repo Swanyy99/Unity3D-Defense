@@ -15,6 +15,11 @@ namespace ObjectPool
             PoolManager.Instance.Release(gameObject);
         }
 
+        public IEnumerator DelayToReturn()
+        {
+            yield return new WaitForSeconds(returnTime);
+            PoolManager.Instance.Release(gameObject);
+        }
 
         private bool Type(string name)
         {

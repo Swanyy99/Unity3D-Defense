@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 607044502571972318}
   - component: {fileID: 7248050798976015471}
   - component: {fileID: 3392922697224079786}
+  - component: {fileID: 2512840351389873695}
   m_Layer: 7
   m_Name: LauncherRocket
   m_TagString: Untagged
@@ -131,8 +132,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.38863796, y: 0.38863778, z: 1.7879128}
-  m_Center: {x: -0.00000014901161, y: 0.000000029802322, z: -0.003709942}
+  m_Size: {x: 0.564733, y: 0.53617775, z: 1.7879128}
+  m_Center: {x: 0.013220347, y: -0.018083798, z: -0.003709942}
+--- !u!114 &2512840351389873695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607044502571872380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4513915c23980459a04201ee3f31a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnTime: 0.1
 --- !u!1 &3340543001790350311
 GameObject:
   m_ObjectHideFlags: 0

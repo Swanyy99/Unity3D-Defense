@@ -30,16 +30,19 @@ public class OakPattern : MonoBehaviour
     private GameObject dropItem2;
     [SerializeField]
     private GameObject dropItem3;
+    [SerializeField]
+    private GameObject dropItem4;
 
     private Animator anim;
 
     private bool attack1time;
 
-    private void Awake()
+    private void OnEnable()
     {
         anim = GetComponent<Animator>();
 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -92,7 +95,7 @@ public class OakPattern : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void dropItem()
     {
         int a = UnityEngine.Random.Range(0, 6);
         switch (a)
@@ -121,9 +124,18 @@ public class OakPattern : MonoBehaviour
                 //instance3.transform.rotation = transform.rotation;
                 //Instantiate(dropItem3, transform.position, transform.rotation);
                 break;
+            case 3:
+                GameObject instance4 = PoolManager.Instance.Get(dropItem4, transform.position, transform.rotation);
+                if (instance4 == null)
+                    return;
+                //instance3.transform.position = transform.position;
+                //instance3.transform.rotation = transform.rotation;
+                //Instantiate(dropItem3, transform.position, transform.rotation);
+                break;
             default:
                 break;
 
         }
     }
 }
+

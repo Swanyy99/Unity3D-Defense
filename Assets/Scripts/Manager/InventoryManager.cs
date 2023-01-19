@@ -136,6 +136,12 @@ public class InventoryManager : SingleTon<InventoryManager>
                 Debug.Log("검을 분해시켰다");
                 break;
 
+            case "Material":
+                Debug.Log("재료템을 판매했다");
+                BuildManager.Instance.gold += inventoryItem.data.SellCost;
+                BuildManager.Instance.GoldUpdate();
+                break;
+
             default:
                 break;
 
@@ -158,6 +164,12 @@ public class InventoryManager : SingleTon<InventoryManager>
 
             case "Equipment":
                 Debug.Log(inventoryItem.data.name.ToString() + "이 사용되며, 파괴시킵니다. ");
+                break;
+
+            case "Material":
+                Debug.Log("재료템을 판매했다");
+                BuildManager.Instance.gold += inventoryItem.data.SellCost;
+                BuildManager.Instance.GoldUpdate();
                 break;
 
             default:

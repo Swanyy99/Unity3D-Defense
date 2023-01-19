@@ -32,21 +32,21 @@ public class BasicAttack : MonoBehaviour
                 Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
                 if (curAnim("comboSlash1"))
                 {
-                    target.TakeDamage(1);
+                    target.TakeDamage(1 + PlayerManager.Instance.STR) ;
                 }
                 else if (curAnim("comboSlash2"))
                 {
-                    target.TakeDamage(2);
+                    target.TakeDamage(1 + PlayerManager.Instance.STR);
                 }
 
                 else if (curAnim("comboSlash3"))
                 {
-                    target.TakeDamage(3);
+                    target.TakeDamage(3 + PlayerManager.Instance.STR);
                 }
 
                 else if (curAnim("comboSlash4"))
                 {
-                    target.TakeDamage(5);
+                    target.TakeDamage(5 + PlayerManager.Instance.STR);
                 }
             }
 
@@ -58,27 +58,27 @@ public class BasicAttack : MonoBehaviour
                 {
                     Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
 
-                    target.TakeDamage(1);
+                    target.TakeDamage(1 + PlayerManager.Instance.STR);
                 }
                 else if (curAnim("comboSlash2"))
                 {
                     Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
 
-                    target.TakeDamage(2);
+                    target.TakeDamage(1 + PlayerManager.Instance.STR);
                 }
 
                 else if (curAnim("comboSlash3"))
                 {
                     Instantiate(hitEffect, hitPos.transform.position, hitPos.transform.rotation);
 
-                    target.TakeDamage(3);
+                    target.TakeDamage(3 + PlayerManager.Instance.STR);
                 }
 
                 else if (curAnim("comboSlash4"))
                 {
                     Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
-                    target.TakeDamage(5);
+                    target.TakeDamage(5 + PlayerManager.Instance.STR);
                 }
             }
         }

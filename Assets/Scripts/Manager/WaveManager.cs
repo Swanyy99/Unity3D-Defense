@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class WaveManager : SingleTon<WaveManager>
@@ -20,7 +21,7 @@ public class WaveManager : SingleTon<WaveManager>
 
     [Header("Enemy")]
     [SerializeField]
-    private Enemy enemyPrefab;
+    private GameObject enemyPrefab;
     [SerializeField]
     private float spawnDelay;
     private Coroutine spawnRoutine;
@@ -122,7 +123,12 @@ public class WaveManager : SingleTon<WaveManager>
             if (SpawnedMonster < Wave * 10)
             {
                 SpawnedMonster += 1;
-                Instantiate(enemyPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                GameObject instance = PoolManager.Instance.Get(enemyPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                instance.GetComponent<NavMeshAgent>().enabled = true;
+                if (instance == null)
+                    break;
+
+                //Instantiate();
             }
 
             

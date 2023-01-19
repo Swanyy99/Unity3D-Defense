@@ -47,6 +47,10 @@ public class PlayerManager : SingleTon<PlayerManager>
     [SerializeField, Tooltip("캐릭터의 마나회복량\nㄴ 1초마다 자동 회복되는 MP량에 영향을 미칩니다.")]
     private int mpRecover;
 
+    [Header("Effect")]
+    [SerializeField]
+    private GameObject LevelUpEffect;
+
     public UnityAction<int> OnExpChanged;
     public UnityAction<int> OnMaxExpChanged;
     public UnityAction<int> OnMaxHpChanged;
@@ -54,6 +58,15 @@ public class PlayerManager : SingleTon<PlayerManager>
     public UnityAction<int> OnMaxMpChanged;
     public UnityAction<int> OnCurMpChanged;
 
+    public UnityAction<int> OnCurStrChanged;
+
+    private GameObject player;
+
+    public int STR
+    {
+        get { return Str; }
+        private set { Str = value; OnCurStrChanged?.Invoke(Str); }
+    }
     public int HP
     {
         get { return hp; }
@@ -95,6 +108,7 @@ public class PlayerManager : SingleTon<PlayerManager>
     {
         StartCoroutine(RecoverHP());
         StartCoroutine(RecoverMP());
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -172,6 +186,9 @@ public class PlayerManager : SingleTon<PlayerManager>
             LevelUI.text = level.ToString();
             LogManager.Instance.logText.text += "<#32CD32>[알림]</color><#FFFFFF></color> 레벨 업! <#00FF7F>" + level + " 레벨</color><#FFFFFF></color> 이 되었습니다!\n";
             LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
+            HP = MAXHP;
+            MP = MAXMP;
+            Instantiate(LevelUpEffect, player.transform.position, player.transform.rotation);
 
         }
 
