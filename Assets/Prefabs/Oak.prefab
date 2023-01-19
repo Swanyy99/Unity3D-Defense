@@ -86,6 +86,8 @@ MonoBehaviour:
   dropItem2: {fileID: 6466656367865045370, guid: aa7541e0fd31d774f9bb5b6ad5c33d11, type: 3}
   dropItem3: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
   dropItem4: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
+  dropItem5: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
+  dropItem6: {fileID: 2771913142727967374, guid: f12e46e423d79fa41ba5baf615b7a9ff, type: 3}
 --- !u!114 &1464064001800209793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 98547277403347493}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.15
   m_Speed: 3.5
   m_Acceleration: 300
   avoidancePriority: 0
@@ -138,12 +140,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98547277403347493}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5287524
-  m_Height: 2.0804496
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0.0027664502, y: 1.0675718, z: 0}
+  m_Center: {x: 0, y: 1.0675718, z: 0}
 --- !u!54 &2729568869372250969
 Rigidbody:
   m_ObjectHideFlags: 0

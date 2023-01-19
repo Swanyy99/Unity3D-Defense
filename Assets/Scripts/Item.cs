@@ -13,11 +13,12 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        pool = GetComponent<PoolableObject>();
     }
 
     public void Get()
     {
+        pool = GetComponent<PoolableObject>();
+
         InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.data = data;
         //InventoryManager.Instance.NowItem = inventoryItem;
@@ -28,6 +29,17 @@ public class Item : MonoBehaviour
         //Destroy(gameObject);
     }
 
+    public void Acquire()
+    {
+        InventoryItem inventoryItem = new InventoryItem();
+        inventoryItem.data = data;
+        //InventoryManager.Instance.NowItem = inventoryItem;
+        InventoryManager.Instance.AddItem(inventoryItem);
+        LogManager.Instance.logText.text += "<#1E90FF>[¾Ë¸²]</color> <#FFFFFF></color>" + inventoryItem.data.name + "À»(¸¦) È¹µæÇß½À´Ï´Ù.\n";
+        LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
+        Destroy(gameObject);
+    }
 
-    
+
+
 }

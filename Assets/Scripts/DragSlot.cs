@@ -20,6 +20,7 @@ public class DragSlot : MonoBehaviour
     {
         imageItem.sprite = _itemImage.sprite;
         SetColor(1);
+        gameObject.transform.SetAsLastSibling();
     }
 
     public void SetColor(float _alpha)

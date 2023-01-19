@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62ccc832ab686e4b853bb904018072d, type: 3}
+  m_Name: Apocalypse
+  m_EditorClassIdentifier: 
+  Itemtype: 0
+  EquipType: 5
+  prefab: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
+  icon: {fileID: 21300000, guid: ca7781f259ba0794381f28b919763f72, type: 3}
+  UseEffect: {fileID: 0}
+  name: "\uC544\uD3EC\uCE7C\uB9BD\uC2A4"
+  description: "STR +7  DEX +7\nINT +1\n\uC138\uACC4\uC758 \uC885\uB9D0\uC744 \uBD80\uB974\uB294
+    \uAC80"
+  SellCost: 0
+  RecoverHp: 0
+  RecoverMp: 0
+  STR_plus: 10
+  DEX_plus: 10
+  INT_plus: 10
+  DEF_plus: 0
+  MaxHP_plus: 0
+  MaxMP_plus: 0
+  HpRecover_plus: 0
+  MpRecover_plus: 0

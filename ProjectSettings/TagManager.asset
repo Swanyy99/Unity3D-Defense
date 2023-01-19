@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - RespawnArea
   - Item
+  - EquipUI
   layers:
   - Default
   - TransparentFX
@@ -26,8 +27,8 @@ TagManager:
   - EnemyHitPos
   - Respawn
   - TransWall
-  - 
-  - 
+  - Weapon
+  - EquipUI
   - 
   - 
   - 

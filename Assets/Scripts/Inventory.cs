@@ -48,6 +48,7 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void Close()
     {
         UIManager.Instance.InventoryOn = false;
+        InventoryManager.Instance.InventoryOn = false;
         gameObject.SetActive(false);
         TooltipUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

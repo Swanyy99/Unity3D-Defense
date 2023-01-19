@@ -12,6 +12,9 @@ public class InventoryManager : SingleTon<InventoryManager>
     [SerializeField]
     private InventoryUI Inventory;
 
+    [SerializeField]
+    private EquipmentUI EquipmentUI;
+
 
     [SerializeField]
     private GameObject TooltipUI;
@@ -23,6 +26,8 @@ public class InventoryManager : SingleTon<InventoryManager>
     public GameObject UseEffectPos;
 
     public bool InventoryOn;
+
+    public bool UI_ON;
 
     [SerializeField]
     private CinemachineFreeLook playerCam;
@@ -43,6 +48,10 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     private void Update()
     {
+        if (Inventory.gameObject.activeSelf || EquipmentUI.gameObject.activeSelf)
+            UI_ON = true;
+        else
+            UI_ON = false;
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -61,13 +70,29 @@ public class InventoryManager : SingleTon<InventoryManager>
             }
         }
 
-        if (Inventory.gameObject.activeSelf == true || GameManager.Instance.BuildMode == true)
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            if (EquipmentUI.gameObject.activeSelf)
+            {
+                EquipmentUI.gameObject.SetActive(false);
+                InventoryOn = false;
+
+            }
+            else
+            {
+                EquipmentUI.gameObject.SetActive(true);
+                InventoryOn = true;
+
+            }
+        }
+
+        if (UI_ON == true || GameManager.Instance.BuildMode == true)
         {
             playerCam.m_XAxis.m_MaxSpeed = 0;
             playerCam.m_YAxis.m_MaxSpeed = 0;
             Cursor.lockState = CursorLockMode.Confined;
         }
-        else if (Inventory.gameObject.activeSelf == false || GameManager.Instance.BuildMode == false)
+        else if (UI_ON == false || GameManager.Instance.BuildMode == false)
         {
             playerCam.m_XAxis.m_MaxSpeed = 200;
             playerCam.m_YAxis.m_MaxSpeed = 2;

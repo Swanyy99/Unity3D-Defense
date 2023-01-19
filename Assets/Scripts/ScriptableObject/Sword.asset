@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   Itemtype: 0
+  EquipType: 5
   name: "\uC874\uB098 \uC388 \uAC80"
   RecoverHp: 0
   RecoverMp: 0
+  SellCost: 0
   description: "\u3139\u3147 \uC874\uB098 \uC388 \uAC80"
+  UseEffect: {fileID: 0}
   prefab: {fileID: 8219111493277299648, guid: 0a0a0a5f621bfb2408fb81e9844c5c0b, type: 3}
   icon: {fileID: 21300000, guid: 277f6206bb97db642bb32e548bd5876d, type: 3}

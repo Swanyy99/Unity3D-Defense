@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Android.Types;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
@@ -32,6 +33,10 @@ public class OakPattern : MonoBehaviour
     private GameObject dropItem3;
     [SerializeField]
     private GameObject dropItem4;
+    [SerializeField]
+    private GameObject dropItem5;
+    [SerializeField]
+    private GameObject dropItem6;
 
     private Animator anim;
 
@@ -97,7 +102,7 @@ public class OakPattern : MonoBehaviour
 
     public void dropItem()
     {
-        int a = UnityEngine.Random.Range(0, 6);
+        int a = UnityEngine.Random.Range(0, 8);
         switch (a)
         {
             case 0:
@@ -108,6 +113,7 @@ public class OakPattern : MonoBehaviour
                 //instance.transform.rotation = transform.rotation;
                 //Instantiate(dropItem1, transform.position, transform.rotation);
                 break;
+
             case 1:
                 GameObject instance2 = PoolManager.Instance.Get(dropItem2, transform.position, transform.rotation);
                 if (instance2 == null)
@@ -116,6 +122,7 @@ public class OakPattern : MonoBehaviour
                 //instance2.transform.rotation = transform.rotation;
                 //Instantiate(dropItem2, transform.position, transform.rotation);
                 break;
+
             case 2:
                 GameObject instance3 = PoolManager.Instance.Get(dropItem3, transform.position, transform.rotation);
                 if (instance3 == null)
@@ -124,14 +131,21 @@ public class OakPattern : MonoBehaviour
                 //instance3.transform.rotation = transform.rotation;
                 //Instantiate(dropItem3, transform.position, transform.rotation);
                 break;
+
             case 3:
                 GameObject instance4 = PoolManager.Instance.Get(dropItem4, transform.position, transform.rotation);
                 if (instance4 == null)
                     return;
-                //instance3.transform.position = transform.position;
-                //instance3.transform.rotation = transform.rotation;
-                //Instantiate(dropItem3, transform.position, transform.rotation);
                 break;
+
+            case 4:
+                Instantiate(dropItem5, transform.position, transform.rotation);
+                break;
+
+            case 5:
+                Instantiate(dropItem6, transform.position, transform.rotation);
+                break;
+
             default:
                 break;
 
