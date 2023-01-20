@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.79
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.034489103, g: 0.0354069, b: 0.047045093, a: 0.79}
+  m_IndirectSpecularColor: {r: 0.03442721, g: 0.035333987, b: 0.04697489, a: 0.79}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -911,12 +911,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &34848998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,12 +1837,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &47373984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1993,6 +2017,7 @@ GameObject:
   - component: {fileID: 48174259}
   - component: {fileID: 48174258}
   - component: {fileID: 48174257}
+  - component: {fileID: 48174262}
   m_Layer: 18
   m_Name: GloveSlot
   m_TagString: EquipUI
@@ -2101,12 +2126,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &48174259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2226,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48174255}
   m_CullTransparentMesh: 1
+--- !u!114 &48174262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48174255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!1 &52695277
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,6 +6458,7 @@ GameObject:
   - component: {fileID: 227859878}
   - component: {fileID: 227859877}
   - component: {fileID: 227859876}
+  - component: {fileID: 227859881}
   m_Layer: 18
   m_Name: ArmorSlot
   m_TagString: EquipUI
@@ -6515,12 +6567,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &227859878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6603,6 +6667,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 227859874}
   m_CullTransparentMesh: 1
+--- !u!114 &227859881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227859874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!1 &228565800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,12 +8068,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &275691469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9338,12 +9428,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &347101341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9553,12 +9655,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &370412072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11355,12 +11469,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &440010963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12224,8 +12350,9 @@ RectTransform:
   - {fileID: 48174256}
   - {fileID: 969999206}
   - {fileID: 1480925050}
+  - {fileID: 1998028807}
   m_Father: {fileID: 1859583825}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12282,6 +12409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ea5b057e479bf4a91d79979573b8be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllStatUI: {fileID: 1998028808}
 --- !u!1 &469039982
 GameObject:
   m_ObjectHideFlags: 0
@@ -14150,12 +14278,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &537927456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15299,15 +15439,27 @@ MonoBehaviour:
   count: {fileID: 79782468}
   ItemCount: 1
   quickSlot1: {fileID: 593363842}
-  quickSlot2: {fileID: 0}
+  quickSlot2: {fileID: 1297361477}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &593363843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19962,12 +20114,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &748404187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30917,6 +31081,7 @@ GameObject:
   - component: {fileID: 969999209}
   - component: {fileID: 969999208}
   - component: {fileID: 969999207}
+  - component: {fileID: 969999212}
   m_Layer: 18
   m_Name: ShoesSlot
   m_TagString: EquipUI
@@ -31025,12 +31190,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &969999209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31113,6 +31290,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969999205}
   m_CullTransparentMesh: 1
+--- !u!114 &969999212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969999205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!1 &970775020
 GameObject:
   m_ObjectHideFlags: 0
@@ -31328,6 +31519,7 @@ GameObject:
   - component: {fileID: 979330619}
   - component: {fileID: 979330618}
   - component: {fileID: 979330617}
+  - component: {fileID: 979330622}
   m_Layer: 18
   m_Name: HeadSlot
   m_TagString: EquipUI
@@ -31436,12 +31628,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &979330619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31524,6 +31728,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979330615}
   m_CullTransparentMesh: 1
+--- !u!114 &979330622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979330615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!4 &980928234 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1348778729007514009, guid: e893a6e8083e13d479969276a1f65dc1, type: 3}
@@ -32471,7 +32689,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034045944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32648,12 +32866,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!1 &1037933661
 GameObject:
   m_ObjectHideFlags: 0
@@ -34829,12 +35059,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1123223800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38729,12 +38971,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!1 &1298976901
 GameObject:
   m_ObjectHideFlags: 0
@@ -39601,12 +39855,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1346617226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41565,6 +41831,7 @@ GameObject:
   - component: {fileID: 1442095016}
   - component: {fileID: 1442095015}
   - component: {fileID: 1442095014}
+  - component: {fileID: 1442095019}
   m_Layer: 18
   m_Name: PantsSlot
   m_TagString: EquipUI
@@ -41673,12 +41940,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1442095016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41761,6 +42040,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442095012}
   m_CullTransparentMesh: 1
+--- !u!114 &1442095019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442095012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!1 &1442157130
 GameObject:
   m_ObjectHideFlags: 0
@@ -41998,12 +42291,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1444311790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43305,7 +43610,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -43751,6 +44056,7 @@ GameObject:
   - component: {fileID: 1494811024}
   - component: {fileID: 1494811023}
   - component: {fileID: 1494811022}
+  - component: {fileID: 1494811027}
   m_Layer: 18
   m_Name: WeaponSlot
   m_TagString: EquipUI
@@ -43859,12 +44165,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1494811024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43947,6 +44265,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494811020}
   m_CullTransparentMesh: 1
+--- !u!114 &1494811027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494811020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521a20745938ed84ba64b18f0db2a2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipAllStatUI: {fileID: 1998028808}
+  EquipUI: {fileID: 465349551}
 --- !u!1 &1497289997
 GameObject:
   m_ObjectHideFlags: 0
@@ -50413,12 +50745,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 0}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!224 &1596486444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52051,12 +52395,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1640095852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54284,7 +54640,7 @@ RectTransform:
   m_Children:
   - {fileID: 1648437577}
   m_Father: {fileID: 1859583825}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -54635,12 +54991,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1751913892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57684,8 +58052,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1739496327}
   - {fileID: 465349548}
+  - {fileID: 1739496327}
   - {fileID: 3949969408064478995}
   - {fileID: 1554181594}
   - {fileID: 1848065172}
@@ -57891,12 +58259,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1865500820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60750,12 +61130,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1943884914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61448,12 +61840,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1962896368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62087,6 +62491,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37dede0135d2cf94a96bd4e528e090c7, type: 3}
   m_PrefabInstance: {fileID: 7429449315882317185}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1998028806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998028807}
+  - component: {fileID: 1998028809}
+  - component: {fileID: 1998028808}
+  m_Layer: 18
+  m_Name: AllStatUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1998028807
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998028806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 465349548}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -43, y: -66}
+  m_SizeDelta: {x: 200, y: 27}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1998028808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998028806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "STR \t+0\nDEF  \t+0\nDEX\t+0\nINT\t+0\nMHP\t+0\nMMP\t+0\nHPR\t+0\nMPR\t+0"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: cc2da2cffa4931347aaa6b1fee95e1a9, type: 2}
+  m_sharedMaterial: {fileID: -3227491331015530662, guid: cc2da2cffa4931347aaa6b1fee95e1a9, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
+  m_colorMode: 2
+  m_fontColorGradient:
+    topLeft: {r: 0, g: 1, b: 0.9603982, a: 1}
+    topRight: {r: 0, g: 1, b: 0.9603982, a: 1}
+    bottomLeft: {r: 0.109803915, g: 0.35198846, b: 1, a: 1}
+    bottomRight: {r: 0.109803915, g: 0.35198846, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 14
+  m_fontSizeBase: 14
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 27.38
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1998028809
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998028806}
+  m_CullTransparentMesh: 1
 --- !u!1 &1998079141
 GameObject:
   m_ObjectHideFlags: 0
@@ -62139,7 +62678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -62637,12 +63176,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &2016894126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62865,7 +63416,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021134582}
-  m_LocalRotation: {x: 0.1091774, y: -0.000000019122318, z: 0.0000000021002804, w: 0.9940223}
+  m_LocalRotation: {x: 0.1091774, y: 0.00000001912232, z: -0.0000000021002802, w: 0.9940223}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -64924,12 +65475,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &2118587683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65455,12 +66018,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &2145532255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66624,12 +67199,24 @@ MonoBehaviour:
   quickSlot2: {fileID: 0}
   quickSlot3: {fileID: 0}
   quickSlot4: {fileID: 0}
+  HeadSlot: {fileID: 979330618}
+  ArmorSlot: {fileID: 227859877}
+  PantsSlot: {fileID: 1442095015}
+  GloveSlot: {fileID: 48174258}
+  ShoesSlot: {fileID: 969999208}
+  WeaponSlot: {fileID: 1494811023}
   QuickInventory: {fileID: 885726849}
   ItemTooltipUI: {fileID: 1554181593}
   tooltip: {fileID: 0}
   ItemName: {fileID: 719438560}
   ItemType: {fileID: 1094526816}
   ItemDescriprion: {fileID: 1480887613}
+  Head: {fileID: 979330622}
+  Armor: {fileID: 227859881}
+  Pants: {fileID: 1442095019}
+  Weapon: {fileID: 1494811027}
+  Glove: {fileID: 48174262}
+  Shoes: {fileID: 969999212}
 --- !u!114 &1631643383765141586
 MonoBehaviour:
   m_ObjectHideFlags: 0

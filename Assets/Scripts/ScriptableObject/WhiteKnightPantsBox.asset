@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62ccc832ab686e4b853bb904018072d, type: 3}
+  m_Name: WhiteKnightPantsBox
+  m_EditorClassIdentifier: 
+  Itemtype: 0
+  EquipType: 4
+  prefab: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
+  icon: {fileID: 21300000, guid: f08e25ff254b5de40a32230258506318, type: 3}
+  UseEffect: {fileID: 0}
+  name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
+  description: "DEF +2  DEX +2\nMpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uBC14\uC9C0"
+  SellCost: 0
+  RecoverHp: 0
+  RecoverMp: 0
+  STR_plus: 0
+  DEF_plus: 2
+  DEX_plus: 2
+  INT_plus: 0
+  MaxHP_plus: 20
+  MaxMP_plus: 0
+  HpRecover_plus: 0
+  MpRecover_plus: 0

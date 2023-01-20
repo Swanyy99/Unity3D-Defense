@@ -88,6 +88,11 @@ MonoBehaviour:
   dropItem4: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
   dropItem5: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
   dropItem6: {fileID: 2771913142727967374, guid: f12e46e423d79fa41ba5baf615b7a9ff, type: 3}
+  dropItem7: {fileID: 2771913142727967374, guid: 4bc22bd17079b2e479326f45ff57379c, type: 3}
+  dropItem8: {fileID: 2771913142727967374, guid: c300ec31e5805b14383bed11ae611a02, type: 3}
+  dropItem9: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
+  dropItem10: {fileID: 2771913142727967374, guid: c9b3c06074cb2ff428f0c1222ce19ca0, type: 3}
+  dropItem11: {fileID: 2771913142727967374, guid: 7059ddf20fc7b934285ba7e48e0459a4, type: 3}
 --- !u!114 &1464064001800209793
 MonoBehaviour:
   m_ObjectHideFlags: 0

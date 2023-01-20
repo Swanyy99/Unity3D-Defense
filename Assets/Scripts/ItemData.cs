@@ -17,8 +17,9 @@ public class ItemData : ScriptableObject
         None,
         Head,
         Armor,
-        Pants,
         Glove,
+        Pants,
+        Shoes,
         Weapon
     }
 

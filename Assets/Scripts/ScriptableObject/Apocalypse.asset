@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apocalypse
   m_EditorClassIdentifier: 
   Itemtype: 0
-  EquipType: 5
+  EquipType: 6
   prefab: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
   icon: {fileID: 21300000, guid: ca7781f259ba0794381f28b919763f72, type: 3}
   UseEffect: {fileID: 0}
@@ -23,10 +23,10 @@ MonoBehaviour:
   SellCost: 0
   RecoverHp: 0
   RecoverMp: 0
-  STR_plus: 10
-  DEX_plus: 10
-  INT_plus: 10
+  STR_plus: 7
   DEF_plus: 0
+  DEX_plus: 7
+  INT_plus: 1
   MaxHP_plus: 0
   MaxMP_plus: 0
   HpRecover_plus: 0

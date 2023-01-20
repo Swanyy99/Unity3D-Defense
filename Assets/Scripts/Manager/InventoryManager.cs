@@ -211,6 +211,16 @@ public class InventoryManager : SingleTon<InventoryManager>
         //}
     }
 
+    public void EquipUIShow()
+    {
+        EquipmentUI.gameObject.SetActive(true);
+    }
+
+    public void EquipUIHide()
+    {
+        EquipmentUI.gameObject.SetActive(false);
+    }
+
     private IEnumerator WaitUpdate()
     {
         yield return new WaitForSeconds (0.1f);
