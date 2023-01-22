@@ -21,6 +21,8 @@ public class PlayerManager : SingleTon<PlayerManager>
     [SerializeField]
     private TextMeshProUGUI ExpPercentageUI;
     [SerializeField]
+    private TextMeshProUGUI ExpPopupUI;
+    [SerializeField]
     private int hp;
     [SerializeField]
     private int maxHp;
@@ -174,6 +176,10 @@ public class PlayerManager : SingleTon<PlayerManager>
     public void GainExp(int xp)
     {
 
+        
+           
+
+
         this.EXP += xp;
         LogManager.Instance.logText.text += "<#32CD32>[¾Ë¸²]</color><#FFFFFF></color> " + xp + " °æÇèÄ¡ È¹µæ\n";
         LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
@@ -204,6 +210,11 @@ public class PlayerManager : SingleTon<PlayerManager>
             //Debug.Log((int)(exp / maxExp * 100));
             ExpPercentageUI.text = ((float)exp / maxExp * 100).ToString("F0") + " %";
         }
+
+        string Exptext = exp.ToString();
+        string maxExptext = maxExp.ToString();
+
+        ExpPopupUI.text = "[ " + Exptext + " / " + maxExptext + " ]";
 
         //try
         //{

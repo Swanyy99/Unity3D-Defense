@@ -29368,7 +29368,7 @@ GameObject:
   - component: {fileID: 4623955222761893274}
   - component: {fileID: 4634294072211095874}
   - component: {fileID: 4879581203606188886}
-  - component: {fileID: 3812658003024410458}
+  - component: {fileID: -4688689760681399362}
   m_Layer: 0
   m_Name: RespawnEffect
   m_TagString: Untagged
@@ -34411,7 +34411,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3812658003024410458
+--- !u!114 &-4688689760681399362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -50,7 +50,8 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
-        else
+
+        if (Input.GetMouseButtonUp(1))
         {
             Cursor.lockState = CursorLockMode.Confined;
         }

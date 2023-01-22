@@ -23,14 +23,17 @@ public class EquipmentUI : MonoBehaviour, IPointerDownHandler, IDragHandler
     public int HpRecover_plus { get; private set; }
     public int MpRecover_plus { get; private set; }
 
-    void Update()
+
+    private void OnEnable()
     {
+        gameObject.transform.SetAsLastSibling();
 
     }
 
     public void CloseUI()
     {
         gameObject.SetActive(false);
+        InventoryManager.Instance.DetectUION();
     }
 
     public void UpdateAllstat()

@@ -48,59 +48,95 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     private void Update()
     {
-        if (Inventory.gameObject.activeSelf || EquipmentUI.gameObject.activeSelf)
-            UI_ON = true;
-        else
-            UI_ON = false;
+        //if (Inventory.gameObject.activeSelf || EquipmentUI.gameObject.activeSelf)
+        //    UI_ON = true;
+        //else
+        //    UI_ON = false;
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (GameManager.Instance.BuildMode == false)
         {
-            if (Inventory.gameObject.activeSelf)
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                Inventory.gameObject.SetActive(false);
-                TooltipUI.SetActive(false);
-                InventoryOn = false;
-                
+                if (Inventory.gameObject.activeSelf)
+                {
+                    Inventory.gameObject.SetActive(false);
+                    TooltipUI.SetActive(false);
+                    //InventoryOn = false;
+                    DetectUION();
+                    //if (!EquipmentUI.gameObject.activeSelf)
+                    //    UI_ON = false;
+
+
+                }
+                else
+                {
+                    Inventory.gameObject.SetActive(true);
+                    //InventoryOn = true;
+                    UI_ON = true;
+
+                }
+
+                if (UI_ON == true || GameManager.Instance.BuildMode == true)
+                {
+                    playerCam.m_XAxis.m_MaxSpeed = 0;
+                    playerCam.m_YAxis.m_MaxSpeed = 0;
+                    Cursor.lockState = CursorLockMode.Confined;
+                }
+                else if (UI_ON == false || GameManager.Instance.BuildMode == false)
+                {
+                    playerCam.m_XAxis.m_MaxSpeed = 200;
+                    playerCam.m_YAxis.m_MaxSpeed = 2;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
-            else
+
+            if (Input.GetKeyDown(KeyCode.U))
             {
-                Inventory.gameObject.SetActive(true);
-                InventoryOn = true;
-                
+                if (EquipmentUI.gameObject.activeSelf)
+                {
+                    EquipmentUI.gameObject.SetActive(false);
+                    InventoryOn = false;
+                    //UI_ON = false;
+                    DetectUION();
+                    //if (!Inventory.gameObject.activeSelf)
+                    //    UI_ON = false;
+
+                }
+                else
+                {
+                    EquipmentUI.gameObject.SetActive(true);
+                    //InventoryOn = true;
+                    UI_ON = true;
+
+                }
+
+                if (UI_ON == true || GameManager.Instance.BuildMode == true)
+                {
+                    playerCam.m_XAxis.m_MaxSpeed = 0;
+                    playerCam.m_YAxis.m_MaxSpeed = 0;
+                    Cursor.lockState = CursorLockMode.Confined;
+                }
+                else if (UI_ON == false || GameManager.Instance.BuildMode == false)
+                {
+                    playerCam.m_XAxis.m_MaxSpeed = 200;
+                    playerCam.m_YAxis.m_MaxSpeed = 2;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+
+
+            if (GameManager.Instance.BuildMode == false)
+            {
+                if (Cursor.lockState == CursorLockMode.Locked && Input.GetMouseButtonDown(1))
+                {
+                    Cursor.lockState = CursorLockMode.Confined;
+                }
+                else if (Cursor.lockState == CursorLockMode.Confined && UI_ON == false && Input.GetMouseButtonDown(1))
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if (EquipmentUI.gameObject.activeSelf)
-            {
-                EquipmentUI.gameObject.SetActive(false);
-                InventoryOn = false;
-
-            }
-            else
-            {
-                EquipmentUI.gameObject.SetActive(true);
-                InventoryOn = true;
-
-            }
-        }
-
-        if (UI_ON == true || GameManager.Instance.BuildMode == true)
-        {
-            playerCam.m_XAxis.m_MaxSpeed = 0;
-            playerCam.m_YAxis.m_MaxSpeed = 0;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-        else if (UI_ON == false || GameManager.Instance.BuildMode == false)
-        {
-            playerCam.m_XAxis.m_MaxSpeed = 200;
-            playerCam.m_YAxis.m_MaxSpeed = 2;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-
-
     }
 
 
@@ -225,6 +261,31 @@ public class InventoryManager : SingleTon<InventoryManager>
     {
         yield return new WaitForSeconds (0.1f);
 
+    }
+
+    public void ShowUI()
+    {
+        EquipmentUI.gameObject.SetActive(true);
+        Inventory.gameObject.SetActive(true);
+    }
+
+    public void HideUI()
+    {
+        EquipmentUI.gameObject.SetActive(false);
+        Inventory.gameObject.SetActive(false);
+    }
+
+    public void DetectUION()
+    {
+        if (Inventory.gameObject.activeSelf == false && EquipmentUI.gameObject.activeSelf == false)
+            UI_ON = false;
+
+        if (UI_ON == false && GameManager.Instance.BuildMode == false)
+        {
+            playerCam.m_XAxis.m_MaxSpeed = 200;
+            playerCam.m_YAxis.m_MaxSpeed = 2;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
 

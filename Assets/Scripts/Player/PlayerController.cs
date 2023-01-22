@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetInteger("BasicAttack", 3);
             }
         }
+
         if (BasicAttacked == true)
         {
             BasicAttackTimer += Time.deltaTime;
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetInteger("BasicAttack", 0);
             }
         }
+
         if (curAnim("Idle") || curAnim("Move"))
         {
             if (Input.GetKeyDown(KeyCode.Z) &&
@@ -172,16 +174,19 @@ public class PlayerController : MonoBehaviour
             BuildCam.enabled = true;
             return;
         }
+
         else if (GameManager.Instance.BuildMode == false)
         {
             playerCam.enabled = true;
             BuildCam.enabled = false;
         }
+
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) ||
                 Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             anim.SetBool("isMoving", false);
         }
+
         if (curAnim("comboSlash1") == true ||
             curAnim("comboSlash2") == true ||
             curAnim("comboSlash3") == true ||
@@ -210,9 +215,6 @@ public class PlayerController : MonoBehaviour
 
             anim.SetBool("isAttacking", false);
 
-
-
-
             Vector3 fowardVec = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
             Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0f, Camera.main.transform.right.z).normalized;
 
@@ -225,9 +227,6 @@ public class PlayerController : MonoBehaviour
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.7f);
             }
-
-
-
 
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ||
@@ -332,15 +331,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             GameManager.Instance.GameOn = true;
 
-        if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true/* && InventoryManager.Instance.InventoryOn == false*/)
+        if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true)
         {
-            //Cursor.lockState = CursorLockMode.Locked;
             GameManager.Instance.BuildMode = false;
             GameManager.Instance.TooltipOn = false;
+            if(InventoryManager.Instance.UI_ON == false)
+                Cursor.lockState = CursorLockMode.Locked;
         }
         else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false/* && InventoryManager.Instance.InventoryOn == false*/)
         {
-            //Cursor.lockState = CursorLockMode.None;
+            InventoryManager.Instance.HideUI();
+            Cursor.lockState = CursorLockMode.Confined;
             GameManager.Instance.BuildMode = true;
             GameManager.Instance.TooltipOn = true;
         }
@@ -452,6 +453,10 @@ public class PlayerController : MonoBehaviour
 
         moveY = 0;
         gameObject.transform.position = RespawnArea.transform.position;
+
+        //GameObject respawnVFX = PoolManager.Instance.Get(RespawnEffect, transform.position, transform.rotation);
+        //if (respawnVFX == null)
+        //    return;
         Instantiate(RespawnEffect, transform.position, transform.rotation);
 
 

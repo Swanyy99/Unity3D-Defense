@@ -19,6 +19,11 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private Image image;
 
+    private void OnEnable()
+    {
+        gameObject.transform.SetAsLastSibling();
+
+    }
 
     private void Start()
     {
@@ -51,7 +56,8 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
         InventoryManager.Instance.InventoryOn = false;
         gameObject.SetActive(false);
         TooltipUI.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        InventoryManager.Instance.DetectUION();
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
    
