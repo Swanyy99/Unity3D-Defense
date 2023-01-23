@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
+//using Unity.VisualScripting;
+//using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler /*, IPointerEnterHandler, IPointerExitHandler*/
 {
@@ -82,6 +82,11 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     [SerializeField]
     private EquipSlotSaveStat Shoes;
 
+    private void Start()
+    {
+        
+    }
+
     public void AddItem(InventoryItem inventoryItem)
     {
         useButton.interactable = true;
@@ -90,6 +95,8 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         this.Item = inventoryItem;
         QuickSlotAdd();
     }
+
+
 
     public void AddItem2(InventoryItem inventoryItem)
     {

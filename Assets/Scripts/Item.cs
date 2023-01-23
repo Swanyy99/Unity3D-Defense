@@ -40,6 +40,18 @@ public class Item : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void AddShop()
+    {
+        Debug.Log("AddShop 발동");
+        InventoryItem inventoryItem = new InventoryItem();
+        inventoryItem.data = data;
+        ShopManager.Instance.AddShopList(inventoryItem);
+        //InventoryManager.Instance.NowItem = inventoryItem;
+        //InventoryManager.Instance.AddItem(inventoryItem);
+        //LogManager.Instance.logText.text += "<#1E90FF>[알림]</color> <#FFFFFF></color>" + inventoryItem.data.name + "을(를) 획득했습니다.\n";
+        //LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
+    }
+
 
 
 }
