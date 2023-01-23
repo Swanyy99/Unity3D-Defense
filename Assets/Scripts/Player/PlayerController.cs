@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     public GameObject RespawnEffect;
     public float shortDis;
 
+    //private bool respawnEffectable = true;
 
     private void Awake()
     {
@@ -421,7 +422,7 @@ public class PlayerController : MonoBehaviour
     {
         if (curAnim("Dash"))
         {
-            moveY = 0;
+            moveY = 0.1f;
             return;
         }
 
@@ -457,7 +458,14 @@ public class PlayerController : MonoBehaviour
         //GameObject respawnVFX = PoolManager.Instance.Get(RespawnEffect, transform.position, transform.rotation);
         //if (respawnVFX == null)
         //    return;
+        
         Instantiate(RespawnEffect, transform.position, transform.rotation);
+
+        //if (respawnEffectable == true)
+        //{
+        //    respawnEffectable = false;
+        //    StartCoroutine(respawnEffectCoroutine());
+        //}
 
 
     }
@@ -467,6 +475,12 @@ public class PlayerController : MonoBehaviour
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
 
+
+    //private IEnumerator respawnEffectCoroutine()
+    //{
+    //    yield return new WaitForSeconds (0.5f);
+    //    respawnEffectable = true;
+    //}
 
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
