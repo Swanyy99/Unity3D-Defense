@@ -268,7 +268,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("À¸¾Ç");
         PlayerManager.Instance.TakeDamage(damage * 2);
-        Destroy(gameObject);
+        pool.StartCoroutine(pool.DelayToReturn());
     }
 
     private void SetNextPoint()
@@ -380,6 +380,11 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             break;
         }
+    }
+
+    private void OnDisable()
+    {
+        curWayIndex = 0;
     }
 
 }

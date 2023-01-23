@@ -15,6 +15,9 @@ public class InventoryManager : SingleTon<InventoryManager>
     [SerializeField]
     private EquipmentUI EquipmentUI;
 
+    [SerializeField]
+    private GameObject ShopUI;
+
 
     [SerializeField]
     private GameObject TooltipUI;
@@ -61,6 +64,7 @@ public class InventoryManager : SingleTon<InventoryManager>
                 {
                     Inventory.gameObject.SetActive(false);
                     TooltipUI.SetActive(false);
+                    ShopUI.SetActive(false);
                     //InventoryOn = false;
                     DetectUION();
                     //if (!EquipmentUI.gameObject.activeSelf)
@@ -266,6 +270,11 @@ public class InventoryManager : SingleTon<InventoryManager>
     public void ShowUI()
     {
         EquipmentUI.gameObject.SetActive(true);
+        Inventory.gameObject.SetActive(true);
+    }
+
+    public void ShowInven()
+    {
         Inventory.gameObject.SetActive(true);
     }
 

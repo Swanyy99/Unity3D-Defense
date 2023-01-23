@@ -183,8 +183,8 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         {
             ItemName.text = this.Item.data.name;
             ItemDescriprion.text = this.Item.data.description;
-            ItemCost.text = "구매 가격 : " + this.Item.data.PurchaseCost + " G\n" +
-                            "판매 가격 : " + this.Item.data.SellCost + " G";
+            ItemCost.text = "구매가격 : " + this.Item.data.PurchaseCost + " G\n" +
+                            "판매가격 : " + this.Item.data.SellCost + " G";
             ItemType.text = null;
             if (this.Item.data.Itemtype.ToString() == "Potion")
             {

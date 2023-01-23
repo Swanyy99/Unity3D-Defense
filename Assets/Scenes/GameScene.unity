@@ -4359,7 +4359,7 @@ GameObject:
   - component: {fileID: 96257245}
   - component: {fileID: 96257244}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4398,7 +4398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.28773582, g: 1, b: 0.95911926, a: 0.48235294}
+  m_Color: {r: 0, g: 0.8979106, b: 1, a: 0.48235294}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10030,7 +10030,7 @@ Transform:
   - {fileID: 581350464}
   - {fileID: 1402860403}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &327767878
 MonoBehaviour:
@@ -10152,6 +10152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory: {fileID: 5808515781233420432}
   EquipmentUI: {fileID: 465349551}
+  ShopUI: {fileID: 1570188473}
   TooltipUI: {fileID: 1554181593}
   UseEffectPos: {fileID: 1740732034}
   InventoryOn: 0
@@ -22307,6 +22308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 0}
   TooltipUI: {fileID: 0}
+  ShopUI: {fileID: 0}
+  InvenUI: {fileID: 0}
 --- !u!114 &746759719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28783,7 +28786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4711018405348588, guid: 8afde97fb8209f946a65b4540bf4b391, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4711018405348588, guid: 8afde97fb8209f946a65b4540bf4b391, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31017,7 +31020,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888613480}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722702, z: 0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000018722702, z: -0.00000000441983, w: 0.973249}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33125,7 +33128,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12719338, y: 0.000000038162142, z: -0.000000004893719, w: 0.9918779}
+  m_LocalRotation: {x: 0.12719338, y: -0.000000038162142, z: 0.000000004893719, w: 0.9918779}
   m_LocalPosition: {x: 1.98, y: 2.641, z: -59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36327,7 +36330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000024438, y: 33.025105}
+  m_AnchoredPosition: {x: 0.000024438, y: 32.8}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094526816
@@ -36366,8 +36369,8 @@ MonoBehaviour:
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
     topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 0.043137252, g: 0.8410498, b: 1, a: 1}
-    bottomRight: {r: 0.043137252, g: 0.8410498, b: 1, a: 1}
+    bottomLeft: {r: 0.043137252, g: 1, b: 0.7858058, a: 1}
+    bottomRight: {r: 0.043137252, g: 1, b: 0.7858058, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -41502,7 +41505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2501133032902753298, guid: afb301349265c994087e5cf8b6304a61, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2501133032902753298, guid: afb301349265c994087e5cf8b6304a61, type: 3}
       propertyPath: m_LocalScale.x
@@ -41633,7 +41636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8216655869381231936, guid: 0a0a0a5f621bfb2408fb81e9844c5c0b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8216655869381231936, guid: 0a0a0a5f621bfb2408fb81e9844c5c0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -41897,7 +41900,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320294689}
-  m_LocalRotation: {x: 0.12719338, y: 0.000000019081071, z: -0.000000002446859, w: 0.991878}
+  m_LocalRotation: {x: 0.12719338, y: -0.000000019081073, z: 0.0000000024468592, w: 0.991878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48665,7 +48668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1554181594
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49304,6 +49307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 2013109875}
   TooltipUI: {fileID: 1554181593}
+  ShopUI: {fileID: 1570188473}
+  InvenUI: {fileID: 479534707372805105}
 --- !u!114 &1570188477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56560,6 +56565,7 @@ MonoBehaviour:
   groundCheck: {fileID: 304117061}
   groundDistance: 0.2
   respawnDistance: 0.1
+  ShopUI: {fileID: 1570188473}
   groundMask:
     serializedVersion: 2
     m_Bits: 2147483647
@@ -66676,7 +66682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4967989172403912, guid: 883682fba8caac341ae28dfe2db85e31, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4967989172403912, guid: 883682fba8caac341ae28dfe2db85e31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71479,6 +71485,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 0}
   TooltipUI: {fileID: 0}
+  ShopUI: {fileID: 0}
+  InvenUI: {fileID: 0}
 --- !u!222 &1597132350456661406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -73840,6 +73848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopUI: {fileID: 1570188473}
+  playerCam: {fileID: 743412487}
 --- !u!114 &5866666021298196447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73878,8 +73887,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.947856, y: 17.797834, z: 7.9760036}
-  m_Center: {x: -0.05222052, y: 8.398923, z: -0.63688564}
+  m_Size: {x: 17.386528, y: 17.797834, z: 14.429656}
+  m_Center: {x: 0.68195474, y: 8.398923, z: 2.5899441}
 --- !u!4 &5901452233857571760
 Transform:
   m_ObjectHideFlags: 0
@@ -74296,7 +74305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6637907615547956837, guid: 88e824d7c1a740d499dfb5a32ac0f1b1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6637907615547956837, guid: 88e824d7c1a740d499dfb5a32ac0f1b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -75177,6 +75186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 5579846321200997200}
   TooltipUI: {fileID: 1554181593}
+  ShopUI: {fileID: 1570188473}
+  InvenUI: {fileID: 479534707372805105}
 --- !u!4 &8255111157953812784
 Transform:
   m_ObjectHideFlags: 0

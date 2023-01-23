@@ -59,8 +59,8 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
         {
             ItemName.text = this.Item.data.name;
             ItemDescriprion.text = this.Item.data.description;
-            ItemCost.text = "구매 가격 : " + this.Item.data.PurchaseCost + " G\n" +
-                            "판매 가격 : " + this.Item.data.SellCost + " G";
+            ItemCost.text = "구매가격 : " + this.Item.data.PurchaseCost + " G\n" +
+                            "판매가격 : " + this.Item.data.SellCost + " G";
             ItemType.text = null;
             if (this.Item.data.Itemtype.ToString() == "Potion")
             {
@@ -105,6 +105,8 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
     {
         if (BuildManager.Instance.Gold >= Item.data.PurchaseCost)
         {
+            LogManager.Instance.logText.text += "<#32CD32>[알림]</color><#FFA500> " + Item.data.name + " </color><#FFFFFF></color>을(를) 구매했습니다.\n";
+            LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());
             BuildManager.Instance.GoldChange(-Item.data.PurchaseCost);
             InventoryManager.Instance.AddItem(Item);
         }

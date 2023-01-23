@@ -12,17 +12,6 @@ public class ShopManager : SingleTon<ShopManager>
 
     public List<InventoryItem> items = new List<InventoryItem>();
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        shopUnit = shop.GetComponentsInChildren<ShopUnit>();
-    }
-    void Update()
-    {
-        
-    }
-
     public void AddShopList(InventoryItem item)
     {
         items.Add(item);

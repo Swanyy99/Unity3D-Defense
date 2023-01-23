@@ -20,8 +20,8 @@ MonoBehaviour:
   name: "\uBC31\uAE30\uC0AC \uBD80\uCE20"
   description: "DEF +1\nDEX +2\n\uC2E0\uC131\uD55C \uAE30\uC6B4\uC774 \uAC10\uB3C4
     \uBD80\uCE20"
-  PurchaseCost: 0
-  SellCost: 0
+  PurchaseCost: 5000
+  SellCost: 1500
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 0

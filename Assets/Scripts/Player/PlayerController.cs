@@ -62,8 +62,11 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.2f;
     public float respawnDistance = 0.1f;
+    [SerializeField]
+    private GameObject ShopUI;
     public LayerMask groundMask;
     public LayerMask RespawnMask;
+
 
     public Respawn respawn;
     //private float RespawnTimer;
@@ -109,6 +112,9 @@ public class PlayerController : MonoBehaviour
             return;
 
         if (GameManager.Instance.BuildMode == true)
+            return;
+
+        if (ShopUI.activeSelf)
             return;
 
         if (curAnim("comboSlash1") || curAnim("comboSlash2") ||
@@ -169,6 +175,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
+        if (ShopUI.activeSelf)
+            return;
+
         if (GameManager.Instance.BuildMode == true)
         {
             playerCam.enabled = false;
@@ -240,6 +249,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump()
     {
+        if (ShopUI.activeSelf)
+            return;
 
         if (GameManager.Instance.BuildMode == true)
             return;
@@ -273,6 +284,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Dash()
     {
+        if (ShopUI.activeSelf)
+            return;
+
         if (curAnim("Attack"))
             return;
         

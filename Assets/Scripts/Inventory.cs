@@ -17,6 +17,11 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     [SerializeField]
     private GameObject TooltipUI;
 
+    [SerializeField]
+    private GameObject ShopUI;
+    [SerializeField]
+    private GameObject InvenUI;
+
     private Image image;
 
     private void OnEnable()
@@ -54,7 +59,9 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     {
         UIManager.Instance.InventoryOn = false;
         InventoryManager.Instance.InventoryOn = false;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        ShopUI.SetActive(false);
+        InvenUI.SetActive(false);
         TooltipUI.SetActive(false);
         InventoryManager.Instance.DetectUION();
         //Cursor.lockState = CursorLockMode.Locked;

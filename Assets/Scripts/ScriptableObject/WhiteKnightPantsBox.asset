@@ -19,8 +19,8 @@ MonoBehaviour:
   UseEffect: {fileID: 0}
   name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
   description: "DEF +2\nDEX +2\nMpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uBC14\uC9C0"
-  PurchaseCost: 0
-  SellCost: 0
+  PurchaseCost: 6500
+  SellCost: 2000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 0
