@@ -18,7 +18,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7a18be4588e1c0f4a8e5e149ac7ca6fb, type: 3}
   UseEffect: {fileID: 0}
   name: "\uBC31\uAE30\uC0AC \uC7A5\uAC11"
-  description: "DEF +1  DEX +2\nMpRecover +1\n\uBC31\uAE30\uC0AC\uC758 \uC7A5\uAC11"
+  description: "DEF +1\nDEX +2\nMpRecover +1\n\uBC31\uAE30\uC0AC\uC758 \uC7A5\uAC11"
+  PurchaseCost: 0
   SellCost: 0
   RecoverHp: 0
   RecoverMp: 0

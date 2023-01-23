@@ -18,9 +18,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: af181bf9cf7f2eb4cb9ce60f04524541, type: 3}
   UseEffect: {fileID: 0}
   name: "\uBC31\uAE30\uC0AC\uC758 \uAC80"
-  description: "STR +5  DEX +10\nINT +2\n\uC2E0\uC131\uD55C \uAE30\uC6B4\uC774 \uAC10\uB3C4\uB294\n\uC798
-    \uC815\uC81C\uB41C \uAC80\uC774\uB2E4"
-  SellCost: 0
+  description: "STR +5 \nDEX +10\nINT +2\n\uC2E0\uC131\uD55C \uAE30\uC6B4\uC774 \uAC10\uB3C4\uB294
+    \uAC80"
+  PurchaseCost: 10000
+  SellCost: 5000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 5

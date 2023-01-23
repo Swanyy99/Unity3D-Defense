@@ -18,9 +18,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ca7781f259ba0794381f28b919763f72, type: 3}
   UseEffect: {fileID: 0}
   name: "\uC544\uD3EC\uCE7C\uB9BD\uC2A4"
-  description: "STR +7  DEX +7\nINT +1\n\uC138\uACC4\uC758 \uC885\uB9D0\uC744 \uBD80\uB974\uB294
+  description: "STR +7\nDEX +7\nINT +1\n\uC138\uACC4\uC758 \uC885\uB9D0\uC744 \uBD80\uB974\uB294
     \uAC80"
-  SellCost: 0
+  PurchaseCost: 10000
+  SellCost: 5000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 7

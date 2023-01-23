@@ -13,11 +13,22 @@ MonoBehaviour:
   m_Name: MpPotion
   m_EditorClassIdentifier: 
   Itemtype: 1
-  name: "MP \uD3EC\uC158"
-  RecoverHp: 0
-  RecoverMp: 30
-  description: "MP\uB97C 30 \uD68C\uBCF5\uC2DC\uD0A8\uB2E4\n\uB9DB\uC788\uC5B4 \uBCF4\uC778\uB2E4!\n\uADFC\uB370
-    \uB9DB\uC5C6\uB2E4.."
-  UseEffect: {fileID: 100008, guid: 8908915d0b1a16a4fa67ef78a3af7cf4, type: 3}
+  EquipType: 0
   prefab: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
   icon: {fileID: 21300000, guid: 8ce793dbd83cd7245a492b749b8b3567, type: 3}
+  UseEffect: {fileID: 100008, guid: 8908915d0b1a16a4fa67ef78a3af7cf4, type: 3}
+  name: "MP \uD3EC\uC158"
+  description: "MP\uB97C 30 \uD68C\uBCF5\uC2DC\uD0A8\uB2E4\n\uB9DB\uC788\uC5B4 \uBCF4\uC778\uB2E4!\n\uADFC\uB370
+    \uB9DB\uC5C6\uB2E4.."
+  PurchaseCost: 15
+  SellCost: 5
+  RecoverHp: 0
+  RecoverMp: 30
+  STR_plus: 0
+  DEF_plus: 0
+  DEX_plus: 0
+  INT_plus: 0
+  MaxHP_plus: 0
+  MaxMP_plus: 0
+  HpRecover_plus: 0
+  MpRecover_plus: 0

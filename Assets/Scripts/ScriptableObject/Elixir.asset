@@ -13,11 +13,22 @@ MonoBehaviour:
   m_Name: Elixir
   m_EditorClassIdentifier: 
   Itemtype: 1
-  name: "\uC5D8\uB9AD\uC11C"
-  RecoverHp: 100
-  RecoverMp: 100
-  description: "HP, MP\uB97C 100 \uD68C\uBCF5\uD55C\uB2E4\n\uC544\uC8FC \uC57C\uBB34\uC9C4
-    \uBB3C\uC57D\uC774\uB2E4"
-  UseEffect: {fileID: 100008, guid: 5074bf04d5a5e9d449efca9067c853d5, type: 3}
+  EquipType: 0
   prefab: {fileID: 6466656367865045370, guid: e66e645ed55fdec44856842e8d362d4f, type: 3}
   icon: {fileID: 21300000, guid: f44ccfa7a24a8c846a25ca1b2c131b95, type: 3}
+  UseEffect: {fileID: 100008, guid: 5074bf04d5a5e9d449efca9067c853d5, type: 3}
+  name: "\uC5D8\uB9AD\uC11C"
+  description: "HP, MP\uB97C 100 \uD68C\uBCF5\uD55C\uB2E4\n\uC544\uC8FC \uC57C\uBB34\uC9C4
+    \uBB3C\uC57D\uC774\uB2E4"
+  PurchaseCost: 50
+  SellCost: 20
+  RecoverHp: 100
+  RecoverMp: 100
+  STR_plus: 0
+  DEF_plus: 0
+  DEX_plus: 0
+  INT_plus: 0
+  MaxHP_plus: 0
+  MaxMP_plus: 0
+  HpRecover_plus: 0
+  MpRecover_plus: 0

@@ -36,6 +36,7 @@ public class ItemData : ScriptableObject
     public new string name;
     [TextArea(1, 4)]
     public string description;
+    public int PurchaseCost;
     public int SellCost;
 
     [Header("Potion")]

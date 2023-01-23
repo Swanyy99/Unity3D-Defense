@@ -18,7 +18,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f08e25ff254b5de40a32230258506318, type: 3}
   UseEffect: {fileID: 0}
   name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
-  description: "DEF +2  DEX +2\nMpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uBC14\uC9C0"
+  description: "DEF +2\nDEX +2\nMpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uBC14\uC9C0"
+  PurchaseCost: 0
   SellCost: 0
   RecoverHp: 0
   RecoverMp: 0
@@ -26,7 +27,7 @@ MonoBehaviour:
   DEF_plus: 2
   DEX_plus: 2
   INT_plus: 0
-  MaxHP_plus: 20
-  MaxMP_plus: 0
+  MaxHP_plus: 0
+  MaxMP_plus: 20
   HpRecover_plus: 0
   MpRecover_plus: 0

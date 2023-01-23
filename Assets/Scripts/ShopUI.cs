@@ -28,7 +28,6 @@ public class ShopUI : MonoBehaviour
         {
             Item instanceItem = ShopItemList[i].item.GetComponent<Item>();
             instanceItem.AddShop();
-            //ShopManager.Instance.AddShopList(instanceItem);
         }
     }
 

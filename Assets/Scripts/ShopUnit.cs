@@ -25,18 +25,15 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
     private TextMeshProUGUI ItemType;
     [SerializeField]
     private TextMeshProUGUI ItemDescriprion;
+    [SerializeField]
+    private TextMeshProUGUI ItemCost;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void AddItem(InventoryItem item)
     {
@@ -62,6 +59,8 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
         {
             ItemName.text = this.Item.data.name;
             ItemDescriprion.text = this.Item.data.description;
+            ItemCost.text = "구매 가격 : " + this.Item.data.PurchaseCost + " G\n" +
+                            "판매 가격 : " + this.Item.data.SellCost + " G";
             ItemType.text = null;
             if (this.Item.data.Itemtype.ToString() == "Potion")
             {
