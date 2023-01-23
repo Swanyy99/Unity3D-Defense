@@ -55,6 +55,11 @@ public class BuildManager : SingleTon<BuildManager>
         Debug.Log("타워를 판매했습니다.");
     }
 
+    public void GoldChange(int gold)
+    {
+        Gold += gold;
+    }
+
     public void GoldUpdate()
     {
         Gold += 1;

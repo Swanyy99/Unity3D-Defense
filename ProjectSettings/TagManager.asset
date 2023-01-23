@@ -9,6 +9,7 @@ TagManager:
   - RespawnArea
   - Item
   - EquipUI
+  - ShopUI
   layers:
   - Default
   - TransparentFX

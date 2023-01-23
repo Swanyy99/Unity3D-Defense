@@ -103,7 +103,11 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
 
     public void PurchaseItem()
     {
-        InventoryManager.Instance.AddItem(Item);
+        if (BuildManager.Instance.Gold >= Item.data.PurchaseCost)
+        {
+            BuildManager.Instance.GoldChange(-Item.data.PurchaseCost);
+            InventoryManager.Instance.AddItem(Item);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

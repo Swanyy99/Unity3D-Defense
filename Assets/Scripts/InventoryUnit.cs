@@ -84,6 +84,9 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     [SerializeField]
     private EquipSlotSaveStat Shoes;
 
+    [SerializeField]
+    private Image ShopSellPosImage;
+
     private void Start()
     {
         
@@ -244,6 +247,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             DragSlot.instance.dragSlot = this;
             DragSlot.instance.DragSetImage(this.icon);
             DragSlot.instance.transform.position = eventData.position;
+            ShopSellPosImage.raycastTarget = true;
             //gameObject.transform.SetAsLastSibling();
             //icon.color = new Color(255, 255, 255, 0);
         }
@@ -261,13 +265,24 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         DragSlot.instance.SetColor(0);
         DragSlot.instance.dragSlot = null;
         ItemTooltipUI.gameObject.SetActive(false);
+        ShopSellPosImage.raycastTarget = false;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         if (DragSlot.instance.dragSlot != null)
             ChangeSlot();
+
+            //if (!this.gameObject.tag.Equals("ShopUI"))
+            //else
+            //    SellItem();
     }
+
+    //private void SellItem()
+    //{
+    //    BuildManager.Instance.GoldChange(DragSlot.instance.dragSlot.Item.data.SellCost);
+    //    DragSlot.instance.dragSlot.RemoveItem();
+    //}
 
     private void ChangeSlot()
     {
