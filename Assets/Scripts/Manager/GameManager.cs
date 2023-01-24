@@ -11,6 +11,7 @@ public class GameManager : SingleTon<GameManager>
     public bool GameOn;
     public bool BuildMode;
     public bool TooltipOn;
+    public bool HelpConversation;
 
     [Header("UI")]
     public GameObject TowerPlaceUIOpenButton;

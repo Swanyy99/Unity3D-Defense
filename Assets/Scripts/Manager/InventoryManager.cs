@@ -129,17 +129,20 @@ public class InventoryManager : SingleTon<InventoryManager>
             }
 
 
-            if (GameManager.Instance.BuildMode == false)
+            
+            if (Cursor.lockState == CursorLockMode.Locked && Input.GetMouseButtonDown(1))
             {
-                if (Cursor.lockState == CursorLockMode.Locked && Input.GetMouseButtonDown(1))
-                {
-                    Cursor.lockState = CursorLockMode.Confined;
-                }
-                else if (Cursor.lockState == CursorLockMode.Confined && UI_ON == false && Input.GetMouseButtonDown(1))
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
+                Cursor.lockState = CursorLockMode.Confined;
+                playerCam.m_XAxis.m_MaxSpeed = 0;
+                playerCam.m_YAxis.m_MaxSpeed = 0;
             }
+            else if (Cursor.lockState == CursorLockMode.Confined && UI_ON == false && Input.GetMouseButtonDown(1))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                playerCam.m_XAxis.m_MaxSpeed = 200;
+                playerCam.m_YAxis.m_MaxSpeed = 2;
+            }
+
         }
     }
 

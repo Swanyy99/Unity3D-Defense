@@ -105,7 +105,6 @@ public class PlayerManager : SingleTon<PlayerManager>
         private set { maxMp = value; OnMaxMpChanged?.Invoke(maxMp); }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(RecoverHP());
@@ -113,11 +112,6 @@ public class PlayerManager : SingleTon<PlayerManager>
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void TakeDamage(int damage)
     {
