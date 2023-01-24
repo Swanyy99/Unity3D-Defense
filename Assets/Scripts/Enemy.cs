@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        //agent.enabled = true;
         isDead = false;
         curWayIndex = 0;
         anim = GetComponent<Animator>();
@@ -268,14 +269,15 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("À¸¾Ç");
         PlayerManager.Instance.TakeDamage(damage * 2);
-        pool.StartCoroutine(pool.DelayToReturn());
+        //curWayIndex = 0;
+        pool.Return();
     }
 
     private void SetNextPoint()
     {
         if (Type("Enemy") && agent.enabled == true)
         {
-            if (curWayIndex <= WaveManager.Instance.WayPoints.Count - 1)
+            if (curWayIndex < WaveManager.Instance.WayPoints.Count)
             {
                 curWayIndex++;
                 agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
@@ -384,7 +386,9 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
-        curWayIndex = 0;
+        agent.enabled = false;
+        PlayerDetect = false;
+        //curWayIndex = 0;
     }
 
 }
