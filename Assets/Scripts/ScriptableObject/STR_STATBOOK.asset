@@ -16,7 +16,7 @@ MonoBehaviour:
   EquipType: 0
   prefab: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
   icon: {fileID: 21300000, guid: 6b2b44cddd565f948a7081cc3a6b7d1a, type: 3}
-  UseEffect: {fileID: 1054003023854422, guid: d3e35a597fb375d4b8678c70b8bec1fa, type: 3}
+  UseEffect: {fileID: 100006, guid: 731a2a8640230fc4885707a547f0cace, type: 3}
   name: "\uD798\uC758 \uB9C8\uB3C4\uC11C"
   description: "\uB9C8\uBC95\uC758 \uD798\uC774 \uAE43\uB4E0 \uCC45.\nSTR \uC2A4\uD0EF\uC744
     1 \uC0C1\uC2B9\uC2DC\uD0A8\uB2E4.\n\uD798\uC774 \uC465\uC465"

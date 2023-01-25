@@ -321,7 +321,7 @@ public class InventoryManager : SingleTon<InventoryManager>
         PlayerManager.Instance.originHPR += inventoryItem.data.Upgrade_HPR_STAT;
         PlayerManager.Instance.originMPR += inventoryItem.data.Upgrade_MPR_STAT;
         PlayerManager.Instance.StatUpdate();
-        Instantiate(inventoryItem.data.UseEffect, UseEffectPos.transform.position, UseEffectPos.transform.rotation);
+        Instantiate(inventoryItem.data.UseEffect, player.transform.position, player.transform.rotation);
     }
 
 
