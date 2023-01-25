@@ -10387,6 +10387,10 @@ MonoBehaviour:
     count: 30
     container: {fileID: 2134541}
     Creation: 1
+  - prefab: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
+    count: 10
+    container: {fileID: 581350464}
+    Creation: 1
   - prefab: {fileID: 1191210388261145984, guid: 93d6f8ac7a03f7c49afa0051eaaeeb6c, type: 3}
     count: 10
     container: {fileID: 1415053784}
@@ -30188,6 +30192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2327ae76095d45b44bb28635e2c8f4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LogText: {fileID: 1998079143}
 --- !u!1 &808841729
 GameObject:
   m_ObjectHideFlags: 0
@@ -68888,7 +68893,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021134582}
-  m_LocalRotation: {x: 0.1091774, y: -0.000000019122316, z: 0.0000000021002802, w: 0.9940223}
+  m_LocalRotation: {x: 0.1091774, y: -0.000000019122318, z: 0.0000000021002804, w: 0.9940223}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

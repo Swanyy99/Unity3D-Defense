@@ -110,7 +110,17 @@ public class OakPattern : MonoBehaviour
             Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-1f, 1f), transform.position.y, transform.position.z + UnityEngine.Random.Range(-1f, 1f));
             if (Itemdrop)
             {
-                Instantiate(DropItemList[i].item, randomPos, transform.rotation);
+                if (DropItemList[i].Name == "오크의 살점")
+                {
+                    GameObject instance = PoolManager.Instance.Get(DropItemList[i].item, randomPos, transform.rotation);
+                    if (instance == null)
+                        return;
+                }
+                else
+                {
+                    Instantiate(DropItemList[i].item, randomPos, transform.rotation);
+                }
+                 
             }
         }
 

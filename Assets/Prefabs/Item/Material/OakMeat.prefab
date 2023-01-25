@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5699767950238321851}
   - component: {fileID: 2775640809617291207}
   - component: {fileID: 6121688133346947490}
+  - component: {fileID: -8744341278234374812}
   m_Layer: 0
   m_Name: OakMeat
   m_TagString: Untagged
@@ -167,7 +168,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5699767950238321851}
         m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: Acquire
+        m_MethodName: Get
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4978,3 +4979,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-8744341278234374812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810315879048078750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4513915c23980459a04201ee3f31a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  returnTime: 0

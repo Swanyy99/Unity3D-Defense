@@ -75,31 +75,31 @@ MonoBehaviour:
     Chance: 5
   - Name: "\uD798\uC758 \uB9C8\uB3C4\uC11C"
     item: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
-    Chance: 1
+    Chance: 0.8
   - Name: "\uBBFC\uCCA9\uC758 \uB9C8\uB3C4\uC11C"
     item: {fileID: 789068467537641088, guid: 6226bca017713bc4bb0c28a1df024081, type: 3}
-    Chance: 1
+    Chance: 0.8
   - Name: "\uBC31\uAE30\uC0AC \uD5EC\uBA67"
     item: {fileID: 2771913142727967374, guid: f12e46e423d79fa41ba5baf615b7a9ff, type: 3}
-    Chance: 2
+    Chance: 1.5
   - Name: "\uBC31\uAE30\uC0AC \uC544\uBA38"
     item: {fileID: 2771913142727967374, guid: 4bc22bd17079b2e479326f45ff57379c, type: 3}
-    Chance: 2
+    Chance: 1.5
   - Name: "\uBC31\uAE30\uC0AC \uC7A5\uAC11"
     item: {fileID: 2771913142727967374, guid: c300ec31e5805b14383bed11ae611a02, type: 3}
-    Chance: 2
+    Chance: 1.5
   - Name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
     item: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
-    Chance: 2
+    Chance: 1.5
   - Name: "\uBC31\uAE30\uC0AC \uC2E0\uBC1C"
     item: {fileID: 2771913142727967374, guid: c9b3c06074cb2ff428f0c1222ce19ca0, type: 3}
-    Chance: 2
+    Chance: 1.5
   - Name: "\uBC31\uAE30\uC0AC\uC758 \uAC80"
     item: {fileID: 2771913142727967374, guid: 7059ddf20fc7b934285ba7e48e0459a4, type: 3}
-    Chance: 1
+    Chance: 0.8
   - Name: "\uC544\uD3EC\uCE7C\uB9BD\uC2A4"
     item: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
-    Chance: 0.5
+    Chance: 0.4
   - Name: "\uC624\uD06C\uC758 \uC0B4\uC810"
     item: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
     Chance: 70
