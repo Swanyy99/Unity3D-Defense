@@ -20,8 +20,8 @@ MonoBehaviour:
   name: "\uBC31\uAE30\uC0AC \uAC11\uC637"
   description: "DEF +2\nDEX +2\nHpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uAC11\uC637
     \uC0C1\uC758"
-  PurchaseCost: 6500
-  SellCost: 2000
+  PurchaseCost: 7000
+  SellCost: 1500
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 0
@@ -32,3 +32,11 @@ MonoBehaviour:
   MaxMP_plus: 0
   HpRecover_plus: 0
   MpRecover_plus: 0
+  Upgrade_STR_STAT: 0
+  Upgrade_DEF_STAT: 0
+  Upgrade_DEX_STAT: 0
+  Upgrade_INT_STAT: 0
+  Upgrade_MHP_STAT: 0
+  Upgrade_MMP_STAT: 0
+  Upgrade_HPR_STAT: 0
+  Upgrade_MPR_STAT: 0

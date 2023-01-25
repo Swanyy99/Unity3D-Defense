@@ -19,7 +19,7 @@ MonoBehaviour:
   UseEffect: {fileID: 0}
   name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
   description: "DEF +2\nDEX +2\nMpMax +20\n\uBC31\uAE30\uC0AC\uC758 \uBC14\uC9C0"
-  PurchaseCost: 6500
+  PurchaseCost: 7000
   SellCost: 2000
   RecoverHp: 0
   RecoverMp: 0
@@ -31,3 +31,11 @@ MonoBehaviour:
   MaxMP_plus: 20
   HpRecover_plus: 0
   MpRecover_plus: 0
+  Upgrade_STR_STAT: 0
+  Upgrade_DEF_STAT: 0
+  Upgrade_DEX_STAT: 0
+  Upgrade_INT_STAT: 0
+  Upgrade_MHP_STAT: 0
+  Upgrade_MMP_STAT: 0
+  Upgrade_HPR_STAT: 0
+  Upgrade_MPR_STAT: 0

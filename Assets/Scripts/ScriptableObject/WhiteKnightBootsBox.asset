@@ -21,7 +21,7 @@ MonoBehaviour:
   description: "DEF +1\nDEX +2\n\uC2E0\uC131\uD55C \uAE30\uC6B4\uC774 \uAC10\uB3C4
     \uBD80\uCE20"
   PurchaseCost: 5000
-  SellCost: 1500
+  SellCost: 1000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 0
@@ -32,3 +32,11 @@ MonoBehaviour:
   MaxMP_plus: 0
   HpRecover_plus: 0
   MpRecover_plus: 0
+  Upgrade_STR_STAT: 0
+  Upgrade_DEF_STAT: 0
+  Upgrade_DEX_STAT: 0
+  Upgrade_INT_STAT: 0
+  Upgrade_MHP_STAT: 0
+  Upgrade_MMP_STAT: 0
+  Upgrade_HPR_STAT: 0
+  Upgrade_MPR_STAT: 0

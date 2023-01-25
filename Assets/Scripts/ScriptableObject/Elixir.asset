@@ -20,8 +20,8 @@ MonoBehaviour:
   name: "\uC5D8\uB9AD\uC11C"
   description: "HP, MP\uB97C 100 \uD68C\uBCF5\uD55C\uB2E4\n\uC544\uC8FC \uC57C\uBB34\uC9C4
     \uBB3C\uC57D\uC774\uB2E4"
-  PurchaseCost: 50
-  SellCost: 20
+  PurchaseCost: 500
+  SellCost: 250
   RecoverHp: 100
   RecoverMp: 100
   STR_plus: 0
@@ -32,3 +32,11 @@ MonoBehaviour:
   MaxMP_plus: 0
   HpRecover_plus: 0
   MpRecover_plus: 0
+  Upgrade_STR_STAT: 0
+  Upgrade_DEF_STAT: 0
+  Upgrade_DEX_STAT: 0
+  Upgrade_INT_STAT: 0
+  Upgrade_MHP_STAT: 0
+  Upgrade_MMP_STAT: 0
+  Upgrade_HPR_STAT: 0
+  Upgrade_MPR_STAT: 0
