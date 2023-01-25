@@ -41,7 +41,7 @@ public class SwordWaveCollision : MonoBehaviour
             Debug.Log("적과 충돌");
             
                 target = other.GetComponent<Enemy>();
-                target.TakeDamage(20);
+                target.TakeDamage(20 + PlayerManager.Instance.STR);
                 Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
         }
@@ -51,7 +51,7 @@ public class SwordWaveCollision : MonoBehaviour
             Debug.Log("보스와 충돌");
 
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(20);
+            target.TakeDamage(20 + PlayerManager.Instance.STR);
             Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
         }

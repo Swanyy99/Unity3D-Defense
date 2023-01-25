@@ -50,10 +50,16 @@ public class Enemy : MonoBehaviour
     private GameObject Standard;
 
     [SerializeField]
+    private GameObject damageTextPos;
+
+    [SerializeField]
     private GameObject Weapon;
 
     [SerializeField]
     private GameObject expVFX;
+
+    [SerializeField]
+    private GameObject floatingDamage;
 
     private PoolableObject pool;
 
@@ -292,7 +298,27 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Hp -= damage;
+        int DAMAGE;
+        bool critical = Critical.CriticalAttack(PlayerManager.Instance.DEX);
+
+        if (critical)
+        {
+            DAMAGE = (int)(damage * 1.5f);
+        }
+        else
+            DAMAGE = damage;
+
+        Hp -= DAMAGE;
+        GameObject Damageinstance = PoolManager.Instance.Get(floatingDamage, damageTextPos.transform.position, damageTextPos.transform.rotation);
+        if (damage != DAMAGE)
+            Damageinstance.GetComponent<TextMeshPro>().color = Color.red;
+        else
+            Damageinstance.GetComponent<TextMeshPro>().color = Color.white;
+
+        Damageinstance.GetComponent<TextMeshPro>().text = DAMAGE.ToString();
+
+        if (Damageinstance == null)
+            return;
 
         if (Hp <= 0)
         {

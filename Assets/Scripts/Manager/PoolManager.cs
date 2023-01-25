@@ -31,7 +31,8 @@ public class PoolManager : SingleTon<PoolManager>
                 GameObject instance = Instantiate(poolPrefab[i].prefab);
                 instance.SetActive(false);
                 instance.gameObject.name = poolPrefab[i].prefab.name;
-                instance.transform.parent = poolPrefab[i].container;
+                //instance.transform.parent = poolPrefab[i].container;
+                instance.transform.SetParent(poolPrefab[i].container);
                 stack.Push(instance);
             }
 
@@ -45,7 +46,8 @@ public class PoolManager : SingleTon<PoolManager>
         if (stack.Count > 0)
         {
             GameObject instance = stack.Pop();
-            instance.transform.parent = parent;
+            //instance.transform.parent = parent;
+            instance.transform.SetParent(parent);
             instance.SetActive(true);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
@@ -56,7 +58,7 @@ public class PoolManager : SingleTon<PoolManager>
         if (poolable.Creation)
         {
             GameObject instance = Instantiate(prefab);
-            instance.transform.parent = parent;
+            instance.transform.SetParent(parent);
             instance.SetActive(true);
             instance.gameObject.name = prefab.name;
             instance.transform.position = position;
@@ -78,7 +80,8 @@ public class PoolManager : SingleTon<PoolManager>
         stack.Push(instance);
 
         Poolable poolabe = poolPrefab.Find((x) => instance.name == x.container.name);
-        instance.transform.parent = poolabe.container;
+        //instance.transform.parent = poolabe.container;
+        instance.transform.SetParent(poolabe.container);
     }
 
     [Serializable]

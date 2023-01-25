@@ -47,6 +47,8 @@ public class OakPattern : MonoBehaviour
     private GameObject dropItem10;
     [SerializeField]
     private GameObject dropItem11;
+    [SerializeField]
+    private GameObject dropItem12;
 
     private Animator anim;
 
@@ -169,6 +171,9 @@ public class OakPattern : MonoBehaviour
                 break;
             case 10:
                 Instantiate(dropItem11, transform.position, transform.rotation);
+                break;
+            case 11:
+                Instantiate(dropItem12, transform.position, transform.rotation);
                 break;
 
             default:

@@ -37,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 8291721889210318938}
   - {fileID: 1712830173098654232}
+  - {fileID: 2283898337108617576}
   - {fileID: 5063627466074710027}
   - {fileID: 3604145686310028212}
   - {fileID: 7767597672156064746}
@@ -93,6 +94,7 @@ MonoBehaviour:
   dropItem9: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
   dropItem10: {fileID: 2771913142727967374, guid: c9b3c06074cb2ff428f0c1222ce19ca0, type: 3}
   dropItem11: {fileID: 2771913142727967374, guid: 7059ddf20fc7b934285ba7e48e0459a4, type: 3}
+  dropItem12: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
 --- !u!114 &1464064001800209793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,8 +115,10 @@ MonoBehaviour:
   player: {fileID: 0}
   MainGate: {fileID: 0}
   Standard: {fileID: 6548126873599260866}
+  damageTextPos: {fileID: 1159265221234379978}
   Weapon: {fileID: 0}
   expVFX: {fileID: 1286066831248158, guid: 92b7045d1c1044949ae0c755517afbf2, type: 3}
+  floatingDamage: {fileID: 1191210388261145984, guid: 93d6f8ac7a03f7c49afa0051eaaeeb6c, type: 3}
 --- !u!195 &4561595026006828631
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -492,7 +496,7 @@ Transform:
   - {fileID: 8989201917756888884}
   - {fileID: 4768581436812891032}
   m_Father: {fileID: 726711862150103199}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284038016853364225
 GameObject:
@@ -588,7 +592,7 @@ Transform:
   m_Children:
   - {fileID: 2331212193954677497}
   m_Father: {fileID: 726711862150103199}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &990757811113798029
 GameObject:
@@ -653,6 +657,37 @@ Transform:
   - {fileID: 3318074315506193116}
   m_Father: {fileID: 8044512182075612905}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1159265221234379978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2283898337108617576}
+  m_Layer: 9
+  m_Name: DamageTextPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2283898337108617576
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159265221234379978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.038, y: 2.194, z: 0.114}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 726711862150103199}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182560937030508096
 GameObject:
@@ -1504,7 +1539,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 726711862150103199}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3616238994611078209
 SkinnedMeshRenderer:

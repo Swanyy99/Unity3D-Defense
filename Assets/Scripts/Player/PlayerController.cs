@@ -162,9 +162,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z) &&
                 curAnim("Attack") == false &&
                 curAnim("Jump") == false &&
-                attacked == false && PlayerManager.Instance.MP >= 30)
+                attacked == false && PlayerManager.Instance.MP >= 40 - PlayerManager.Instance.INT)
             {
-                PlayerManager.Instance.UseMana(30);
+                PlayerManager.Instance.UseMana(40 - PlayerManager.Instance.INT);
                 attacked = true;
                 anim.SetBool("isMoving", false);
                 anim.SetBool("isAttacking", true);
@@ -298,9 +298,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (!curAnim("Dash") && PlayerManager.Instance.MP >= 5)
+            if (!curAnim("Dash") && PlayerManager.Instance.MP >= 5 - PlayerManager.Instance.INT)
             {
-                PlayerManager.Instance.UseMana(5);
+                PlayerManager.Instance.UseMana(5 - PlayerManager.Instance.INT);
                 anim.SetBool("isDash", true);
             }
         }

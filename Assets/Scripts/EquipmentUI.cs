@@ -71,6 +71,8 @@ public class EquipmentUI : MonoBehaviour, IPointerDownHandler, IDragHandler
             "MMP\t+" + MaxMP_plus + "\n" +
             "HPR\t+" + HpRecover_plus + "\n" +
             "MPR\t+" + MpRecover_plus;
+
+        PlayerManager.Instance.FinalStatUpdate(STR_plus, DEF_plus, DEX_plus, INT_plus, MaxHP_plus, MaxMP_plus, HpRecover_plus, MpRecover_plus);
     }
 
 

@@ -9,7 +9,8 @@ public class ItemData : ScriptableObject
     {
         Equipment,
         Potion,
-        Material
+        Material,
+        Book
     }
 
     public enum equipType
@@ -52,5 +53,15 @@ public class ItemData : ScriptableObject
     public int MaxMP_plus;
     public int HpRecover_plus;
     public int MpRecover_plus;
+
+    [Header("UseItemAbility")]
+    public int Upgrade_STR_STAT;
+    public int Upgrade_DEF_STAT;
+    public int Upgrade_DEX_STAT;
+    public int Upgrade_INT_STAT;
+    public int Upgrade_MHP_STAT;
+    public int Upgrade_MMP_STAT;
+    public int Upgrade_HPR_STAT;
+    public int Upgrade_MPR_STAT;
 
 }

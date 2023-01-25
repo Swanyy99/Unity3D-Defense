@@ -210,6 +210,11 @@ public class InventoryManager : SingleTon<InventoryManager>
                 BuildManager.Instance.GoldUpdate();
                 break;
 
+            case "Book":
+                Debug.Log("스탯북을 사용했다");
+                UseStatBook(inventoryItem);
+                break;
+
             default:
                 break;
 
@@ -238,6 +243,11 @@ public class InventoryManager : SingleTon<InventoryManager>
                 Debug.Log("재료템을 판매했다");
                 BuildManager.Instance.gold += inventoryItem.data.SellCost;
                 BuildManager.Instance.GoldUpdate();
+                break;
+
+            case "Book":
+                Debug.Log("스탯북을 사용했다");
+                UseStatBook(inventoryItem);
                 break;
 
             default:
@@ -298,6 +308,20 @@ public class InventoryManager : SingleTon<InventoryManager>
             playerCam.m_YAxis.m_MaxSpeed = 2;
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+    public void UseStatBook(InventoryItem inventoryItem)
+    {
+        PlayerManager.Instance.originSTR += inventoryItem.data.Upgrade_STR_STAT;
+        PlayerManager.Instance.originDEF += inventoryItem.data.Upgrade_DEF_STAT;
+        PlayerManager.Instance.originDEX += inventoryItem.data.Upgrade_DEX_STAT;
+        PlayerManager.Instance.originINT += inventoryItem.data.Upgrade_INT_STAT;
+        PlayerManager.Instance.originMAXHP += inventoryItem.data.Upgrade_MHP_STAT;
+        PlayerManager.Instance.originMAXMP += inventoryItem.data.Upgrade_MMP_STAT;
+        PlayerManager.Instance.originHPR += inventoryItem.data.Upgrade_HPR_STAT;
+        PlayerManager.Instance.originMPR += inventoryItem.data.Upgrade_MPR_STAT;
+        PlayerManager.Instance.StatUpdate();
+        Instantiate(inventoryItem.data.UseEffect, UseEffectPos.transform.position, UseEffectPos.transform.rotation);
     }
 
 
