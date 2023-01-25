@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Android.Types;
@@ -24,31 +25,19 @@ public class OakPattern : MonoBehaviour
     private GameObject oakFinger4;
     [SerializeField]
     private GameObject oakFinger5;
-    [Header("DropItem")]
+
+
+    [Serializable]
+    struct dropItemList
+    {
+        public string Name;
+        public GameObject item;
+        public float Chance;
+    }
+
     [SerializeField]
-    private GameObject dropItem1;
-    [SerializeField]
-    private GameObject dropItem2;
-    [SerializeField]
-    private GameObject dropItem3;
-    [SerializeField]
-    private GameObject dropItem4;
-    [SerializeField]
-    private GameObject dropItem5;
-    [SerializeField]
-    private GameObject dropItem6;
-    [SerializeField]
-    private GameObject dropItem7;
-    [SerializeField]
-    private GameObject dropItem8;
-    [SerializeField]
-    private GameObject dropItem9;
-    [SerializeField]
-    private GameObject dropItem10;
-    [SerializeField]
-    private GameObject dropItem11;
-    [SerializeField]
-    private GameObject dropItem12;
+    private List<dropItemList> DropItemList;
+
 
     private Animator anim;
 
@@ -114,72 +103,17 @@ public class OakPattern : MonoBehaviour
 
     public void dropItem()
     {
-        int a = UnityEngine.Random.Range(0, 15);
-        switch (a)
+        for (int i = 0; i < DropItemList.Count; i++)
         {
-            case 0:
-                GameObject instance = PoolManager.Instance.Get(dropItem1, transform.position, transform.rotation);
-                if (instance == null)
-                    return;
-                //instance.transform.position = transform.position;
-                //instance.transform.rotation = transform.rotation;
-                //Instantiate(dropItem1, transform.position, transform.rotation);
-                break;
+            bool Itemdrop = Critical.RandomChance(DropItemList[i].Chance);
 
-            case 1:
-                GameObject instance2 = PoolManager.Instance.Get(dropItem2, transform.position, transform.rotation);
-                if (instance2 == null)
-                    return;
-                //instance2.transform.position = transform.position;
-                //instance2.transform.rotation = transform.rotation;
-                //Instantiate(dropItem2, transform.position, transform.rotation);
-                break;
-
-            case 2:
-                GameObject instance3 = PoolManager.Instance.Get(dropItem3, transform.position, transform.rotation);
-                if (instance3 == null)
-                    return;
-                //instance3.transform.position = transform.position;
-                //instance3.transform.rotation = transform.rotation;
-                //Instantiate(dropItem3, transform.position, transform.rotation);
-                break;
-
-            case 3:
-                GameObject instance4 = PoolManager.Instance.Get(dropItem4, transform.position, transform.rotation);
-                if (instance4 == null)
-                    return;
-                break;
-
-            case 4:
-                Instantiate(dropItem5, transform.position, transform.rotation);
-                break;
-
-            case 5:
-                Instantiate(dropItem6, transform.position, transform.rotation);
-                break;
-            case 6:
-                Instantiate(dropItem7, transform.position, transform.rotation);
-                break;
-            case 7:
-                Instantiate(dropItem8, transform.position, transform.rotation);
-                break;
-            case 8:
-                Instantiate(dropItem9, transform.position, transform.rotation);
-                break;
-            case 9:
-                Instantiate(dropItem10, transform.position, transform.rotation);
-                break;
-            case 10:
-                Instantiate(dropItem11, transform.position, transform.rotation);
-                break;
-            case 11:
-                Instantiate(dropItem12, transform.position, transform.rotation);
-                break;
-
-            default:
-                break;
-
+            Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-1f, 1f), transform.position.y, transform.position.z + UnityEngine.Random.Range(-1f, 1f));
+            if (Itemdrop)
+            {
+                Instantiate(DropItemList[i].item, randomPos, transform.rotation);
+            }
         }
+
     }
 }
 

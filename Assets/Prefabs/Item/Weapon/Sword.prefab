@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8221088834419628686}
   - component: {fileID: 8221088834419628684}
   - component: {fileID: 3049443676409269788}
-  - component: {fileID: 8531771510853775783}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -147,7 +146,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8221088834419628684}
         m_TargetAssemblyTypeName: Item, Assembly-CSharp
-        m_MethodName: Get
+        m_MethodName: Acquire
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -157,16 +156,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8531771510853775783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8219111493277299648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e4513915c23980459a04201ee3f31a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  returnTime: 0

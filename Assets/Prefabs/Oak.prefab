@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726711862150103199}
-  - component: {fileID: 6698506595274906341}
   - component: {fileID: 7331486647498570745}
+  - component: {fileID: 6698506595274906341}
   - component: {fileID: 1464064001800209793}
   - component: {fileID: 4561595026006828631}
   - component: {fileID: 7038815126290724265}
@@ -44,6 +44,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7331486647498570745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98547277403347493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9212cda695decb249a73e1f796e44ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackVFX: {fileID: 4269200528300084780, guid: 41be597a4cbfd4846ac187373fe148cf, type: 3}
+  AttackPos: {fileID: 1712830173098654232}
+  oakFinger1: {fileID: 165939299786753852}
+  oakFinger2: {fileID: 164268361838451863}
+  oakFinger3: {fileID: 4692087260378786102}
+  oakFinger4: {fileID: 7965373623522236433}
+  oakFinger5: {fileID: 6403670731795849964}
+  DropItemList:
+  - Name: "HP\uD3EC\uC158"
+    item: {fileID: 6466656367865045370, guid: aa7541e0fd31d774f9bb5b6ad5c33d11, type: 3}
+    Chance: 10
+  - Name: "MP\uD3EC\uC158"
+    item: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
+    Chance: 10
+  - Name: "\uC5D8\uB9AD\uC11C"
+    item: {fileID: 6466656367865045370, guid: e66e645ed55fdec44856842e8d362d4f, type: 3}
+    Chance: 5
+  - Name: "\uD798\uC758 \uB9C8\uB3C4\uC11C"
+    item: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
+    Chance: 1
+  - Name: "\uBBFC\uCCA9\uC758 \uB9C8\uB3C4\uC11C"
+    item: {fileID: 789068467537641088, guid: 6226bca017713bc4bb0c28a1df024081, type: 3}
+    Chance: 1
+  - Name: "\uBC31\uAE30\uC0AC \uD5EC\uBA67"
+    item: {fileID: 2771913142727967374, guid: f12e46e423d79fa41ba5baf615b7a9ff, type: 3}
+    Chance: 2
+  - Name: "\uBC31\uAE30\uC0AC \uC544\uBA38"
+    item: {fileID: 2771913142727967374, guid: 4bc22bd17079b2e479326f45ff57379c, type: 3}
+    Chance: 2
+  - Name: "\uBC31\uAE30\uC0AC \uC7A5\uAC11"
+    item: {fileID: 2771913142727967374, guid: c300ec31e5805b14383bed11ae611a02, type: 3}
+    Chance: 2
+  - Name: "\uBC31\uAE30\uC0AC \uBC14\uC9C0"
+    item: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
+    Chance: 2
+  - Name: "\uBC31\uAE30\uC0AC \uC2E0\uBC1C"
+    item: {fileID: 2771913142727967374, guid: c9b3c06074cb2ff428f0c1222ce19ca0, type: 3}
+    Chance: 2
+  - Name: "\uBC31\uAE30\uC0AC\uC758 \uAC80"
+    item: {fileID: 2771913142727967374, guid: 7059ddf20fc7b934285ba7e48e0459a4, type: 3}
+    Chance: 1
+  - Name: "\uC544\uD3EC\uCE7C\uB9BD\uC2A4"
+    item: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
+    Chance: 0.5
+  - Name: "\uC624\uD06C\uC758 \uC0B4\uC810"
+    item: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
+    Chance: 70
 --- !u!95 &6698506595274906341
 Animator:
   serializedVersion: 4
@@ -64,37 +123,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7331486647498570745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98547277403347493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9212cda695decb249a73e1f796e44ad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackVFX: {fileID: 4269200528300084780, guid: 41be597a4cbfd4846ac187373fe148cf, type: 3}
-  AttackPos: {fileID: 1712830173098654232}
-  oakFinger1: {fileID: 165939299786753852}
-  oakFinger2: {fileID: 164268361838451863}
-  oakFinger3: {fileID: 4692087260378786102}
-  oakFinger4: {fileID: 7965373623522236433}
-  oakFinger5: {fileID: 6403670731795849964}
-  dropItem1: {fileID: 6466656367865045370, guid: e66e645ed55fdec44856842e8d362d4f, type: 3}
-  dropItem2: {fileID: 6466656367865045370, guid: aa7541e0fd31d774f9bb5b6ad5c33d11, type: 3}
-  dropItem3: {fileID: 6466656367865045370, guid: 15a066df5a3601a419b326971c66881e, type: 3}
-  dropItem4: {fileID: 7810315879048078750, guid: 4223975b4f504294caaf5c0a13c7b923, type: 3}
-  dropItem5: {fileID: 2771913142727967374, guid: e6267851026e7294584222a9f870b335, type: 3}
-  dropItem6: {fileID: 2771913142727967374, guid: f12e46e423d79fa41ba5baf615b7a9ff, type: 3}
-  dropItem7: {fileID: 2771913142727967374, guid: 4bc22bd17079b2e479326f45ff57379c, type: 3}
-  dropItem8: {fileID: 2771913142727967374, guid: c300ec31e5805b14383bed11ae611a02, type: 3}
-  dropItem9: {fileID: 2771913142727967374, guid: 6c22dfb28a33a984483bec62a7ae2766, type: 3}
-  dropItem10: {fileID: 2771913142727967374, guid: c9b3c06074cb2ff428f0c1222ce19ca0, type: 3}
-  dropItem11: {fileID: 2771913142727967374, guid: 7059ddf20fc7b934285ba7e48e0459a4, type: 3}
-  dropItem12: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
 --- !u!114 &1464064001800209793
 MonoBehaviour:
   m_ObjectHideFlags: 0

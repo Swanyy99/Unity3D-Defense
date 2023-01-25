@@ -20,7 +20,7 @@ MonoBehaviour:
   name: "\uC624\uD06C\uC758 \uC0B4\uC810"
   description: "\uC624\uD06C\uC758 \uC0B4\uC810\uC774\uB2E4\n\uB0C4\uC0C8\uAC00 \uC2EC\uAC01\uD558\uB2E4...\n\uC6B0\uC6E9"
   PurchaseCost: 0
-  SellCost: 5
+  SellCost: 50
   RecoverHp: 10
   RecoverMp: 10
   STR_plus: 0
@@ -31,3 +31,11 @@ MonoBehaviour:
   MaxMP_plus: 0
   HpRecover_plus: 0
   MpRecover_plus: 0
+  Upgrade_STR_STAT: 0
+  Upgrade_DEF_STAT: 0
+  Upgrade_DEX_STAT: 0
+  Upgrade_INT_STAT: 0
+  Upgrade_MHP_STAT: 0
+  Upgrade_MMP_STAT: 0
+  Upgrade_HPR_STAT: 0
+  Upgrade_MPR_STAT: 0

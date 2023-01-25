@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
             if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
             Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
             //rigid.velocity = moveVec * moveSpeed;
-            controller.Move(moveVec * moveSpeed * Time.deltaTime);
+            controller.Move(moveVec * ( moveSpeed + ( PlayerManager.Instance.DEX * 1 / 20 ) ) * Time.deltaTime);
             if (moveVec.sqrMagnitude != 0)
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.7f);
@@ -310,7 +310,7 @@ public class PlayerController : MonoBehaviour
             anim.SetInteger("BasicAttack", 0);
             anim.SetBool("isJumping", false);
             isDash = true;
-            moveSpeed = 6f;
+            moveSpeed = 6f + (PlayerManager.Instance.DEX * 1 / 40);
             DashTimer += Time.deltaTime;
 
             if (DashTimer >= 0.43f)
@@ -374,6 +374,8 @@ public class PlayerController : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.E))
             return;
 
+        
+
         // 1. 범위내에 있는가
         Collider[] colliders = Physics.OverlapSphere(transform.position, interActionRange);
         for (int i = 0; i < colliders.Length; i++)
@@ -386,6 +388,12 @@ public class PlayerController : MonoBehaviour
 
             IInteractable target = colliders[i].GetComponent<IInteractable>();
             target?.Interaction(this);
+            //if (target != null)
+            //{
+            //    attacked = false;
+            //    anim.SetBool("isMoving", false);
+            //}
+            
         }
     }
 
