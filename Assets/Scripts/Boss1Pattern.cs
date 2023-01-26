@@ -143,7 +143,7 @@ public class Boss1Pattern : MonoBehaviour
                     {
                         //rigid.constraints = ~RigidbodyConstraints.FreezeRotationY;
                         //rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
+                        idleTimer = 0;
                         if (!curAnim("DashAttack"))
                             attackTimer += Time.deltaTime;
 

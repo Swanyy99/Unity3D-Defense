@@ -71,6 +71,8 @@ public class BuildManager : SingleTon<BuildManager>
         Gold += gold;
     }
 
+
+
     public IEnumerator BuildTower(TowerPlace place)
     {
         while (true)

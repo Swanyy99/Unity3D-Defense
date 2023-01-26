@@ -140,6 +140,7 @@ public class Enemy : MonoBehaviour
         {
             MaxHp = WaveManager.Instance.Wave * 200;
             damage = WaveManager.Instance.Wave * 10;
+            Exp = 70 * WaveManager.Instance.Wave / 5;
         }
 
         Hp = MaxHp;
@@ -320,6 +321,7 @@ public class Enemy : MonoBehaviour
         int DAMAGE;
         bool critical = Critical.CriticalAttack(PlayerManager.Instance.DEX);
 
+
         if (critical)
         {
             DAMAGE = (int)(damage * 1.5f);
@@ -351,7 +353,7 @@ public class Enemy : MonoBehaviour
 
 
         GameObject Damageinstance = PoolManager.Instance.Get(floatingDamage, damageTextPos.transform.position, damageTextPos.transform.rotation);
-        if (damage != DAMAGE)
+        if (damage != DAMAGE && Damagable == true)
             Damageinstance.GetComponent<TextMeshPro>().color = Color.red;
         else
             Damageinstance.GetComponent<TextMeshPro>().color = Color.white;
@@ -364,7 +366,7 @@ public class Enemy : MonoBehaviour
         if (Hp <= 0)
         {
             Hp = 0;
-            BuildManager.Instance.GainEnergy(1);
+            //BuildManager.Instance.GainEnergy(1);
             WaveManager.Instance.WaveMonsterDeath += 1;
 
             if (Type("Boss"))
@@ -446,6 +448,14 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(3f);
             //Instantiate(DeathEffect, transform.GetChild(0).position, transform.GetChild(0).rotation);
+            int a = Random.Range(0, 90);
+            int b = Random.Range(0, 360);
+            int c = Random.Range(-90, 90);
+            quaternion random = quaternion.Euler(-a, b, c);
+            GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
+            isDead = true;
+            if (instance == null)
+                break;
             Destroy(gameObject);
             break;
         }

@@ -104,6 +104,8 @@ public class PlayerController : MonoBehaviour
             PlayerManager.Instance.GainHp(30);
         if (Input.GetKeyDown(KeyCode.RightBracket))
             PlayerManager.Instance.GainMp(30);
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            BuildManager.Instance.GoldChange(10000);
 
     }
     private void Attack()
