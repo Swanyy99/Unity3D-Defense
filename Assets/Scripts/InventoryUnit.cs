@@ -718,9 +718,6 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             return;
         }
 
-
-
-
     }
 
     private void QuickSlotAdd()
