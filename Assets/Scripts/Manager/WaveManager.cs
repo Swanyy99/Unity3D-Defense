@@ -165,7 +165,8 @@ public class WaveManager : SingleTon<WaveManager>
                 if (SpawnedMonster < 1)
                 {
                     SpawnedMonster += 1;
-                    Instantiate(bossPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                    //Instantiate(bossPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                    Instantiate(bossPrefab, WayPoints[1].transform.position, WayPoints.First().rotation);
                 }
                 
             }

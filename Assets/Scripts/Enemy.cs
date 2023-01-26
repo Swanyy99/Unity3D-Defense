@@ -69,12 +69,7 @@ public class Enemy : MonoBehaviour
 
     public bool Damagable = true;
 
-    //[SerializeField]
-    //private GameObject DeathEffect;
-
     Vector3 moveVec;
-
-    //private Rigidbody rigid;
 
 
     public int Damage { get { return damage; } private set { damage = value; } }
@@ -83,7 +78,6 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        //agent.enabled = true;
         isDead = false;
         curWayIndex = 0;
         anim = GetComponent<Animator>();
@@ -101,24 +95,28 @@ public class Enemy : MonoBehaviour
         {
             SetNextPoint();
             anim.SetBool("Move", true);
-            if (WaveManager.Instance.Wave < 10)
+            if (NowWave(1,5))
             {
-                //MaxHp = WaveManager.Instance.Wave + 2;
                 MaxHp = WaveManager.Instance.Wave + WaveManager.Instance.Wave + 3;
-                //Exp = WaveManager.Instance.Wave;
                 agent.speed = 2.5f;
                 damage = WaveManager.Instance.Wave + 4;
             }
 
-            if (WaveManager.Instance.Wave >= 5)
+            else if (NowWave(6, 10))
             {
-                MaxHp = WaveManager.Instance.Wave * 5;
-                //Exp = (int)(WaveManager.Instance.Wave * 1.5f);
+                MaxHp = WaveManager.Instance.Wave * 7;
                 damage = WaveManager.Instance.Wave * 3;
                 agent.speed = 3f;
             }
 
-            if (NowWave(1, 5))
+            else
+            {
+                MaxHp = WaveManager.Instance.Wave * 10;
+                damage = WaveManager.Instance.Wave * 6;
+                agent.speed = 3f;
+            }
+
+            if (NowWave(1, 4))
             {
                 Exp = 1;
             }
@@ -126,7 +124,7 @@ public class Enemy : MonoBehaviour
             {
                 Exp = 2;
             }
-            else if (NowWave(7, 10))
+            else if (NowWave(8, 10))
             {
                 Exp = 3;
             }
@@ -171,20 +169,6 @@ public class Enemy : MonoBehaviour
             return false;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.layer == LayerMask.NameToLayer("WayPoint"))
-    //    {
-    //        if (curWayIndex >= WaveManager.Instance.WayPoints.Count - 1)
-    //            OnArriveEndPoint();
-    //        else
-    //            SetNextPoint();
-    //    }
-    //}
-    //private void OutOfRangeDetect()
-    //{
-    //    agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
-    //}
     private void MoveRoad()
     {
         if (Type("Enemy") && PlayerDetect == false)
@@ -212,7 +196,6 @@ public class Enemy : MonoBehaviour
 
             AttackTimer += Time.deltaTime;
             distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-            //float ds = Random.Range(0.5f, 1.2f);
             if (distance <= 1.2f)
             {
                 playerpos = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
@@ -244,7 +227,6 @@ public class Enemy : MonoBehaviour
                 PlayerDetect = false;
                 anim.ResetTrigger("Attack");
                 anim.SetBool("Move", true);
-                //SetNextPoint();
                 curWayIndex = WaveManager.Instance.WayPoints.Count - 1;
                 agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
 
@@ -256,33 +238,11 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void DetectGate()
-    {
-        if (Type("Enemy") && PlayerDetect == false)
-        {
-            GateAttackTimer += Time.deltaTime;
-            distance2 = Vector3.Distance(MainGate.transform.position, gameObject.transform.position);
-
-            if (distance2 <= 1.2f)
-            {
-                anim.SetBool("Move", false);
-                agent.SetDestination(gameObject.transform.position);
-
-                if (GateAttackTimer >= 4)
-                {
-                    anim.SetBool("Move", false);
-                    anim.SetTrigger("Attack");
-                    GateAttackTimer = 0;
-                }
-            }
-        }
-    }
 
     private void OnArriveEndPoint()
     {
         Debug.Log("À¸¾Ç");
         PlayerManager.Instance.TakeDamage(damage * 2);
-        //curWayIndex = 0;
         pool.Return();
     }
 
@@ -437,7 +397,7 @@ public class Enemy : MonoBehaviour
 
     bool NowWave(int a, int b)
     {
-        if (WaveManager.Instance.Wave >= a && WaveManager.Instance.Wave < b)
+        if (WaveManager.Instance.Wave >= a && WaveManager.Instance.Wave <= b)
             return true;
         else return false;
     }

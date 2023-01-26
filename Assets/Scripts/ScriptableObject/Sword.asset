@@ -18,16 +18,16 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 277f6206bb97db642bb32e548bd5876d, type: 3}
   UseEffect: {fileID: 0}
   name: "\uC874\uB098 \uC388 \uAC80"
-  description: "STR +77\nDEX +77\nMHP +777\n\u3139\u3147 \uC874\uB098 \uC388 \uAC80"
+  description: "STR +77\nDEX +100\nINT +777\n\u3139\u3147 \uC874\uB098 \uC388 \uAC80"
   PurchaseCost: 100000
   SellCost: 50000
   RecoverHp: 0
   RecoverMp: 0
-  STR_plus: 77
+  STR_plus: 777
   DEF_plus: 0
-  DEX_plus: 77
-  INT_plus: 0
-  MaxHP_plus: 777
+  DEX_plus: 100
+  INT_plus: 777
+  MaxHP_plus: 0
   MaxMP_plus: 0
   HpRecover_plus: 0
   MpRecover_plus: 0

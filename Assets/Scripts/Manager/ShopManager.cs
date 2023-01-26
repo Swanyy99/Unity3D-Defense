@@ -27,15 +27,14 @@ public class ShopManager : SingleTon<ShopManager>
         {
             if (i < items.Count)
             {
-                Debug.Log("업데이트 addItem 발동");
                 shopUnit[i].AddItem(items[i]);
 
             }
-            else
-            {
-                Debug.Log("업데이트 RemoveItem 발동");
-                shopUnit[i].RemoveItem();
-            }
+            //else
+            //{
+            //    Debug.Log("업데이트 RemoveItem 발동");
+            //    shopUnit[i].RemoveItem();
+            //}
         }
     }
 }

@@ -205,11 +205,10 @@ public class PlayerManager : SingleTon<PlayerManager>
 
     public void UseMana(int manaCost)
     {
-        
-        if (MP + manaCost <= 0)
-            MP = 0;
-        else
-            MP -= manaCost;
+        if (manaCost < 0)
+            manaCost = 0;
+
+        MP -= manaCost;
 
     }
 
@@ -378,6 +377,7 @@ public static class Critical
         {
             Success = true;
         }
+
         return Success;
     }
 

@@ -67,22 +67,15 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask RespawnMask;
 
-
     public Respawn respawn;
-    //private float RespawnTimer;
-
-    //private bool CanRespawnVFX = true;
 
     public List<GameObject> FoundObjects;
     public GameObject RespawnArea;
     public GameObject RespawnEffect;
     public float shortDis;
 
-    //private bool respawnEffectable = true;
-
     private void Awake()
     {
-        //rigid = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
     }
@@ -332,6 +325,8 @@ public class PlayerController : MonoBehaviour
     {
         sword.disableSwordCollider();
     }
+
+    
     public void Behave()
     {
 

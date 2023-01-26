@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-//using Unity.VisualScripting;
-//using Unity.VisualScripting.Antlr3.Runtime;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-//using static UnityEditor.Progress;
 
 public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler /*, IPointerEnterHandler, IPointerExitHandler*/
 {
@@ -86,6 +84,11 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
     [SerializeField]
     private Image ShopSellPosImage;
+
+    private string SlotName;
+
+    InventoryItem EquiptempItem;
+    int EquiptempItemCount;
 
     private void Start()
     {
@@ -248,10 +251,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
             DragSlot.instance.DragSetImage(this.icon);
             DragSlot.instance.transform.position = eventData.position;
             ShopSellPosImage.raycastTarget = true;
-            //gameObject.transform.SetAsLastSibling();
-            //icon.color = new Color(255, 255, 255, 0);
         }
-
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -272,17 +272,8 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         if (DragSlot.instance.dragSlot != null)
             ChangeSlot();
-
-            //if (!this.gameObject.tag.Equals("ShopUI"))
-            //else
-            //    SellItem();
     }
 
-    //private void SellItem()
-    //{
-    //    BuildManager.Instance.GoldChange(DragSlot.instance.dragSlot.Item.data.SellCost);
-    //    DragSlot.instance.dragSlot.RemoveItem();
-    //}
 
     private void ChangeSlot()
     {
@@ -342,8 +333,6 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
                     AddItem2(DragSlot.instance.dragSlot.Item);
                     SetCount(DragSlot.instance.dragSlot.ItemCount);
 
-                    
-
                     if (tempItem != null)
                     {
                         DragSlot.instance.dragSlot.AddItem2(tempItem);
@@ -383,8 +372,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
                     Weapon.UnEquipDetect();
                     return;
                 }
-
-                    return;
+                return;
             }
             return;
         }
@@ -392,72 +380,43 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
         if (this.gameObject.tag.Equals("EquipUI"))
         {
-            // Head
-            if (this.gameObject.name == "HeadSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Head")
+            string tempName = this.gameObject.name;
+
+            switch (tempName)
             {
-
-                InventoryItem tempHead = this.Item;
-                int tempHeadCount = ItemCount;
-
-                AddItem2(DragSlot.instance.dragSlot.Item);
-                SetCount(DragSlot.instance.dragSlot.ItemCount);
-
-                Head.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
-
-                if (tempHead != null)
-                {
-                    DragSlot.instance.dragSlot.AddItem2(tempHead);
-                    DragSlot.instance.dragSlot.SetCount(tempHeadCount);
-                }
-                else
-                {
-                    DragSlot.instance.dragSlot.RemoveItem();
-                }
-                return;
+                case "HeadSlot": SlotName = "Head"; break;
+                case "ArmorSlot": SlotName = "Armor"; break;
+                case "PantsSlot": SlotName = "Pants"; break;
+                case "GloveSlot": SlotName = "Glove"; break;
+                case "ShoesSlot": SlotName = "Shoes"; break;
+                case "WeaponSlot": SlotName = "Weapon"; break;
 
             }
 
-            // Armor
-            if (this.gameObject.name == "ArmorSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Armor")
+            if (SlotName == DragSlot.instance.dragSlot.Item.data.EquipType.ToString())
             {
-
-                InventoryItem tempArmor = this.Item;
-                int tempArmorCount = ItemCount;
+                InventoryItem tempItem = this.Item;
+                int tempCount = ItemCount;
 
                 AddItem2(DragSlot.instance.dragSlot.Item);
                 SetCount(DragSlot.instance.dragSlot.ItemCount);
 
-                Armor.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
+                string Type = this.gameObject.name;
 
-                if (tempArmor != null)
+                switch (Type)
                 {
-                    DragSlot.instance.dragSlot.AddItem2(tempArmor);
-                    DragSlot.instance.dragSlot.SetCount(tempArmorCount);
+                    case "HeadSlot": Head.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
+                    case "ArmorSlot": Armor.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
+                    case "PantsSlot": Pants.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
+                    case "GloveSlot": Glove.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
+                    case "ShoesSlot": Shoes.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
+                    case "WeaponSlot": Weapon.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR()); break;
                 }
-                else
+
+                if (tempItem != null)
                 {
-                    DragSlot.instance.dragSlot.RemoveItem();
-                }
-                return;
-
-            }
-
-            // Pants
-            if (this.gameObject.name == "PantsSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Pants")
-            {
-
-                InventoryItem tempPants = this.Item;
-                int tempPantsCount = ItemCount;
-
-                AddItem2(DragSlot.instance.dragSlot.Item);
-                SetCount(DragSlot.instance.dragSlot.ItemCount);
-
-                Pants.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
-
-                if (tempPants != null)
-                {
-                    DragSlot.instance.dragSlot.AddItem2(tempPants);
-                    DragSlot.instance.dragSlot.SetCount(tempPantsCount);
+                    DragSlot.instance.dragSlot.AddItem2(tempItem);
+                    DragSlot.instance.dragSlot.SetCount(tempCount);
                 }
                 else
                 {
@@ -465,90 +424,13 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
                 }
                 return;
             }
-
-            // Glove
-            if (this.gameObject.name == "GloveSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Glove")
-            {
-
-                InventoryItem tempGlove = this.Item;
-                int tempGloveCount = ItemCount;
-
-                AddItem2(DragSlot.instance.dragSlot.Item);
-                SetCount(DragSlot.instance.dragSlot.ItemCount);
-
-                Glove.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
-
-                if (tempGlove != null)
-                {
-                    DragSlot.instance.dragSlot.AddItem2(tempGlove);
-                    DragSlot.instance.dragSlot.SetCount(tempGloveCount);
-                }
-                else
-                {
-                    DragSlot.instance.dragSlot.RemoveItem();
-                }
-                return;
-            }
-
-            // Shoes
-            if (this.gameObject.name == "ShoesSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Shoes")
-            {
-
-                InventoryItem tempShoes = this.Item;
-                int tempShoesCount = ItemCount;
-
-                AddItem2(DragSlot.instance.dragSlot.Item);
-                SetCount(DragSlot.instance.dragSlot.ItemCount);
-
-                Shoes.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
-
-                if (tempShoes != null)
-                {
-                    DragSlot.instance.dragSlot.AddItem2(tempShoes);
-                    DragSlot.instance.dragSlot.SetCount(tempShoesCount);
-                }
-                else
-                {
-                    DragSlot.instance.dragSlot.RemoveItem();
-                }
-                return;
-            }
-
-            // Weapon
-            if (this.gameObject.name == "WeaponSlot" && DragSlot.instance.dragSlot.Item.data.EquipType.ToString() == "Weapon")
-            {
-
-                InventoryItem tempWeapon = this.Item;
-                int tempWeaponCount = ItemCount;
-
-                AddItem2(DragSlot.instance.dragSlot.Item);
-                SetCount(DragSlot.instance.dragSlot.ItemCount);
-
-                Weapon.SaveStat(STR(), DEF(), DEX(), INT(), MHP(), MMP(), HPR(), MPR());
-
-                if (tempWeapon != null)
-                {
-                    DragSlot.instance.dragSlot.AddItem2(tempWeapon);
-                    DragSlot.instance.dragSlot.SetCount(tempWeaponCount);
-                }
-                else
-                {
-                    DragSlot.instance.dragSlot.RemoveItem();
-                }
-
-            }
-
-            return;
-
         }
-
         return;
-        
     }
 
     public void EquipItem()
     {
-
+        ItemTooltipUI.gameObject.SetActive(false);
 
         Head = GameObject.Find("HeadSlot").GetComponent<EquipSlotSaveStat>();
         Armor = GameObject.Find("ArmorSlot").GetComponent<EquipSlotSaveStat>();
@@ -564,160 +446,78 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
         ShoesSlot = GameObject.Find("ShoesSlot").GetComponent<InventoryUnit>();
         WeaponSlot = GameObject.Find("WeaponSlot").GetComponent<InventoryUnit>();
 
-        Debug.Log("EquipItem은 발동했음");
-        ItemTooltipUI.gameObject.SetActive(false);
-
-
-        if (Item.data.EquipType.ToString().Equals("Head")) 
+        string typeName = Item.data.EquipType.ToString();
+        
+        switch (typeName)
         {
-            Debug.Log("투구인거 감지함!");
+            case "Head":
+                EquiptempItem = HeadSlot.Item;
+                EquiptempItemCount = HeadSlot.ItemCount;
 
-            InventoryItem tempItem = HeadSlot.Item;
-            int tempItemCount = HeadSlot.ItemCount;
+                HeadSlot.AddItem2(Item);
+                HeadSlot.SetCount(ItemCount);
 
-            HeadSlot.AddItem2(Item);
-            HeadSlot.SetCount(ItemCount);
+                Head.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
 
-            Head.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
+            case "Armor":
+                EquiptempItem = ArmorSlot.Item;
+                EquiptempItemCount = ArmorSlot.ItemCount;
 
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
+                ArmorSlot.AddItem2(Item);
+                ArmorSlot.SetCount(ItemCount);
 
-            return;
+                Armor.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
+
+            case "Pants":
+                EquiptempItem = PantsSlot.Item;
+                EquiptempItemCount = PantsSlot.ItemCount;
+
+                PantsSlot.AddItem2(Item);
+                PantsSlot.SetCount(ItemCount);
+
+                Pants.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
+
+            case "Glove":
+                EquiptempItem = GloveSlot.Item;
+                EquiptempItemCount = GloveSlot.ItemCount;
+
+                GloveSlot.AddItem2(Item);
+                GloveSlot.SetCount(ItemCount);
+
+                Glove.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
+
+            case "Shoes":
+                EquiptempItem = ShoesSlot.Item;
+                EquiptempItemCount = ShoesSlot.ItemCount;
+
+                ShoesSlot.AddItem2(Item);
+                ShoesSlot.SetCount(ItemCount);
+
+                Shoes.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
+
+            case "Weapon":
+                EquiptempItem = WeaponSlot.Item;
+                EquiptempItemCount = WeaponSlot.ItemCount;
+
+                WeaponSlot.AddItem2(Item);
+                WeaponSlot.SetCount(ItemCount);
+
+                Weapon.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR()); break;
+
+            default: break;
         }
 
-        if (Item.data.EquipType.ToString().Equals("Armor"))
+        if (EquiptempItem != null)
         {
-            Debug.Log("갑빠인거 감지함!");
-
-            InventoryItem tempItem = ArmorSlot.Item;
-            int tempItemCount = ArmorSlot.ItemCount;
-
-            ArmorSlot.AddItem2(Item);
-            ArmorSlot.SetCount(ItemCount);
-
-            Armor.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
-
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
-
-            return;
+            AddItem2(EquiptempItem);
+            SetCount(EquiptempItemCount);
+        }
+        else
+        {
+            RemoveItem();
         }
 
-        if (Item.data.EquipType.ToString().Equals("Pants"))
-        {
-            Debug.Log("바지인거 감지함!");
-
-            InventoryItem tempItem = PantsSlot.Item;
-            int tempItemCount = PantsSlot.ItemCount;
-
-            PantsSlot.AddItem2(Item);
-            PantsSlot.SetCount(ItemCount);
-
-            Pants.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
-
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
-
-            return;
-        }
-
-        if (Item.data.EquipType.ToString().Equals("Glove"))
-        {
-            Debug.Log("장갑인거 감지함!");
-
-            InventoryItem tempItem = GloveSlot.Item;
-            int tempItemCount = GloveSlot.ItemCount;
-
-            GloveSlot.AddItem2(Item);
-            GloveSlot.SetCount(ItemCount);
-
-            Glove.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
-
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
-
-            return;
-        }
-
-        if (Item.data.EquipType.ToString().Equals("Shoes"))
-        {
-            Debug.Log("신발인거 감지함!");
-
-            InventoryItem tempItem = ShoesSlot.Item;
-            int tempItemCount = ShoesSlot.ItemCount;
-
-            ShoesSlot.AddItem2(Item);
-            ShoesSlot.SetCount(ItemCount);
-
-            Shoes.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
-
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
-
-            return;
-        }
-
-        if (Item.data.EquipType.ToString().Equals("Weapon"))
-        {
-            Debug.Log("무기인거 감지함!");
-
-            InventoryItem tempItem = WeaponSlot.Item;
-            int tempItemCount = WeaponSlot.ItemCount;
-
-            WeaponSlot.AddItem2(Item);
-            WeaponSlot.SetCount(ItemCount);
-
-            Weapon.SaveStat(ThisSTR(), ThisDEF(), ThisDEX(), ThisINT(), ThisMHP(), ThisMMP(), ThisHPR(), ThisMPR());
-
-            if (tempItem != null)
-            {
-                AddItem2(tempItem);
-                SetCount(tempItemCount);
-            }
-            else
-            {
-                RemoveItem();
-            }
-
-            return;
-        }
-
+        return;
     }
 
     private void QuickSlotAdd()
@@ -739,13 +539,13 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
                 }
             }
         }
+
     }
 
     private int STR()
     {
         return DragSlot.instance.dragSlot.Item.data.STR_plus;
     }
-
     private int ThisSTR()
     {
         return this.Item.data.STR_plus;
@@ -754,7 +554,6 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         return DragSlot.instance.dragSlot.Item.data.DEF_plus;
     }
-
     private int ThisDEF()
     {
         return this.Item.data.DEF_plus;
@@ -807,7 +606,6 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         return this.Item.data.MpRecover_plus;
     }
-
     IEnumerator delayEquip()
     {
         yield return new WaitForSeconds(0.05f);

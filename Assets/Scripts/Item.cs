@@ -42,7 +42,6 @@ public class Item : MonoBehaviour
 
     public void AddShop()
     {
-        Debug.Log("AddShop ¹ßµ¿");
         InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.data = data;
         ShopManager.Instance.AddShopList(inventoryItem);

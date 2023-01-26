@@ -1473,9 +1473,9 @@ MonoBehaviour:
   maxdurability: 30
   range: 8
   fireRate: 2
-  cost: 30
-  sellcost: 10
-  upgradecost: 50
+  cost: 250
+  sellcost: 100
+  upgradecost: 370
   topParts: {fileID: 3681238302166585391}
   bottomParts: {fileID: 3681238302008746117}
   EffectPosition: {fileID: 7914074086673412284}

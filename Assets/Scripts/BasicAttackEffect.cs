@@ -5,10 +5,13 @@ using UnityEngine;
 public class BasicAttackEffect : MonoBehaviour
 {
     private Coroutine destroyBasicAttackHitEffect;
-
+    private AudioSource Audio;
     private void Start()
     {
+        Audio = GetComponent<AudioSource>();
         destroyBasicAttackHitEffect = StartCoroutine(DestroyBasicAttackHitEffect());
+
+        Audio.Play();
     }
 
 
@@ -16,7 +19,7 @@ public class BasicAttackEffect : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             Destroy(gameObject);
             break;
         }

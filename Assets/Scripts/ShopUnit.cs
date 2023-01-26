@@ -37,7 +37,6 @@ public class ShopUnit : MonoBehaviour, IPointerClickHandler
 
     public void AddItem(InventoryItem item)
     {
-        Debug.Log("add 아이템 발동함");
         icon.sprite = item.data.icon;
         icon.color = new Color(255, 255, 255, 255);
         this.Item = item;

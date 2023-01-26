@@ -126,7 +126,6 @@ public class Tower : MonoBehaviour
             target = colliders[i].GetComponent<Enemy>();
             if (null != target)
             {
-
                 topParts.LookAt(colliders[i].transform.position);
                 //topParts.GetComponent<Rigidbody>().MoveRotation(Quaternion.RotateTowards(topParts.rotation, colliders[i].transform.rotation, 10f));
                 break;  

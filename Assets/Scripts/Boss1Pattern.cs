@@ -50,13 +50,18 @@ public class Boss1Pattern : MonoBehaviour
 
     public CharacterController player;
 
-    private float Distance;
+    private float DistanceGap;
 
     private bool ShieldOn;
 
     Vector3 moveVec;
 
     private Enemy me;
+
+    //enum state { Idle, Alert ,Move, Attack, DashAttack, Shield, Die }
+
+    //state State = state.Idle;
+
 
     private void Awake()
     {
@@ -69,7 +74,16 @@ public class Boss1Pattern : MonoBehaviour
 
     private void Update()
     {
-
+        //switch (State)
+        //{
+        //    case state.Idle: Idle(); break;
+        //    case state.Alert: Alert(); break;
+        //    case state.Move: Move(); break;
+        //    case state.Attack: Attack(); break;
+        //    case state.DashAttack: DashAttack(); break;
+        //    case state.Shield: Shield(); break;
+        //    case state.Die: Die(); break;
+        //}
     }
 
     private void LateUpdate()
@@ -83,12 +97,219 @@ public class Boss1Pattern : MonoBehaviour
         StartCoroutine(AxeAtttack());
     }
 
+    //public void Idle()
+    //{
+    //    idleTimer += Time.deltaTime;
+
+    //    if (idleTimer > 3 && ShieldOn == false)
+    //    {
+    //        anim.SetTrigger("Shield");
+    //        ShieldEffect.SetActive(true);
+    //        me.RecoverHpBoss();
+    //        State = state.Shield;
+    //    }
+
+    //    Collider[] targets;
+
+    //    targets = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+    //    for (int i = 0; i < targets.Length; i++)
+    //    {
+    //        Vector3 dirToTarget = (targets[i].transform.position - transform.position).normalized;
+
+    //        // 각도 감지
+    //        if (Vector3.Dot(transform.forward, dirToTarget) < Mathf.Cos(viewAngle * 0.5f * Mathf.Deg2Rad))
+    //            continue;
+
+    //        // 거리 감지
+    //        float distToTarget = Vector3.Distance(transform.position, targets[i].transform.position);
+    //        if (Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
+    //            continue;
+
+
+    //        Debug.DrawRay(transform.position, dirToTarget * distToTarget, Color.red);
+    //        target = targets[i].gameObject;
+
+    //        TargetTransform = targets[i].GetComponent<Transform>();
+    //    }
+
+    //    if (target != null)
+    //    {
+    //        IdleInit();
+    //        anim.SetBool("Move", true);
+    //        State = state.Move;
+    //    }
+
+    //}
+
+    //public void Alert()
+    //{
+    //    DieDetect();
+    //    DistanceGap = Vector3.Distance(target.transform.position, transform.position);
+    //    attackTimer += Time.deltaTime;
+
+    //    Debug.Log("보스가 당신을 밀어내고 있습니다.");
+    //    player = target.gameObject.GetComponent<CharacterController>();
+    //    Vector3 fowardVec = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+    //    Vector3 moveInput = Vector3.forward * 5f;
+    //    moveVec = fowardVec * moveInput.z;
+
+    //    if (DistanceGap < 0.9f)
+    //    {
+    //        player.Move(moveVec * Time.deltaTime);
+    //    }
+
+    //    if (DistanceGap <= 2f)
+    //    {
+    //        rigid.velocity = new Vector3(0f, 0f, 0f);
+    //        stopTimer += Time.deltaTime;
+    //        dashTimer = 0;
+    //    }
+
+    //    else if (DistanceGap > 2f)
+    //    {
+    //        anim.SetBool("Move", true);
+    //        stopTimer = 0;
+    //        State = state.Move;
+    //    }
+
+
+    //    if (attackTimer > 3 && stopTimer > 0.3f)
+    //    {
+    //        attackTimer = 0;
+    //        stopTimer = 0;
+    //        StartCoroutine(AxeAtttack());
+    //        State = state.Attack;
+    //    }
+
+    //}
+
+    //public void Move()
+    //{
+    //    DieDetect();
+
+    //    dashTimer += Time.deltaTime;
+    //    attackTimer += Time.deltaTime;
+
+    //    Collider[] targets;
+
+    //    targets = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+
+    //    for (int i = 0; i < targets.Length; i++)
+    //    {
+    //        Vector3 dirToTarget = (targets[i].transform.position - transform.position).normalized;
+
+    //        // 각도 감지
+    //        if (Vector3.Dot(transform.forward, dirToTarget) < Mathf.Cos(viewAngle * 0.5f * Mathf.Deg2Rad))
+    //            continue;
+
+    //        // 거리 감지
+    //        float distToTarget = Vector3.Distance(transform.position, targets[i].transform.position);
+    //        if (Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
+    //            continue;
+
+
+    //        Debug.DrawRay(transform.position, dirToTarget * distToTarget, Color.red);
+    //        target = targets[i].gameObject;
+
+    //        TargetTransform = targets[i].GetComponent<Transform>();
+
+    //        DistanceGap = Vector3.Distance(target.transform.position, transform.position);
+
+            
+            
+    //        var direction = new Vector3(((target.transform.position - transform.position).normalized).x, 0f, ((target.transform.position - transform.position).normalized).z);
+    //        var targetRotation = Quaternion.LookRotation(direction);
+    //        rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
+            
+    //    }
+
+        
+
+    //    //this.transform.Translate(0, 0, Time.deltaTime * moveSpeed);
+
+    //    if (DistanceGap < 1.5f)
+    //    {
+    //        anim.SetBool("Move", false);
+    //        State = state.Alert;
+    //    }
+
+    //    if (DistanceGap > 8f)
+    //    {
+    //        anim.SetBool("Move", false);
+    //        target = null;
+    //        State = state.Idle;
+    //    }
+
+    //    if (attackTimer > 3 && dashTimer > 0.3f)
+    //    {
+    //        attackTimer = 0;
+    //        dashTimer = 0;
+    //        StartCoroutine(DashAxeAtttack());
+    //        State = state.DashAttack;
+    //    }
+    //}
+
+    //public void Attack()
+    //{
+    //    DieDetect();
+
+
+    //    if (!curAnim("Attack"))
+    //    {
+    //        attackTimer = 0;
+    //        State = state.Idle;
+    //    }
+
+    //}
+
+    //public void DashAttack()
+    //{
+    //    DieDetect();
+
+
+    //    if (!curAnim("DashAttack"))
+    //    {
+    //        attackTimer = 0;
+    //        State = state.Idle;
+    //    }
+
+    //}
+
+    //public void Shield()
+    //{
+    //    DieDetect();
+
+    //    idleTimer = 0;
+    //    ShieldOn = true;
+    //    me.Damagable = false;
+
+    //    if (!curAnim("Shield"))
+    //        State = state.Idle;
+    //}
+
+    //public void Die()
+    //{
+    //    // do nothing;
+    //}
+
+    //public void DieDetect()
+    //{
+    //    if (me.Hp <= 0) State = state.Die;
+    //}
+
+    public void IdleInit()
+    {
+        idleTimer = 0;
+        ShieldOn = false;
+        me.Damagable = true;
+        ShieldEffect.SetActive(false);
+    }
+
     public void FindTarget()
     {
 
         if (!curAnim("Death"))
         {
-
 
             if (curAnim("Idle"))
             {
@@ -102,10 +323,10 @@ public class Boss1Pattern : MonoBehaviour
                     idleTimer = 0;
                     me.RecoverHpBoss();
                     me.Damagable = false;
-                    
+
                 }
             }
-
+            //
             else if (curAnim("Idle") == false && curAnim("Shield") == false)
             {
                 ShieldOn = false;
@@ -147,7 +368,7 @@ public class Boss1Pattern : MonoBehaviour
                         if (!curAnim("DashAttack"))
                             attackTimer += Time.deltaTime;
 
-                        Distance = Vector3.Distance(target.transform.position, transform.position);
+                        DistanceGap = Vector3.Distance(target.transform.position, transform.position);
 
                         //var direction = (target.transform.position - transform.position).normalized;
                         var direction = new Vector3(((target.transform.position - transform.position).normalized).x, 0f, ((target.transform.position - transform.position).normalized).z);
@@ -157,7 +378,7 @@ public class Boss1Pattern : MonoBehaviour
                             rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 10f));
 
 
-                        if (Distance < 0.9f)
+                        if (DistanceGap < 0.9f)
                         {
                             Debug.Log("보스가 당신을 밀어내고 있습니다.");
                             player = target.gameObject.GetComponent<CharacterController>();
@@ -168,7 +389,7 @@ public class Boss1Pattern : MonoBehaviour
                         }
 
 
-                        if (Distance <= 2f)
+                        if (DistanceGap <= 2f)
                         {
                             anim.SetBool("Move", false);
                             rigid.velocity = new Vector3(0f, 0f, 0f);
@@ -177,7 +398,7 @@ public class Boss1Pattern : MonoBehaviour
                         }
 
 
-                        if (curAnim("Attack") == false && curAnim("DashAttack") == false && Distance > 2f)
+                        if (curAnim("Attack") == false && curAnim("DashAttack") == false && DistanceGap > 2f)
                         {
                             anim.SetBool("Move", true);
                             this.transform.Translate(0, 0, Time.deltaTime * moveSpeed);
@@ -227,7 +448,7 @@ public class Boss1Pattern : MonoBehaviour
         //    rigid.MoveRotation(Quaternion.Euler(0f,0f,0f));
         //    rigid.
         //    //rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ ;
-            
+
         //    //transform.rotation = Quaternion.Euler(TargetTransform.rotation.x, TargetTransform.rotation.y, TargetTransform.rotation.z);
 
         //}

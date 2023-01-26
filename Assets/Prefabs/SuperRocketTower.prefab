@@ -76,13 +76,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c276a78ae83ec97488f8fb790af608f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topParts: {fileID: 1708101492676016403}
-  bottomParts: {fileID: 4206416664037102381}
+  prefName: 
+  level: 0
+  Rocket: {fileID: 4148678867413669512, guid: 28916b84efb3c824faa7a63d5f6a6f47, type: 3}
+  damage: 0
+  type: 
+  durability: 0
+  maxdurability: 0
   range: 5
   fireRate: 1.5
-  cost: 20
-  Rocket: {fileID: 4148678867413669512, guid: 28916b84efb3c824faa7a63d5f6a6f47, type: 3}
+  cost: 80
+  sellcost: 0
+  upgradecost: 0
+  topParts: {fileID: 1708101492676016403}
+  bottomParts: {fileID: 4206416664037102381}
+  EffectPosition: {fileID: 0}
   LauncherPosition: {fileID: 2274440255284136715}
+  LauncherPosition2: {fileID: 0}
+  LauncherPosition3: {fileID: 0}
+  LauncherPosition4: {fileID: 0}
+  LauncherPosition5: {fileID: 0}
+  TooltipUI: {fileID: 0}
+  UpgradeButton: {fileID: 0}
+  RepairButton: {fileID: 0}
+  SellButton: {fileID: 0}
+  HighLevelEffect1: {fileID: 0}
+  HighLevelEffect2: {fileID: 0}
+  UpgradeEffect: {fileID: 0}
+  RepairEffect: {fileID: 0}
+  SellEffect: {fileID: 0}
+  Level5Effect: {fileID: 0}
+  Level10Effect: {fileID: 0}
 --- !u!1 &3681238302527431978
 GameObject:
   m_ObjectHideFlags: 0

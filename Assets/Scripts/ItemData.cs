@@ -64,4 +64,5 @@ public class ItemData : ScriptableObject
     public int Upgrade_HPR_STAT;
     public int Upgrade_MPR_STAT;
 
+
 }

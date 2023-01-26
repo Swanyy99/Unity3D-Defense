@@ -34,39 +34,24 @@ public class MotionTrail : MonoBehaviour {
     private void OnEnable()
     {
 
+        if (TargetSkinMesh != null && ValueName != "")
+        {
+            StopAllCoroutines();
+            StartCoroutine("GhostStart");
 
-
-
-            if (TargetSkinMesh == null)
+            if (UseLifeTime == true)
             {
-#if UNITY_EDITOR
-                Debug.Log("<color=red>" + "타겟 스킨메쉬가 없습니다." + "</color>", this);
-#endif
-            }
-            if (ValueName == "")
-            {
-#if UNITY_EDITOR
-                Debug.Log("<color=red>" + "변경할 쉐이더 변수이름이 존재하지 않습니다." + "</color>", this);
-#endif
+                StartCoroutine("TimerStart");
             }
 
-            if (TargetSkinMesh != null && ValueName != "")
-            {
-                StopAllCoroutines();
-                StartCoroutine("GhostStart");
-
-                if (UseLifeTime == true)
-                {
-                    StartCoroutine("TimerStart");
-                }
-            }
+        }
         
     }
     IEnumerator GhostStart()
     {
-        while (true) //break할때 까지 계속 돔.
+        while (true)
         {
-            NeedObject = false; //
+            NeedObject = false;
 
             if (player.isDash == true)
             {
@@ -113,7 +98,6 @@ public class MotionTrail : MonoBehaviour {
         
             if (ArrayNum < transform.childCount)
             {
-                //Debug.Log("갯수가 충분합니다.");
                 if (transform.GetChild(ArrayNum).gameObject.activeSelf == false) //오브젝트가 비활성화 되어 있음 (사용가능)
                 {
                     transform.GetChild(ArrayNum).gameObject.transform.position = TargetSkinMesh.transform.position;
@@ -124,17 +108,16 @@ public class MotionTrail : MonoBehaviour {
                     transform.GetChild(ArrayNum).gameObject.GetComponent<MotionTrailRenderer>().ValueTimeDelay = ValueTimeDelay;
                     transform.GetChild(ArrayNum).gameObject.GetComponent<MotionTrailRenderer>().ValueDetail = ValueDetail;
                     transform.GetChild(ArrayNum).gameObject.SetActive(true);
-                    return true; //모션 생성에 성공했습니다.
+                    return true;
                 }
-                else //활성화 되어 있는 경우 false를 반환합니다.
+                else
                 {
-                    //Debug.Log("<color=red>" + "해당 오브젝트가 활성화 되어 있습니다." + "</color>");
+                    
                     if (transform.childCount == ArrayNum + 1)
                     {
-                        //Debug.Log("<color=red>" + "모션생성(갯수부족1)" + "</color>");
-                        Instantiate(transform.GetChild(0), this.transform); //새로운 모션을 생성합니다.
+                        Instantiate(transform.GetChild(0), this.transform);
                     }
-                    //Instantiate(transform.GetChild(0), this.transform); //새로운 모션을 생성합니다.
+                    
                     return false;
                 }
             }
