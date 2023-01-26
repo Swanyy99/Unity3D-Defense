@@ -116,8 +116,8 @@ public class InventoryManager : SingleTon<InventoryManager>
 
                 if (UI_ON == true || GameManager.Instance.BuildMode == true)
                 {
-                    playerCam.m_XAxis.m_MaxSpeed = 0;
-                    playerCam.m_YAxis.m_MaxSpeed = 0;
+                    //playerCam.m_XAxis.m_MaxSpeed = 0;
+                    //playerCam.m_YAxis.m_MaxSpeed = 0;
                     Cursor.lockState = CursorLockMode.Confined;
                 }
                 else if (UI_ON == false || GameManager.Instance.BuildMode == false)

@@ -211,8 +211,6 @@ public class PlayerManager : SingleTon<PlayerManager>
         else
             MP -= manaCost;
 
-
-        // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }
 
     public void GainHp(int hp)
@@ -223,8 +221,6 @@ public class PlayerManager : SingleTon<PlayerManager>
         else
             HP += hp;
 
-
-        // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }
 
     public void GainMp(int mp)
@@ -235,8 +231,6 @@ public class PlayerManager : SingleTon<PlayerManager>
         else
             MP += mp;
 
-
-        // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }
 
     public void GainExp(int xp)
@@ -260,7 +254,6 @@ public class PlayerManager : SingleTon<PlayerManager>
 
         }
 
-        
 
         if (EXP == 0)
             ExpPercentageUI.text = "0 %";
@@ -294,16 +287,6 @@ public class PlayerManager : SingleTon<PlayerManager>
 
         // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
     }
-
-    //public void ChangeMaxHpStat(int val)
-    //{
-    //    MAXHP = 100 + maxHpStat;
-    //}
-
-    //public void ChangeMaxMpStat(int val)
-    //{
-    //    MAXHP = 100 + maxHpStat;
-    //}
 
     public void FinalStatUpdate(int str, int def, int dex, int Int, int mhp, int mmp, int hpr, int mpr)
     {

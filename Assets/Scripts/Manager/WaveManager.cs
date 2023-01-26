@@ -23,6 +23,8 @@ public class WaveManager : SingleTon<WaveManager>
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
+    private GameObject bossPrefab;
+    [SerializeField]
     private float spawnDelay;
     private Coroutine spawnRoutine;
 
@@ -71,7 +73,7 @@ public class WaveManager : SingleTon<WaveManager>
             WaveStart = true;
         }
 
-        if (GameManager.Instance.GameOn == false)
+        if (GameManager.Instance.GameOn == false && SpawnedMonster == 0)
         {
             WaveMonsterDeath = 0;
             SpawnedMonster = 0;
@@ -82,21 +84,46 @@ public class WaveManager : SingleTon<WaveManager>
         //{
         //    spawnRoutine = StartCoroutine(SpawnRoutine());
 
-            
+
 
         //    WaveStart = true;
         //}
 
-        if (SpawnedMonster >= Wave * 10)
-        {
-            GameManager.Instance.GameOn = false;
-            Wave += 1;
-            NowWaveText.text = "WAVE " + Wave.ToString();
-            SpawnedMonster = 0;
-            WaveMonsterDeath = 0;
-        }
 
+       
+            if (Wave % 5 != 0)
+            {
+                if (SpawnedMonster >= Wave * 5) 
+                {
+                    GameManager.Instance.GameOn = false;
+
+                    if (WaveMonsterDeath >= Wave * 5)
+                    {
+                        Wave += 1;
+                        NowWaveText.text = "WAVE " + Wave.ToString();
+                        SpawnedMonster = 0;
+                        WaveMonsterDeath = 0;
+                    }
+                }
+            }
+
+            else
+            {
+                if (SpawnedMonster >= 1)
+                {
+                    GameManager.Instance.GameOn = false;
+
+                    if (WaveMonsterDeath >= 1)
+                    {
+                        Wave += 1;
+                        NowWaveText.text = "WAVE " + Wave.ToString();
+                        SpawnedMonster = 0;
+                        WaveMonsterDeath = 0;
+                    }
+                }
+            }
         
+
         
     }
 
@@ -120,25 +147,32 @@ public class WaveManager : SingleTon<WaveManager>
                 break;
             }
 
-            if (SpawnedMonster < Wave * 10)
+            if (Wave % 5 != 0)
             {
-                SpawnedMonster += 1;
-                GameObject instance = PoolManager.Instance.Get(enemyPrefab, WayPoints.First().position, WayPoints.First().rotation);
-                instance.GetComponent<NavMeshAgent>().enabled = true;
-                if (instance == null)
-                    break;
+                if (SpawnedMonster < Wave * 5)
+                {
+                    SpawnedMonster += 1;
+                    GameObject instance = PoolManager.Instance.Get(enemyPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                    instance.GetComponent<NavMeshAgent>().enabled = true;
+                    if (instance == null)
+                        break;
 
-                //Instantiate();
+                }
+            }
+
+            else
+            {
+                if (SpawnedMonster < 1)
+                {
+                    SpawnedMonster += 1;
+                    Instantiate(bossPrefab, WayPoints.First().position, WayPoints.First().rotation);
+                }
+                
             }
 
             
         }
     }
 
-    //public void TakeDamage(int damage)
-    //{
-    //    Heart -= damage;
 
-    //    // TODO : if (Heart <= 0) GameManager.Instance.GameOver();
-    //}
 }

@@ -7069,6 +7069,7 @@ Transform:
   - {fileID: 1569494225}
   - {fileID: 704984391}
   - {fileID: 450006910}
+  - {fileID: 239789161}
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8022,6 +8023,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &239789160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239789161}
+  - component: {fileID: 239789162}
+  m_Layer: 16
+  m_Name: TransparentWall (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239789161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239789160}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.25, y: 0, z: -32.52}
+  m_LocalScale: {x: 0.81440634, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 203073681}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &239789162
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239789160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.41494, y: 6.449864, z: 1}
+  m_Center: {x: -8.056621, y: -0.53813577, z: 0}
 --- !u!1 &247828501
 GameObject:
   m_ObjectHideFlags: 0
@@ -10249,7 +10295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2b609ebd387474aa8a75f1a8987752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 5000
+  gold: 500
   selectedTower: {fileID: 0}
   BuildEffect: {fileID: 3704967048545542168, guid: 492f15038df1848418b14bb61c240885, type: 3}
   TowerList1: {fileID: 3773843387299755576, guid: 1145d67daba4bde41aa67c2c7d06e2ee, type: 3}
@@ -10269,6 +10315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   way: {fileID: 235500635}
   enemyPrefab: {fileID: 98547277403347493, guid: 7cfe3f748cb116247a363d2ccf700e4d, type: 3}
+  bossPrefab: {fileID: 7372600956437754898, guid: 48f72e7e783387e49adce6a28e660bd4, type: 3}
   spawnDelay: 1.5
   Wave: 1
   SpawnedMonster: 0

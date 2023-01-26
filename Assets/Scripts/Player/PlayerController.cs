@@ -343,7 +343,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && WaveManager.Instance.SpawnedMonster == 0)
             GameManager.Instance.GameOn = true;
 
         if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true)

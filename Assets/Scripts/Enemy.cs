@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     bool isDead;
 
-
+    public bool Damagable = true;
 
     //[SerializeField]
     //private GameObject DeathEffect;
@@ -134,6 +134,12 @@ public class Enemy : MonoBehaviour
             {
                 Exp = 5;
             }
+        }
+
+        if (Type("Boss"))
+        {
+            MaxHp = WaveManager.Instance.Wave * 200;
+            damage = WaveManager.Instance.Wave * 10;
         }
 
         Hp = MaxHp;
@@ -296,6 +302,19 @@ public class Enemy : MonoBehaviour
         //destination.transform.position = WaveManager.Instance.WayPoints[curWayIndex].position;
     }
 
+    public void GainHP(int hp)
+    {
+        Hp += hp;
+    }
+
+    public void RecoverHpBoss()
+    {
+        Hp += MaxHp * 2 / 10;
+
+        if (Hp > MaxHp)
+            Hp = MaxHp;
+    }
+
     public void TakeDamage(int damage)
     {
         int DAMAGE;
@@ -306,9 +325,31 @@ public class Enemy : MonoBehaviour
             DAMAGE = (int)(damage * 1.5f);
         }
         else
+        {
             DAMAGE = damage;
+        }
 
-        Hp -= DAMAGE;
+
+        if (Type("Enemy"))
+        {
+            Hp -= DAMAGE;
+        }
+
+        else if (Type("Boss"))
+        {
+            if (Damagable == true)
+            {
+                Hp -= DAMAGE;
+            }
+            else
+            {
+                DAMAGE = 0;
+                Hp -= DAMAGE;
+            }
+        }
+
+
+
         GameObject Damageinstance = PoolManager.Instance.Get(floatingDamage, damageTextPos.transform.position, damageTextPos.transform.rotation);
         if (damage != DAMAGE)
             Damageinstance.GetComponent<TextMeshPro>().color = Color.red;
@@ -412,9 +453,12 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
-        agent.enabled = false;
-        PlayerDetect = false;
-        //curWayIndex = 0;
+        if (Type("Enemy"))
+        {
+            agent.enabled = false;
+            PlayerDetect = false;
+            //curWayIndex = 0;
+        }
     }
 
 }
