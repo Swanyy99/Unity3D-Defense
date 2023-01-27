@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,12 +21,24 @@ public class GameManager : SingleTon<GameManager>
     public GameObject StartButtonUI;
     public GameObject BuildModeUI;
 
+    [Header("PopupUI")]
+    [SerializeField]
+    private GameObject EquipUI;
+    [SerializeField]
+    private GameObject InvenUI;
+    [SerializeField]
+    private GameObject ShopUI;
+
+    [SerializeField]
+    private CinemachineFreeLook playerCam;
+
     public Enemy target;
 
     
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.F1) && TooltipOn == true)
         {
             TooltipOn = false;

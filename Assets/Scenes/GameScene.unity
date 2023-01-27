@@ -10356,6 +10356,10 @@ MonoBehaviour:
   TowerPlaceUI: {fileID: 1875736098}
   StartButtonUI: {fileID: 1764905603}
   BuildModeUI: {fileID: 1494621189}
+  EquipUI: {fileID: 465349547}
+  InvenUI: {fileID: 479534707372805105}
+  ShopUI: {fileID: 1570188473}
+  playerCam: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &327767880
 MonoBehaviour:
