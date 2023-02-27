@@ -327,7 +327,6 @@ public class Enemy : MonoBehaviour
         {
             Hp = 0;
             //BuildManager.Instance.GainEnergy(1);
-            WaveManager.Instance.WaveMonsterDeath += 1;
 
             if (Type("Boss"))
             {
@@ -342,7 +341,7 @@ public class Enemy : MonoBehaviour
                 quaternion random = quaternion.Euler(-a, b, c);
                 //GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
                 //temp.transform.parent = this.transform;
-                Debug.Log("exp 积己沁澜");
+                //Debug.Log("exp 积己沁澜");
 
 
                 if (isDead == false)
@@ -427,8 +426,12 @@ public class Enemy : MonoBehaviour
         {
             agent.enabled = false;
             PlayerDetect = false;
+
             //curWayIndex = 0;
         }
+
+        WaveManager.Instance.WaveMonsterDeath += 1;
+
     }
 
 }

@@ -25,28 +25,14 @@ public class TowerInfoUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI UpgradePrice;
 
-    
-
-
-
     private Tower tower;
     private Transform cam;
 
     private void Awake()
     {
         tower = GetComponentInParent<Tower>();
-    }
-
-
-
-    private void Start()
-    {
         cam = Camera.main.transform;
-    }
 
-
-    private void Update()
-    {
         Level.text = "Lv. " + tower.Level.ToString();
         Name.text = tower.PrefName.ToString();
         Durability.text = tower.Durability.ToString() + " / " + tower.MaxDurability.ToString();
@@ -56,9 +42,28 @@ public class TowerInfoUI : MonoBehaviour
         SellPrice.text = tower.SellCost.ToString() + " G";
         UpgradePrice.text = tower.Upgradecost.ToString() + " G";
 
-        DurabilityBar.rectTransform.localScale = new Vector3((float)tower.Durability / (float)tower.MaxDurability, 1f, 1f);
-
         transform.LookAt(transform.position + cam.rotation * Vector3.forward, cam.rotation * Vector3.up);
+    }
+
+
+
+    private void Update()
+    {
+        Durability.text = tower.Durability.ToString() + " / " + tower.MaxDurability.ToString();
+        DurabilityBar.rectTransform.localScale = new Vector3((float)tower.Durability / (float)tower.MaxDurability, 1f, 1f);
+        transform.LookAt(transform.position + cam.rotation * Vector3.forward, cam.rotation * Vector3.up);
+    }
+
+    public void UpdateStat()
+    {
+        Level.text = "Lv. " + tower.Level.ToString();
+        Name.text = tower.PrefName.ToString();
+        Durability.text = tower.Durability.ToString() + " / " + tower.MaxDurability.ToString();
+        Damage.text = tower.Damage.ToString();
+        Type.text = tower.Type.ToString();
+        Price.text = tower.Cost.ToString() + " G";
+        SellPrice.text = tower.SellCost.ToString() + " G";
+        UpgradePrice.text = tower.Upgradecost.ToString() + " G";
     }
 
     

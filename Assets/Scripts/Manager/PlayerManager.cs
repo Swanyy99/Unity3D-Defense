@@ -260,7 +260,7 @@ public class PlayerManager : SingleTon<PlayerManager>
         else
 
         {
-            Debug.Log("경험치 퍼센트: " + (float) exp / maxExp * 100 + " %" );
+            //Debug.Log("경험치 퍼센트: " + (float) exp / maxExp * 100 + " %" );
             //Debug.Log((int)(exp / maxExp * 100));
             ExpPercentageUI.text = ((float)exp / maxExp * 100).ToString("F0") + " %";
         }

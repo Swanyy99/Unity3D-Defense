@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tower : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class Tower : MonoBehaviour
     private float range;
     [SerializeField]
     private float fireRate;
+    [SerializeField]
+    private LayerMask targetMask;
 
     [Header("Price")]
     [SerializeField]
@@ -82,8 +86,10 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private Material Level10Effect;
 
+    [Header("Debug")]
+    public Enemy target;
 
-    private Enemy target;
+    
     private float lastShootTime = 0f;
 
 
@@ -103,70 +109,49 @@ public class Tower : MonoBehaviour
         UpgradeButton.onClick.AddListener(Upgrade);
         RepairButton.onClick.AddListener(Repair);
         SellButton.onClick.AddListener(Sell);
-
+        target = null;
     }
-
 
 
     private void Update()
     {
-        FindTarget();
         Shoot();
         TooltipShow();
         TowerDestory();
     }
 
-    private void FindTarget()
-    {
-        target = null;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, range);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            target = colliders[i].GetComponent<Enemy>();
-            if (null != target)
-            {
-                topParts.LookAt(colliders[i].transform.position);
-                //topParts.GetComponent<Rigidbody>().MoveRotation(Quaternion.RotateTowards(topParts.rotation, colliders[i].transform.rotation, 10f));
-                break;  
-            }
-        }
-    }
-
     private void Shoot()
     {
-        if (null == target)
+        if (target != null && !target.isActiveAndEnabled) 
+        { 
+            target = null; 
             return;
-        if (Time.time < lastShootTime + fireRate)
-            return;
+        }
+
+        if (target == null) return;
+
+        if (Time.time < lastShootTime + fireRate) return;
+
 
         lastShootTime = Time.time;
-
-        GameManager.Instance.target = target;
-        //durability -= 1;
 
         Vector3 NuclearPos = new Vector3(target.transform.position.x, target.transform.position.y + 20, target.transform.position.z);
 
         if (PrefName == "NuclearTower")
         {
-            GameObject temp = Instantiate(Rocket, NuclearPos, target.transform.rotation);
-            temp.transform.parent = this.transform;
+            GameObject temp = Instantiate(Rocket, NuclearPos, target.transform.rotation, this.transform);
         }
         else
         {
-            GameObject temp = Instantiate(Rocket, LauncherPosition.position, LauncherPosition.rotation);
-            temp.transform.parent = this.transform;
+            GameObject temp = Instantiate(Rocket, LauncherPosition.position, LauncherPosition.rotation, this.transform);
         }
 
         if (prefName == "LauncherTower")
         {
-            GameObject temp2 = Instantiate(Rocket, LauncherPosition2.position, LauncherPosition2.rotation);
-            temp2.transform.parent = this.transform;
-            GameObject temp3 = Instantiate(Rocket, LauncherPosition3.position, LauncherPosition3.rotation);
-            temp3.transform.parent = this.transform;
-            GameObject temp4 = Instantiate(Rocket, LauncherPosition4.position, LauncherPosition4.rotation);
-            temp4.transform.parent = this.transform;
-            GameObject temp5 = Instantiate(Rocket, LauncherPosition5.position, LauncherPosition5.rotation);
-            temp5.transform.parent = this.transform;
+            GameObject temp2 = Instantiate(Rocket, LauncherPosition2.position, LauncherPosition2.rotation, this.transform);
+            GameObject temp3 = Instantiate(Rocket, LauncherPosition3.position, LauncherPosition3.rotation, this.transform);
+            GameObject temp4 = Instantiate(Rocket, LauncherPosition4.position, LauncherPosition4.rotation, this.transform);
+            GameObject temp5 = Instantiate(Rocket, LauncherPosition5.position, LauncherPosition5.rotation, this.transform);
         }
 
         //target.TakeDamage(damage);
@@ -185,7 +170,8 @@ public class Tower : MonoBehaviour
         if (durability <= 0)
         {
             Instantiate(SellEffect, EffectPosition.position, EffectPosition.rotation);
-            Destroy(gameObject);
+            StartCoroutine(DelayDestroy());
+            //Destroy(gameObject);
         }
     }
 
@@ -229,6 +215,8 @@ public class Tower : MonoBehaviour
                 topParts.GetComponent<MeshRenderer>().material = Level10Effect;
                 bottomParts.GetComponent<MeshRenderer>().material = Level10Effect;
             }
+
+            gameObject.GetComponentInChildren<TowerInfoUI>().UpdateStat();
         }
     }
 
@@ -240,6 +228,8 @@ public class Tower : MonoBehaviour
             BuildManager.Instance.GoldUpdate();
             durability = maxdurability;
             Instantiate (RepairEffect, EffectPosition.position, EffectPosition.rotation);
+
+            gameObject.GetComponentInChildren<TowerInfoUI>().UpdateStat();
         }
     }
 
@@ -251,11 +241,37 @@ public class Tower : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(gameObject);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if ((other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Boss")) && target == null)
+        {
+            target = other.gameObject.transform.GetComponent<Enemy>();
+        }
+
+        if (target != null && target.isActiveAndEnabled) topParts.LookAt(target.transform.position);
+        //if (target != null && !target.isActiveAndEnabled) target = null;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (target != null) target = null;
+    }
 
 }

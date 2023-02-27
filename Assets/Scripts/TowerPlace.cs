@@ -35,9 +35,6 @@ public class TowerPlace : MonoBehaviour
             else
                 mesh.material.color = normal;
         }
-
-        
-
     }
 
     private void OnMouseOver()

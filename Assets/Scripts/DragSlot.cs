@@ -16,17 +16,17 @@ public class DragSlot : MonoBehaviour
         instance = this;
     }
 
-    public void DragSetImage(Image _itemImage)
+    public void DragSetImage(Image itemImage)
     {
-        imageItem.sprite = _itemImage.sprite;
+        imageItem.sprite = itemImage.sprite;
         SetColor(1);
         gameObject.transform.SetAsLastSibling();
     }
 
-    public void SetColor(float _alpha)
+    public void SetColor(float alpha)
     {
         Color color = imageItem.color;
-        color.a = _alpha;
+        color.a = alpha;
         imageItem.color = color;
     }
 }

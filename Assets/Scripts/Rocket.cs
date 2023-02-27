@@ -20,15 +20,19 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     private GameObject BoomEffect;
 
-    private Enemy Mytarget;
+    public Enemy Mytarget;
 
     private Enemy target;
+
+    private Enemy NewTarget;
 
     private Coroutine autoDestoryRoutine;
 
     private Tower tower;
 
     private int MaxTarget;
+
+    public LayerMask targetMask;
     
 
     [SerializeField]
@@ -37,18 +41,24 @@ public class Rocket : MonoBehaviour
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
+        tower = GetComponentInParent<Tower>();
+        Mytarget = tower.target;
     }
     private void Start()
     {
-        tower = GetComponentInParent<Tower>();
-        Mytarget = GameManager.Instance.target;
+        this.transform.parent = null;
+        //Mytarget = GameManager.Instance.target;
         autoDestoryRoutine = StartCoroutine(AutoDestoryRoutine());
     }
 
     private void Update()
     {
-       
-        if (Mytarget != null)
+        FlyToTarget();
+    }
+
+    private void FlyToTarget()
+    {
+        if (Mytarget != null && Mytarget.isActiveAndEnabled)
         {
             var direction = (Mytarget.transform.GetChild(0).position - transform.position).normalized;
             rigid.velocity = transform.forward * RocketSpeed;
@@ -56,17 +66,31 @@ public class Rocket : MonoBehaviour
             rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, RotateSpeed));
         }
 
-        if (Mytarget == null)
+        else
         {
-            Mytarget = GameManager.Instance.target;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 3f, targetMask);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                NewTarget = colliders[i].GetComponent<Enemy>();
+                if (null != NewTarget)
+                {
+                    Mytarget = NewTarget;
+                    break;
+                }
+            }
         }
     }
 
     private IEnumerator AutoDestoryRoutine()
     {
-        yield return new WaitForSeconds(3f);
-        GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
-        temp.transform.parent = this.transform.parent.transform;
+        yield return new WaitForSeconds(2f);
+        GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, this.transform);
+        StartCoroutine(DelayDestroy());
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(0.05f);
         Destroy(gameObject);
     }
 
@@ -75,12 +99,11 @@ public class Rocket : MonoBehaviour
         if (other.gameObject.tag.Equals("Enemy"))
         {
             MaxTarget += 1;
-            Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
+            //Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
 
             if (MaxTarget <= 1)
             {
-                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
-                temp.transform.parent = this.transform.parent.transform;
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, this.transform);
             }
 
             target = other.GetComponent<Enemy>();
@@ -94,19 +117,18 @@ public class Rocket : MonoBehaviour
                 }
             }
 
-            Destroy(gameObject);
+            StartCoroutine(DelayDestroy());
+            //Destroy(gameObject);
             //gameObject.SetActive(false);
         }
 
         if (other.gameObject.tag.Equals("Boss"))
         {
             MaxTarget += 1;
-            Debug.Log("¹Ì»çÀÏ ºÎµúÈû");
 
             if (MaxTarget <= 1)
             {
-                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation);
-                temp.transform.parent = this.transform.parent.transform;
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, this.transform);
             }
 
             target = other.GetComponent<Enemy>();
@@ -120,8 +142,9 @@ public class Rocket : MonoBehaviour
                 }
             }
 
+            StartCoroutine(DelayDestroy());
             //gameObject.SetActive(false);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

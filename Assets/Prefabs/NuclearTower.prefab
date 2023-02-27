@@ -1425,7 +1425,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3681238301214024106}
   - component: {fileID: 3773843387299755576}
-  m_Layer: 0
+  - component: {fileID: 7101720546050693916}
+  m_Layer: 2
   m_Name: NuclearTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1473,6 +1474,9 @@ MonoBehaviour:
   maxdurability: 30
   range: 8
   fireRate: 2
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 4608
   cost: 250
   sellcost: 100
   upgradecost: 370
@@ -1495,6 +1499,20 @@ MonoBehaviour:
   SellEffect: {fileID: 9103970747111968568, guid: 82630d1289afcaa4499ab5391fc3bcbd, type: 3}
   Level5Effect: {fileID: 2100000, guid: bc92ed8818b855c43b7a7b24eff2d193, type: 2}
   Level10Effect: {fileID: 2100000, guid: 7a9224ab9ee16df4d839ba02921be788, type: 2}
+  target: {fileID: 0}
+--- !u!135 &7101720546050693916
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3681238301214024105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3681238302008851621
 GameObject:
   m_ObjectHideFlags: 0

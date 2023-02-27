@@ -19,8 +19,7 @@ public class BoomEffect : MonoBehaviour
 
     [SerializeField]
     private bool isGlobalAttack;
-
-    private void Start()
+    private void Awake()
     {
         tower = GetComponentInParent<Tower>();
         rigid = GetComponent<Rigidbody>();
@@ -30,10 +29,14 @@ public class BoomEffect : MonoBehaviour
         colliderGoneRoutine = StartCoroutine(ColliderGoneRoutine());
 
         if (isGlobalAttack == true)
+        {
             col.enabled = true;
-
-        tower.durability -= 1;
-
+            tower.durability -= 1;
+        }
+    }
+    private void Start()
+    {
+        transform.parent = null;
     }
 
 

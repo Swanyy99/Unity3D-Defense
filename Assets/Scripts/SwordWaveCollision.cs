@@ -38,7 +38,7 @@ public class SwordWaveCollision : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            Debug.Log("적과 충돌");
+            //Debug.Log("적과 충돌");
             
                 target = other.GetComponent<Enemy>();
                 target.TakeDamage(PlayerManager.Instance.STR * 5);
@@ -48,7 +48,7 @@ public class SwordWaveCollision : MonoBehaviour
 
         if (other.gameObject.tag.Equals("Boss"))
         {
-            Debug.Log("보스와 충돌");
+            //Debug.Log("보스와 충돌");
 
             target = other.GetComponent<Enemy>();
             target.TakeDamage(PlayerManager.Instance.STR * 5);

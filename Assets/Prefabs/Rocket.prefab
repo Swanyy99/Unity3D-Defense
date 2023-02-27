@@ -103,6 +103,10 @@ MonoBehaviour:
   RotateSpeed: 10
   RocketDamage: 1
   BoomEffect: {fileID: 2700165819444924018, guid: 568ec495736f864448ba01b94c1df216, type: 3}
+  Mytarget: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 4608
   isGlobalAttack: 0
 --- !u!54 &7248050798976015471
 Rigidbody:

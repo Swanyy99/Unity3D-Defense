@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using UnityEngine.UIElements;
 
 public class PoolManager : SingleTon<PoolManager>
 {
@@ -48,9 +49,9 @@ public class PoolManager : SingleTon<PoolManager>
             GameObject instance = stack.Pop();
             //instance.transform.parent = parent;
             instance.transform.SetParent(parent);
-            instance.SetActive(true);
             instance.transform.position = position;
             instance.transform.rotation = rotation;
+            instance.SetActive(true);
             return instance;
         }
 
@@ -59,10 +60,10 @@ public class PoolManager : SingleTon<PoolManager>
         {
             GameObject instance = Instantiate(prefab);
             instance.transform.SetParent(parent);
-            instance.SetActive(true);
             instance.gameObject.name = prefab.name;
             instance.transform.position = position;
             instance.transform.rotation = rotation;
+            instance.SetActive(true);
             return instance;
         }
 
@@ -82,6 +83,8 @@ public class PoolManager : SingleTon<PoolManager>
         Poolable poolabe = poolPrefab.Find((x) => instance.name == x.container.name);
         //instance.transform.parent = poolabe.container;
         instance.transform.SetParent(poolabe.container);
+        instance.transform.position = poolabe.container.position;
+        instance.transform.rotation = poolabe.container.rotation;
     }
 
     [Serializable]
