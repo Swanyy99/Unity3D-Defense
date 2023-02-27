@@ -58,6 +58,9 @@ public class Boss1Pattern : MonoBehaviour
 
     private Enemy me;
 
+    public AudioClip AxeAttackSound;
+    public AudioClip ShieldSound;
+
     //enum state { Idle, Alert ,Move, Attack, DashAttack, Shield, Die }
 
     //state State = state.Idle;

@@ -5,13 +5,17 @@ using UnityEngine;
 public class BasicAttackEffect : MonoBehaviour
 {
     private Coroutine destroyBasicAttackHitEffect;
-    private AudioSource Audio;
+    private AudioSource audioSource;
+    private AudioSource PlayerAudioSource;
+
     private void Start()
     {
-        Audio = GetComponent<AudioSource>();
+        PlayerAudioSource = GetComponentInParent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         destroyBasicAttackHitEffect = StartCoroutine(DestroyBasicAttackHitEffect());
-
-        Audio.Play();
+        if (PlayerAudioSource.isPlaying)
+            PlayerAudioSource.Stop();
+        audioSource.Play();
     }
 
 

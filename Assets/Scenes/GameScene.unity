@@ -23017,7 +23017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743412486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.98, y: 2.641, z: -59}
+  m_LocalPosition: {x: 1.7963321, y: 2.641, z: -49.003376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31991,7 +31991,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888613480}
-  m_LocalRotation: {x: 0.22975291, y: -0.000000018722702, z: 0.00000000441983, w: 0.973249}
+  m_LocalRotation: {x: 0.004220533, y: 0.97308475, z: -0.2297142, w: 0.017878463}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34235,8 +34235,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12719338, y: 0.000000038162142, z: -0.000000004893719, w: 0.9918779}
-  m_LocalPosition: {x: 1.98, y: 2.641, z: -59}
+  m_LocalRotation: {x: 0.002336527, y: 0.9917106, z: -0.12717198, w: 0.018220669}
+  m_LocalPosition: {x: 1.7963321, y: 2.641, z: -49.003376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42942,7 +42942,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320294689}
-  m_LocalRotation: {x: 0.12719338, y: 0.000000019081071, z: -0.000000002446859, w: 0.991878}
+  m_LocalRotation: {x: 0.0023365272, y: 0.9917106, z: -0.12717195, w: 0.018220674}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58200,6 +58200,7 @@ MonoBehaviour:
   groundCheck: {fileID: 304117061}
   groundDistance: 0.2
   respawnDistance: 0.1
+  DashSound: {fileID: 8300000, guid: f981cffcc8e59435eb0c33e55573a323, type: 3}
   ShopUI: {fileID: 1570188473}
   groundMask:
     serializedVersion: 2
@@ -63466,6 +63467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 862618057}
+  SwingSwordSound: {fileID: 8300000, guid: f981cffcc8e59435eb0c33e55573a323, type: 3}
 --- !u!1001 &1847267296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69178,7 +69180,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021134582}
-  m_LocalRotation: {x: 0.1091774, y: 0.00000001912232, z: -0.0000000021002802, w: 0.9940223}
+  m_LocalRotation: {x: 0.0020055799, y: 0.9938546, z: -0.109159, w: 0.0182601}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -77224,19 +77226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInterAction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &5866666020042494800
 AudioSource:
   m_ObjectHideFlags: 0
@@ -77247,7 +77237,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 69e9513e331edfa43ac4976c1ea0f24f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 77b821a6741a54f74ab797f34c8ac075, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

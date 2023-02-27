@@ -23,7 +23,6 @@ public class ShopUI : MonoBehaviour
 
     void Start()
     {
-
         for (int i = 0; i < ShopItemList.Count; i++)
         {
             Item instanceItem = ShopItemList[i].item.GetComponent<Item>();

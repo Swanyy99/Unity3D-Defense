@@ -62,10 +62,13 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.2f;
     public float respawnDistance = 0.1f;
+    public AudioClip DashSound;
     [SerializeField]
     private GameObject ShopUI;
     public LayerMask groundMask;
     public LayerMask RespawnMask;
+
+
 
     public Respawn respawn;
 
@@ -74,10 +77,13 @@ public class PlayerController : MonoBehaviour
     public GameObject RespawnEffect;
     public float shortDis;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -297,6 +303,8 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerManager.Instance.UseMana(5 - PlayerManager.Instance.INT);
                 anim.SetBool("isDash", true);
+                audioSource.clip = DashSound;
+                audioSource.Play();
             }
         }
 
@@ -325,7 +333,10 @@ public class PlayerController : MonoBehaviour
     {
         sword.disableSwordCollider();
     }
-
+    public void OnSwordSwingSoundPlay()
+    {
+        sword.playSwingSwordSound();
+    }
     
     public void Behave()
     {
