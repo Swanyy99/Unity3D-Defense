@@ -335,10 +335,10 @@ public class Enemy : MonoBehaviour
 
             else
             {
-                int a = Random.Range(0, 90);
-                int b = Random.Range(0, 360);
-                int c = Random.Range(-90, 90);
-                quaternion random = quaternion.Euler(-a, b, c);
+                //int a = Random.Range(0, 90);
+                //int b = Random.Range(0, 360);
+                //int c = Random.Range(-90, 90);
+                //quaternion random = quaternion.Euler(-a, b, c);
                 //GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
                 //temp.transform.parent = this.transform;
                 //Debug.Log("exp 생성했음");
@@ -347,7 +347,7 @@ public class Enemy : MonoBehaviour
                 if (isDead == false)
                 {
                     oak.dropItem();
-                    GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
+                    GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, this.transform.rotation, this.transform);
                     isDead = true;
                     if (instance == null)
                         return;
@@ -403,21 +403,19 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Death()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(3f);
-            //Instantiate(DeathEffect, transform.GetChild(0).position, transform.GetChild(0).rotation);
-            int a = Random.Range(0, 90);
-            int b = Random.Range(0, 360);
-            int c = Random.Range(-90, 90);
-            quaternion random = quaternion.Euler(-a, b, c);
-            GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, random, this.transform);
-            isDead = true;
-            if (instance == null)
-                break;
-            Destroy(gameObject);
-            break;
-        }
+        
+        yield return new WaitForSeconds(3f);
+        GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, this.transform.rotation, this.transform);
+        isDead = true;
+        if (instance == null) yield break;
+        StartCoroutine(DelayBossDeath());
+    }
+
+    private IEnumerator DelayBossDeath()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
+
     }
 
     private void OnDisable()
