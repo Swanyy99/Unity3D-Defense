@@ -46,7 +46,7 @@ public class BasicAttack : MonoBehaviour
 
                 else if (curAnim("comboSlash4"))
                 {
-                    target.TakeDamage(4 + PlayerManager.Instance.STR);
+                    target.TakeDamage((int)((4 + PlayerManager.Instance.STR) * 1.2f));
                 }
             }
 
@@ -78,7 +78,7 @@ public class BasicAttack : MonoBehaviour
                 {
                     Instantiate(hitEffect, target.transform.GetChild(0).transform.position, target.transform.rotation);
 
-                    target.TakeDamage(4 + PlayerManager.Instance.STR);
+                    target.TakeDamage((int)((4 + PlayerManager.Instance.STR) * 1.2f));
                 }
             }
         }

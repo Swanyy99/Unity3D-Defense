@@ -44,7 +44,6 @@ public class OakPattern : MonoBehaviour
     private void OnEnable()
     {
         anim = GetComponent<Animator>();
-
     }
 
 
@@ -104,8 +103,9 @@ public class OakPattern : MonoBehaviour
         for (int i = 0; i < DropItemList.Count; i++)
         {
             bool Itemdrop = Critical.RandomChance(DropItemList[i].Chance);
+            float DropRandomRange = UnityEngine.Random.Range(-0.6f, 0.6f);
 
-            Vector3 randomPos = new Vector3(transform.position.x + UnityEngine.Random.Range(-1f, 1f), transform.position.y, transform.position.z + UnityEngine.Random.Range(-1f, 1f));
+            Vector3 randomPos = new Vector3(transform.position.x + DropRandomRange, transform.position.y, transform.position.z + DropRandomRange);
             if (Itemdrop)
             {
                 if (DropItemList[i].Name == "오크의 살점")

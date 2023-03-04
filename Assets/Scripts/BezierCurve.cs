@@ -37,12 +37,12 @@ public class BezierCurve : MonoBehaviour
     Vector3 randomVec;
     float ranFlo;
 
+    bool posAB;
+    Vector3 posA = new Vector3(0f, 0f, 0f);
+    Vector3 posB = new Vector3(0f, 0f, 0f);
+
     void Start()
     {
-        //if (traveler==null || startObj==null || targetObj == null) {
-        //    return;
-        //}
-
         routeAmount = 0f;
 
         if (!targetUpdate)
@@ -55,11 +55,6 @@ public class BezierCurve : MonoBehaviour
 
     public virtual void Update()
     {
-        //if (traveler == null || startObj == null || targetObj == null)
-        //{
-        //    return;
-        //}
-
         if (targetUpdate) 
         {
             setFactors();
@@ -98,6 +93,7 @@ public class BezierCurve : MonoBehaviour
                 {
                     handleObj.transform.position = originalHandlePos;
                 }
+
                 handlePos = originalHandlePos =(startVec + destinationVec) / 2f + forHeight * autoHandleHeight;
                 
             }
@@ -109,11 +105,12 @@ public class BezierCurve : MonoBehaviour
     {
         if (routeAmount <= 1f)
         {
-            if (routeAmount < 5f && theDistance > 2f) routeAmount += Time.deltaTime * speed / theDistance;
-            else routeAmount += Time.deltaTime;
+            if (theDistance > 2f) routeAmount += Time.deltaTime * speed / theDistance;
+            else routeAmount += Time.deltaTime * speed / theDistance / 4;
 
             bezierRoute = (1 - routeAmount) * (((1 - routeAmount) * startVec) + (routeAmount * handlePos)) + (routeAmount * (((1 - routeAmount) * handlePos) + (routeAmount * destinationVec)));
             traveler.transform.position = bezierRoute;
+
             if (rotateAlong)
             {
                 traveler.transform.rotation = Quaternion.LookRotation(bezierRoute - positionBefore);
@@ -121,6 +118,7 @@ public class BezierCurve : MonoBehaviour
             }
 
         }
+
         else if (repeat)
         {
             routeAmount = 0;
@@ -145,9 +143,7 @@ public class BezierCurve : MonoBehaviour
     }
 
 
-    bool posAB;
-    Vector3 posA = new Vector3(0f, 0f, 0f);
-    Vector3 posB = new Vector3(0f, 0f, 0f);
+
 
 
     void doBezierShow(float floatAmount)
@@ -160,7 +156,7 @@ public class BezierCurve : MonoBehaviour
     {        
         if (debugLine) 
         {
-            if (startObj!=null && targetObj!=null ) 
+            if (startObj != null && targetObj != null ) 
             {
                 posAB = true;
                 setFactors();

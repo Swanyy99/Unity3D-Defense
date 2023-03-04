@@ -155,10 +155,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-
         MoveRoad();
         DetectPlayer();
-
     }
 
     private bool IsArrive()
@@ -231,11 +229,7 @@ public class Enemy : MonoBehaviour
                 agent.destination = WaveManager.Instance.WayPoints[WaveManager.Instance.WayPoints.Count - 1].position;
 
             }
-
-            
         }
-
-        
     }
 
 
@@ -310,15 +304,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-
-
         GameObject Damageinstance = PoolManager.Instance.Get(floatingDamage, damageTextPos.transform.position, damageTextPos.transform.rotation);
-        if (damage != DAMAGE && Damagable == true)
-            Damageinstance.GetComponent<TextMeshPro>().color = Color.red;
-        else
-            Damageinstance.GetComponent<TextMeshPro>().color = Color.white;
 
-        Damageinstance.GetComponent<TextMeshPro>().text = DAMAGE.ToString();
+        Damageinstance.GetComponent<FloatingDamage>().Init(DAMAGE, critical);
 
         if (Damageinstance == null)
             return;
@@ -326,7 +314,6 @@ public class Enemy : MonoBehaviour
         if (Hp <= 0)
         {
             Hp = 0;
-            //BuildManager.Instance.GainEnergy(1);
 
             if (Type("Boss"))
             {
@@ -335,15 +322,6 @@ public class Enemy : MonoBehaviour
 
             else
             {
-                //int a = Random.Range(0, 90);
-                //int b = Random.Range(0, 360);
-                //int c = Random.Range(-90, 90);
-                //quaternion random = quaternion.Euler(-a, b, c);
-                //GameObject temp = Instantiate(expVFX, Standard.transform.position, random);
-                //temp.transform.parent = this.transform;
-                //Debug.Log("exp 생성했음");
-
-
                 if (isDead == false)
                 {
                     oak.dropItem();
@@ -354,7 +332,6 @@ public class Enemy : MonoBehaviour
                 }
 
                 pool.StartCoroutine(pool.DelayToReturn());
-                //Destroy(gameObject, 0.1f);
             }
 
         }
@@ -365,24 +342,21 @@ public class Enemy : MonoBehaviour
         anim.SetTrigger("Death");
         rigid.useGravity = false;
         col.enabled = false;
-        Weapon.GetComponent<Rigidbody>().useGravity = true;
-        Weapon.GetComponent<Rigidbody>().isKinematic = false;
-        Weapon.GetComponent<Collider>().isTrigger = false;
-        Weapon.transform.parent = null;
+
+        bool drop = Random.Range(0, 2) == 0;
+
+        if (drop)
+        {
+            Weapon.GetComponent<Rigidbody>().useGravity = true;
+            Weapon.GetComponent<Rigidbody>().isKinematic = false;
+            Weapon.GetComponent<Collider>().isTrigger = false;
+            Weapon.GetComponent<InteractionAdaptor>().enabled = true;
+            Weapon.GetComponent<Item>().enabled = true;
+            Weapon.transform.parent = null;
+        }
+
         StartCoroutine(Death());
     }
-
-    //private void GoAway()
-    //{
-    //    if (Distance < 1f)
-    //    {
-    //        Debug.Log("보스가 당신을 밀어내고 있습니다.");
-    //        Vector3 fowardVec = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-    //        Vector3 moveInput = Vector3.forward * 5f;
-    //        moveVec = fowardVec * moveInput.z;
-    //        player.Move(moveVec * Time.deltaTime);
-    //    }
-    //}
 
     private bool Type(string name)
     {

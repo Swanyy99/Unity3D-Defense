@@ -21,8 +21,8 @@ MonoBehaviour:
   description: "\uB9C8\uBC95\uC758 \uD798\uC774 \uAE43\uB4E0 \uCC45.\nDEX \uC2A4\uD0EF\uC744
     1 \uC0C1\uC2B9\uC2DC\uD0A8\uB2E4.\n\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960 1% \uC99D\uAC00,\n\uC774\uB3D9\uC18D\uB3C4\uB3C4
     \uC18C\uD3ED \uC99D\uAC00\uD55C\uB2E4."
-  PurchaseCost: 0
-  SellCost: 10000
+  PurchaseCost: 20000
+  SellCost: 7000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 0

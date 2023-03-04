@@ -33,7 +33,8 @@ public class EquipmentUI : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void CloseUI()
     {
         gameObject.SetActive(false);
-        InventoryManager.Instance.DetectUION();
+        UIManager.Instance.UI_On();
+        UIManager.Instance.SetMouse();
     }
 
     public void UpdateAllstat()

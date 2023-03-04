@@ -20,8 +20,8 @@ MonoBehaviour:
   name: "\uC544\uD3EC\uCE7C\uB9BD\uC2A4"
   description: "STR +15\nDEX +15\nINT +5\n\uC138\uACC4\uC758 \uC885\uB9D0\uC744 \uBD80\uB974\uB294
     \uAC80"
-  PurchaseCost: 10000
-  SellCost: 5000
+  PurchaseCost: 20000
+  SellCost: 10000
   RecoverHp: 0
   RecoverMp: 0
   STR_plus: 15

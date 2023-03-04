@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Exp : BezierCurve
 {
-    private Rigidbody rigid;
-
     private Enemy me;
 
     private GameObject playerStandard;
@@ -27,7 +25,6 @@ public class Exp : BezierCurve
     {
         startObj = null;
         me = GetComponentInParent<Enemy>();
-        rigid = GetComponent<Rigidbody>();
         pool = GetComponent<PoolableObject>();
         this.transform.parent = null;
         playerStandard = GameObject.Find("Player").transform.GetChild(0).gameObject;
@@ -36,17 +33,11 @@ public class Exp : BezierCurve
         targetObj = playerStandard;
         if (me != null) startObj = me.gameObject;
         if (me != null) startVec = startObj.transform.position;
-
-        //doHandleRandom();
     }
 
     public override void Update()
     {
         base.Update();
-        //var direction = (playerStandard.transform.position - transform.position).normalized;
-        //rigid.velocity = transform.forward * 7f;
-        //var targetRotation = Quaternion.LookRotation(direction);
-        //rigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, 7f));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,7 +47,6 @@ public class Exp : BezierCurve
             PlayerManager.Instance.GainExp(me.Exp);
             Instantiate(ExpVFX, playerStandard.transform.position, transform.rotation);
             pool.Return();
-            //Destroy(gameObject);
         }
     }
 

@@ -11,10 +11,4 @@ public class InventoryItem/* : MonoBehaviour*/
         InventoryManager.Instance.UseItem(this);
     }
 
-    public void UseEliminate()
-    {
-        InventoryManager.Instance.EliminateItem(this);
-    }
-
-
 }

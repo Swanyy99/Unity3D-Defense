@@ -244,6 +244,15 @@ public class PlayerManager : SingleTon<PlayerManager>
             EXP -= MaxEXP;
             MaxEXP = (int)(MaxEXP + MaxEXP * 1 / 2);
             level += 1;
+
+            originSTR += 1;
+            originDEF += 1;
+            originDEX += 1;
+            originMAXHP += 5;
+            originMAXMP += 5;
+
+            StatUpdate();
+
             LevelUI.text = level.ToString();
             LogManager.Instance.logText.text += "<#32CD32>[알림]</color><#FFFFFF></color> 레벨 업! <#00FF7F>" + level + " 레벨</color><#FFFFFF></color> 이 되었습니다!\n";
             LogManager.Instance.StartCoroutine(LogManager.Instance.updateScroll());

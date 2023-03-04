@@ -154,7 +154,7 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
 
                 else if (ItemCount == 1)
                 {
-                    Item.UseEliminate();
+                    Item.Use();
                     icon.sprite = null;
                     icon.color = new Color(255, 255, 255, 0);
                     count.text = "";

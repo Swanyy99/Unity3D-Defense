@@ -13,12 +13,6 @@ public class WaveManager : SingleTon<WaveManager>
     private Transform way;
     public List<Transform> WayPoints { get; private set; }
 
-    //[Header("Heart")]
-    //[SerializeField]
-    //private int heart;
-
-    //public UnityAction<int> OnHeartChanged;
-
     [Header("Enemy")]
     [SerializeField]
     private GameObject enemyPrefab;
@@ -36,36 +30,16 @@ public class WaveManager : SingleTon<WaveManager>
     [SerializeField]
     private TextMeshProUGUI NowWaveText;
 
-    public bool WaveStart ;
+    public bool WaveStart;
 
-    //public int Heart
-    //{
-    //    get { return heart; }
-    //    private set { heart = value; OnHeartChanged?.Invoke(heart); }
-    //}
 
     private void Awake()
     {
         GetWayPoints();
     }
-    private void Start()
-    {
-        //spawnRoutine = StartCoroutine(SpawnRoutine());
-
-    }
 
     private void Update()
     {
-        //if (spawnDelay > 0.7f)
-        //{
-        //    if (Wave < 10)
-        //        spawnDelay = 1 - (Wave / 10f);
-        //}
-
-        //if (GameManager.Instance.GameOn == false)
-        //{
-        //    StopCoroutine(SpawnRoutine());
-        //}
 
         if (GameManager.Instance.GameOn == true && WaveStart == false)
         {
@@ -80,50 +54,38 @@ public class WaveManager : SingleTon<WaveManager>
             WaveStart = false;
         }
 
-        //else if (GameManager.Instance.GameOn == true && WaveStart == false)
-        //{
-        //    spawnRoutine = StartCoroutine(SpawnRoutine());
-
-
-
-        //    WaveStart = true;
-        //}
-
-
        
-            if (Wave % 5 != 0)
+        if (Wave % 5 != 0)
+        {
+            if (SpawnedMonster >= Wave * 5) 
             {
-                if (SpawnedMonster >= Wave * 5) 
-                {
-                    GameManager.Instance.GameOn = false;
+                GameManager.Instance.GameOn = false;
 
-                    if (WaveMonsterDeath >= Wave * 5)
-                    {
-                        Wave += 1;
-                        NowWaveText.text = "WAVE " + Wave.ToString();
-                        SpawnedMonster = 0;
-                        WaveMonsterDeath = 0;
-                    }
+                if (WaveMonsterDeath >= Wave * 5)
+                {
+                    Wave += 1;
+                    NowWaveText.text = "WAVE " + Wave.ToString();
+                    SpawnedMonster = 0;
+                    WaveMonsterDeath = 0;
                 }
             }
+        }
 
-            else
+        else
+        {
+            if (SpawnedMonster >= 1)
             {
-                if (SpawnedMonster >= 1)
-                {
-                    GameManager.Instance.GameOn = false;
+                GameManager.Instance.GameOn = false;
 
-                    if (WaveMonsterDeath >= 1)
-                    {
-                        Wave += 1;
-                        NowWaveText.text = "WAVE " + Wave.ToString();
-                        SpawnedMonster = 0;
-                        WaveMonsterDeath = 0;
-                    }
+                if (WaveMonsterDeath >= 1)
+                {
+                    Wave += 1;
+                    NowWaveText.text = "WAVE " + Wave.ToString();
+                    SpawnedMonster = 0;
+                    WaveMonsterDeath = 0;
                 }
             }
-        
-
+        }
         
     }
 

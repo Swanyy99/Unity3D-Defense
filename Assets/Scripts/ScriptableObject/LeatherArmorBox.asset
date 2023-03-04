@@ -19,7 +19,7 @@ MonoBehaviour:
   UseEffect: {fileID: 0}
   name: "\uAC00\uC8FD \uC870\uB07C"
   description: "DEF +1\nDEX +1\n\uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E0 \uC870\uB07C\n\uC4F8\uB9CC\uD55C
-    \uAC83 \uAC19"
+    \uAC83 \uAC19\uB2E4"
   PurchaseCost: 2000
   SellCost: 500
   RecoverHp: 0

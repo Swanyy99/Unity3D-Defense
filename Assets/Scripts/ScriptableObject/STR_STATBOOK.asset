@@ -20,7 +20,7 @@ MonoBehaviour:
   name: "\uD798\uC758 \uB9C8\uB3C4\uC11C"
   description: "\uB9C8\uBC95\uC758 \uD798\uC774 \uAE43\uB4E0 \uCC45.\nSTR \uC2A4\uD0EF\uC744
     1 \uC0C1\uC2B9\uC2DC\uD0A8\uB2E4.\n\uD798\uC774 \uC465\uC465"
-  PurchaseCost: 0
+  PurchaseCost: 30000
   SellCost: 10000
   RecoverHp: 0
   RecoverMp: 0

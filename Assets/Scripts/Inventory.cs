@@ -27,14 +27,12 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
     private void OnEnable()
     {
         gameObject.transform.SetAsLastSibling();
-
     }
 
     private void Start()
     {
         CloseButton.onClick.AddListener(Close);
         image = GetComponent<Image>();
-
     }
 
 
@@ -43,27 +41,24 @@ public class Inventory : MonoBehaviour, IPointerDownHandler, IDragHandler
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
 
         transform.position = mousePosition + GAP;
-
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
         FirstMousePos = eventData.position;
         GAP = transform.position - FirstMousePos;
         gameObject.transform.SetAsLastSibling();
-
     }
 
     public void Close()
     {
-        UIManager.Instance.InventoryOn = false;
         InventoryManager.Instance.InventoryOn = false;
         //gameObject.SetActive(false);
         ShopUI.SetActive(false);
         InvenUI.SetActive(false);
         TooltipUI.SetActive(false);
-        InventoryManager.Instance.DetectUION();
+        UIManager.Instance.UI_On();
+        UIManager.Instance.SetMouse();
         //Cursor.lockState = CursorLockMode.Locked;
     }
 

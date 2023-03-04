@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
             if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
             Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
             //rigid.velocity = moveVec * moveSpeed;
-            controller.Move(moveVec * ( moveSpeed + ( PlayerManager.Instance.DEX * 1 / 20 ) ) * Time.deltaTime);
+            controller.Move(moveVec * ( moveSpeed + ( PlayerManager.Instance.DEX * 1 / 30 ) ) * Time.deltaTime);
             if (moveVec.sqrMagnitude != 0)
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.7f);
@@ -354,20 +354,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && WaveManager.Instance.SpawnedMonster == 0)
             GameManager.Instance.GameOn = true;
 
-        if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == true)
-        {
-            GameManager.Instance.BuildMode = false;
-            GameManager.Instance.TooltipOn = false;
-            if(InventoryManager.Instance.UI_ON == false)
-                Cursor.lockState = CursorLockMode.Locked;
-        }
-        else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false/* && InventoryManager.Instance.InventoryOn == false*/)
-        {
-            InventoryManager.Instance.HideUI();
-            Cursor.lockState = CursorLockMode.Confined;
-            GameManager.Instance.BuildMode = true;
-            GameManager.Instance.TooltipOn = true;
-        }
+       
 
         //else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false && InventoryManager.Instance.InventoryOn == true)
         //{
