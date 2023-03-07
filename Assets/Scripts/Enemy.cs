@@ -24,17 +24,19 @@ public class Enemy : MonoBehaviour
     private bool PlayerDetect;
 
     private int curWayIndex = 0;
-
-    public TextMeshProUGUI Level;
+    
     private int level;
+
+    private GameObject player;
+    private GameObject MainGate;
+
+    [Header("Spec")]
     public int Exp;
     public int MaxHp;
     public int Hp;
     [SerializeField]
     private int damage;
 
-    public GameObject player;
-    public GameObject MainGate;
 
     private float distance;
     private float distance2;
@@ -46,105 +48,41 @@ public class Enemy : MonoBehaviour
 
     private Vector3 playerpos;
 
+    [Header("Component")]
+    public TextMeshProUGUI Level;
     [SerializeField]
     private GameObject Standard;
-
     [SerializeField]
     private GameObject damageTextPos;
-
     [SerializeField]
     private GameObject Weapon;
-
     [SerializeField]
     private GameObject expVFX;
-
     [SerializeField]
     private GameObject floatingDamage;
 
     private PoolableObject pool;
-
-    private OakPattern oak;
-
-    bool isDead;
-
-    public bool Damagable = true;
-
-    Vector3 moveVec;
-
-
     public int Damage { get { return damage; } private set { damage = value; } }
 
-    
+    bool isDead;
+    [Header("is Damagble?")]
+    public bool Damagable = true;
+
+    [Serializable]
+    struct dropItemList
+    {
+        public string Name;
+        public GameObject item;
+        public float Chance;
+    }
+
+    [Space]
+    [SerializeField]
+    private List<dropItemList> DropItemList;
 
     private void OnEnable()
     {
-        isDead = false;
-        curWayIndex = 0;
-        anim = GetComponent<Animator>();
-        if (Type("Boss")) rigid = GetComponent<Rigidbody>();
-        if (Type("Boss")) col = GetComponent<Collider>();
-        if (Type("Enemy")) pool = GetComponent<PoolableObject>();
-        if (Type("Enemy")) oak = GetComponent<OakPattern>();
-
-
-        player = GameObject.Find("Player");
-        MainGate = GameObject.Find("MainGate");
-
-
-        if (Type("Enemy"))
-        {
-            SetNextPoint();
-            anim.SetBool("Move", true);
-            if (NowWave(1,5))
-            {
-                MaxHp = WaveManager.Instance.Wave + WaveManager.Instance.Wave + 3;
-                agent.speed = 2.5f;
-                damage = WaveManager.Instance.Wave + 4;
-            }
-
-            else if (NowWave(6, 10))
-            {
-                MaxHp = WaveManager.Instance.Wave * 7;
-                damage = WaveManager.Instance.Wave * 3;
-                agent.speed = 3f;
-            }
-
-            else
-            {
-                MaxHp = WaveManager.Instance.Wave * 10;
-                damage = WaveManager.Instance.Wave * 6;
-                agent.speed = 3f;
-            }
-
-            if (NowWave(1, 4))
-            {
-                Exp = 1;
-            }
-            else if (NowWave(5, 7))
-            {
-                Exp = 2;
-            }
-            else if (NowWave(8, 10))
-            {
-                Exp = 3;
-            }
-            else
-            {
-                Exp = 5;
-            }
-        }
-
-        if (Type("Boss"))
-        {
-            MaxHp = WaveManager.Instance.Wave * 200;
-            damage = WaveManager.Instance.Wave * 10;
-            Exp = 70 * WaveManager.Instance.Wave / 5;
-        }
-
-        Hp = MaxHp;
-        level = WaveManager.Instance.Wave;
-
-        Level.text = "Lv. " + level.ToString();
+        EnemyInit();
     }
 
 
@@ -254,7 +192,6 @@ public class Enemy : MonoBehaviour
                 agent.destination = WaveManager.Instance.WayPoints[curWayIndex].position;
             }
         }
-        //destination.transform.position = WaveManager.Instance.WayPoints[curWayIndex].position;
     }
 
     public void GainHP(int hp)
@@ -275,21 +212,9 @@ public class Enemy : MonoBehaviour
         int DAMAGE;
         bool critical = Critical.CriticalAttack(PlayerManager.Instance.DEX);
 
+        DAMAGE = critical ? (int)(damage * 1.5f) : damage;
 
-        if (critical)
-        {
-            DAMAGE = (int)(damage * 1.5f);
-        }
-        else
-        {
-            DAMAGE = damage;
-        }
-
-
-        if (Type("Enemy"))
-        {
-            Hp -= DAMAGE;
-        }
+        if (Type("Enemy")) Hp -= DAMAGE;
 
         else if (Type("Boss"))
         {
@@ -324,7 +249,7 @@ public class Enemy : MonoBehaviour
             {
                 if (isDead == false)
                 {
-                    oak.dropItem();
+                    dropItem();
                     GameObject instance = PoolManager.Instance.Get(expVFX, transform.position, this.transform.rotation, this.transform);
                     isDead = true;
                     if (instance == null)
@@ -354,8 +279,104 @@ public class Enemy : MonoBehaviour
             Weapon.GetComponent<Item>().enabled = true;
             Weapon.transform.parent = null;
         }
-
+        dropItem();
         StartCoroutine(Death());
+    }
+
+    public void dropItem()
+    {
+        for (int i = 0; i < DropItemList.Count; i++)
+        {
+            bool Itemdrop = Critical.RandomChance(DropItemList[i].Chance);
+            float DropRandomRange = UnityEngine.Random.Range(-0.6f, 0.6f);
+
+            Vector3 randomPos = new Vector3(transform.position.x + DropRandomRange, transform.position.y, transform.position.z + DropRandomRange);
+            if (Itemdrop)
+            {
+                if (DropItemList[i].Name == "오크의 살점")
+                {
+                    GameObject instance = PoolManager.Instance.Get(DropItemList[i].item, randomPos, transform.rotation);
+                    if (instance == null)
+                        return;
+                }
+                else
+                {
+                    Instantiate(DropItemList[i].item, randomPos, transform.rotation);
+                }
+
+            }
+        }
+
+    }
+
+    private void EnemyInit()
+    {
+        isDead = false;
+        curWayIndex = 0;
+        anim = GetComponent<Animator>();
+        if (Type("Boss")) rigid = GetComponent<Rigidbody>();
+        if (Type("Boss")) col = GetComponent<Collider>();
+        if (Type("Enemy")) pool = GetComponent<PoolableObject>();
+
+
+        player = GameObject.Find("Player");
+        MainGate = GameObject.Find("MainGate");
+
+
+        if (Type("Enemy"))
+        {
+            SetNextPoint();
+            anim.SetBool("Move", true);
+            if (NowWave(1, 5))
+            {
+                MaxHp = WaveManager.Instance.Wave + WaveManager.Instance.Wave + 3;
+                agent.speed = 2.5f;
+                damage = WaveManager.Instance.Wave + 4;
+            }
+
+            else if (NowWave(6, 10))
+            {
+                MaxHp = WaveManager.Instance.Wave * 7;
+                damage = WaveManager.Instance.Wave * 3;
+                agent.speed = 3f;
+            }
+
+            else
+            {
+                MaxHp = WaveManager.Instance.Wave * 10;
+                damage = WaveManager.Instance.Wave * 6;
+                agent.speed = 3f;
+            }
+
+            if (NowWave(1, 4))
+            {
+                Exp = 1;
+            }
+            else if (NowWave(5, 7))
+            {
+                Exp = 2;
+            }
+            else if (NowWave(8, 10))
+            {
+                Exp = 3;
+            }
+            else
+            {
+                Exp = 5;
+            }
+        }
+
+        if (Type("Boss"))
+        {
+            MaxHp = WaveManager.Instance.Wave * 200;
+            damage = WaveManager.Instance.Wave * 10;
+            Exp = 70 * WaveManager.Instance.Wave / 5;
+        }
+
+        Hp = MaxHp;
+        level = WaveManager.Instance.Wave;
+
+        Level.text = "Lv. " + level.ToString();
     }
 
     private bool Type(string name)

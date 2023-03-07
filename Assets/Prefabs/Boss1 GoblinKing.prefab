@@ -42792,19 +42792,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a16c40e95b9bb4ca68a5f3c6b9e0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level: {fileID: 3588686301771075057}
   Exp: 70
   MaxHp: 1000
   Hp: 1000
   damage: 50
-  player: {fileID: 6174575152052580328, guid: e507640cb23b7db4f8e8cf2753ceaf62, type: 3}
-  MainGate: {fileID: 0}
+  Level: {fileID: 3588686301771075057}
   Standard: {fileID: 0}
   damageTextPos: {fileID: 926384574240662548}
   Weapon: {fileID: 4510588414448853826}
   expVFX: {fileID: 1286066831248158, guid: 92b7045d1c1044949ae0c755517afbf2, type: 3}
   floatingDamage: {fileID: 1191210388261145984, guid: 93d6f8ac7a03f7c49afa0051eaaeeb6c, type: 3}
   Damagable: 1
+  DropItemList:
+  - Name: "\uB9C8\uB3C4\uC11C_STR"
+    item: {fileID: 789068467537641088, guid: 107146a133326304c85afffa40ab0fcd, type: 3}
+    Chance: 100
+  - Name: "\uB9C8\uB3C4\uC11C_DEX"
+    item: {fileID: 789068467537641088, guid: 6226bca017713bc4bb0c28a1df024081, type: 3}
+    Chance: 100
+  - Name: "\uC624\uD06C\uC758 \uBBFC\uCCA9\uB450\uAC74"
+    item: {fileID: 2771913142727967374, guid: 893d9b6d2d98f7d40a7fe7248be2f059, type: 3}
+    Chance: 40
+  - Name: "\uC624\uD06C\uC758 \uBBFC\uCCA9\uC7A5\uAC11"
+    item: {fileID: 2771913142727967374, guid: 0afc9c297cc49654e802d795226d0e21, type: 3}
+    Chance: 40
 --- !u!114 &7679152295556286972
 MonoBehaviour:
   m_ObjectHideFlags: 0

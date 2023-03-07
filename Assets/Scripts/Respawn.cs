@@ -7,11 +7,18 @@ public class Respawn : MonoBehaviour
     public GameObject Player;
     public List<GameObject> FoundObjects;
     public GameObject RespawnArea;
-    public GameObject RespawnEffect;
     public float shortDis;
+
+    public GameObject RespawnEffect;
+
+    private void Awake()
+    {
+        Player = GameObject.Find("Player");
+    }
 
     public void RespawnFunc()
     {
+        Debug.Log("RespawnFunc들어왔음");
         FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("RespawnArea"));
         shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position); // 첫번째를 기준으로 잡아주기 
 
@@ -29,23 +36,16 @@ public class Respawn : MonoBehaviour
         }
 
         Player.transform.position = RespawnArea.transform.position;
-        
+
         Instantiate(RespawnEffect, Player.transform.position, Player.transform.rotation);
-
-
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("trigger");
-    //}
-
-    //private void OnCollisionEnter(Collision other)
-    //{
-    //    Debug.Log("Collision");
-    //    if (other.gameObject.tag.Equals("Player"))
-    //    {
-            
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log("Trigger 리스폰지역!!");
+            RespawnFunc();
+        }
+    }
 }

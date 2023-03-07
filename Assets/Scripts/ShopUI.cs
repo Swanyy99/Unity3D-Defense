@@ -19,9 +19,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField]
     private List<shopItemList> ShopItemList;
 
-
-
-    void Start()
+    private void Awake()
     {
         for (int i = 0; i < ShopItemList.Count; i++)
         {
@@ -29,6 +27,8 @@ public class ShopUI : MonoBehaviour
             instanceItem.AddShop();
         }
     }
+
+
 
 
 }

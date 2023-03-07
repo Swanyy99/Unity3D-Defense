@@ -419,43 +419,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RespawnFunc()
+    public void RespawnFunc(GameObject go)
     {
-        FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("RespawnArea"));
-        shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position); // 첫번째를 기준으로 잡아주기 
-
-        RespawnArea = FoundObjects[0];
-
-        foreach (GameObject found in FoundObjects)
-        {
-            float Distance = Vector3.Distance(transform.position, found.transform.position);
-
-            if (Distance < shortDis)
-            {
-                RespawnArea = found;
-                shortDis = Distance;
-            }
-        }
-
         moveY = 0;
-        gameObject.transform.position = RespawnArea.transform.position;
-
-        Instantiate(RespawnEffect, transform.position, transform.rotation);
-
     }
 
     bool curAnim(string name)
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.tag.Equals("Respawn"))
-        {
-            RespawnFunc();
-        }
-
     }
 
 }

@@ -25,18 +25,6 @@ public class OakPattern : MonoBehaviour
     private GameObject oakFinger5;
 
 
-    [Serializable]
-    struct dropItemList
-    {
-        public string Name;
-        public GameObject item;
-        public float Chance;
-    }
-
-    [SerializeField]
-    private List<dropItemList> DropItemList;
-
-
     private Animator anim;
 
     private bool attack1time;
@@ -98,30 +86,5 @@ public class OakPattern : MonoBehaviour
         }
     }
 
-    public void dropItem()
-    {
-        for (int i = 0; i < DropItemList.Count; i++)
-        {
-            bool Itemdrop = Critical.RandomChance(DropItemList[i].Chance);
-            float DropRandomRange = UnityEngine.Random.Range(-0.6f, 0.6f);
-
-            Vector3 randomPos = new Vector3(transform.position.x + DropRandomRange, transform.position.y, transform.position.z + DropRandomRange);
-            if (Itemdrop)
-            {
-                if (DropItemList[i].Name == "오크의 살점")
-                {
-                    GameObject instance = PoolManager.Instance.Get(DropItemList[i].item, randomPos, transform.rotation);
-                    if (instance == null)
-                        return;
-                }
-                else
-                {
-                    Instantiate(DropItemList[i].item, randomPos, transform.rotation);
-                }
-                 
-            }
-        }
-
-    }
 }
 

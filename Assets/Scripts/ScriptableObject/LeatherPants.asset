@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Itemtype: 0
   EquipType: 4
-  prefab: {fileID: 2771913142727967374, guid: cbe9b8fa87031764fbb12ba2ac2cac8c, type: 3}
+  prefab: {fileID: 2771913142727967374, guid: 707e7722cccf4d143972bbd7eb236135, type: 3}
   icon: {fileID: 21300000, guid: e11df26cdf8f96b4591d700b4a200cde, type: 3}
   UseEffect: {fileID: 0}
   name: "\uAC00\uC8FD \uBC14\uC9C0"
