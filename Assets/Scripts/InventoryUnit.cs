@@ -610,7 +610,6 @@ public class InventoryUnit : MonoBehaviour, IPointerClickHandler, IBeginDragHand
     {
         yield return new WaitForSeconds(0.05f);
         EquipItem();
-
     }
 
 }

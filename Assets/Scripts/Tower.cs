@@ -5,8 +5,6 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
-using static Cinemachine.DocumentationSortingAttribute;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tower : MonoBehaviour
 {
@@ -253,10 +251,10 @@ public class Tower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+        private void OnTriggerEnter(Collider other)
+        {
         
-    }
+        }
 
     private void OnTriggerStay(Collider other)
     {

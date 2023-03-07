@@ -13,6 +13,7 @@ public class GameManager : SingleTon<GameManager>
     public bool BuildMode;
     public bool TooltipOn;
     public bool HelpConversation;
+    public bool isPaused;
 
     [Header("UI")]
     public GameObject TowerPlaceUIOpenButton;
@@ -20,6 +21,7 @@ public class GameManager : SingleTon<GameManager>
     public GameObject TowerPlaceUI;
     public GameObject StartButtonUI;
     public GameObject BuildModeUI;
+    public GameObject BlackCover;
 
     [Header("PopupUI")]
     [SerializeField]
@@ -34,10 +36,15 @@ public class GameManager : SingleTon<GameManager>
 
     public Enemy target;
 
-    
+    private void Start()
+    {
+        BlackCover.SetActive(true);
+    }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R) && WaveManager.Instance.SpawnedMonster == 0)
+            GameOn = true;
 
         if (Input.GetKeyDown(KeyCode.F1) && TooltipOn == true)
         {

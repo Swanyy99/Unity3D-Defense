@@ -33,11 +33,4 @@ public class FloatingDamage : MonoBehaviour
         transform.Translate(new Vector3(0f, 0.4f, 0f) * Time.deltaTime, Space.World);
     }
 
-    private void OnDisable()
-    {
-        
-    }
-
-
-
 }

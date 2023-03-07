@@ -15,25 +15,29 @@ public class BoomEffect : MonoBehaviour
 
     private Enemy target;
 
-    private Tower tower;
+    private Rocket rocket;
+
+    public int Damage;
 
     [SerializeField]
     private bool isGlobalAttack;
+
     private void Awake()
     {
-        tower = GetComponentInParent<Tower>();
+        rocket = gameObject.GetComponentInParent<Rocket>();
+        Damage = rocket.Damage;
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<BoxCollider>();
-
-        effectGoneRoutine = StartCoroutine(EffectGoneRoutine());
-        colliderGoneRoutine = StartCoroutine(ColliderGoneRoutine());
 
         if (isGlobalAttack == true)
         {
             col.enabled = true;
-            tower.durability -= 1;
         }
+
+        effectGoneRoutine = StartCoroutine(EffectGoneRoutine());
+        colliderGoneRoutine = StartCoroutine(ColliderGoneRoutine());
     }
+
     private void Start()
     {
         transform.parent = null;
@@ -42,20 +46,14 @@ public class BoomEffect : MonoBehaviour
 
     private IEnumerator EffectGoneRoutine()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(3f);
-            Destroy(gameObject);
-        }
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 
     private IEnumerator ColliderGoneRoutine()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.1f);
-            col.enabled = false;
-        }
+        yield return new WaitForSeconds(0.1f);
+        col.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,14 +62,14 @@ public class BoomEffect : MonoBehaviour
         {
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(tower.damage);
+            target.TakeDamage(Damage);
         }
 
         if (other.gameObject.tag.Equals("Boss"))
         {
             Debug.Log("堡开 单固瘤 户具");
             target = other.GetComponent<Enemy>();
-            target.TakeDamage(tower.damage);
+            target.TakeDamage(Damage);
         }
     }
 }

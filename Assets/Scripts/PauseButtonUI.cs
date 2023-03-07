@@ -13,7 +13,6 @@ public class PauseButtonUI : MonoBehaviour
     public void ShowPauseMenu()
     {
         
-
         PauseMenu pauseMenu = Instantiate(pauseMenuPrefab);
         pauseMenu.transform.SetParent(popUpCanvas.transform, false);
         //pauseMenu.transform.localPosition = Vector3.zero;

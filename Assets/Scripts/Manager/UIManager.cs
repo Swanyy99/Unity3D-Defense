@@ -23,6 +23,8 @@ public class UIManager : SingleTon<UIManager>
 
     public GameObject ItemTooltipUI;
 
+    public GameObject PauseMenuUI;
+
     [SerializeField]
     private CinemachineFreeLook playerCam;
 
@@ -34,21 +36,27 @@ public class UIManager : SingleTon<UIManager>
 
     private void InputDetect()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            SetActiveUI("Inventory");
+        if (!PauseMenuUI.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+                SetActiveUI("Inventory");
 
-        if (Input.GetKeyDown(KeyCode.U))
-            SetActiveUI("Equipment");
+            if (Input.GetKeyDown(KeyCode.U))
+                SetActiveUI("Equipment");
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.F))
+                BuildModeAccess();
+
+            if (Input.GetMouseButtonDown(1))
+                UISelectMode();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && UI_On())
             SetActiveUI("");
-
-        if (Input.GetKeyDown(KeyCode.F))
-            BuildModeAccess();
-
-        if (Input.GetMouseButtonDown(1))
-            UISelectMode();
-
+        else if (Input.GetKeyDown(KeyCode.Escape) && !UI_On() && PauseMenuUI.activeSelf == false)
+            ShowPauseMenu(true);
+        else if (Input.GetKeyDown(KeyCode.Escape) && !UI_On() && PauseMenuUI.activeSelf == true)
+            ShowPauseMenu(false);
     }
 
     public void SetActiveUI(string ui)
@@ -109,10 +117,11 @@ public class UIManager : SingleTon<UIManager>
                 break;
 
             case "":
-                this.ShopUI.SetActive(false);
                 playerCam.m_XAxis.m_MaxSpeed = 200;
                 playerCam.m_YAxis.m_MaxSpeed = 2;
                 Cursor.lockState = CursorLockMode.Locked;
+                this.ShopUI.SetActive(false);
+                HideUI();
                 break;
 
             default:    break;
@@ -166,4 +175,10 @@ public class UIManager : SingleTon<UIManager>
         ItemTooltipUI.gameObject.SetActive(false);
     }
 
+    public void ShowPauseMenu(bool val)
+    {
+        PauseMenuUI.SetActive(val);
+    }
+
 }
+

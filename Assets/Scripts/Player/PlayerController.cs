@@ -10,7 +10,6 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    //private Rigidbody rigid;
     private Animator anim;
     [SerializeField]
     private float moveY;
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
     private GameObject ShopUI;
     public LayerMask groundMask;
     public LayerMask RespawnMask;
-
 
 
     public Respawn respawn;
@@ -270,8 +268,6 @@ public class PlayerController : MonoBehaviour
             curAnim("comboSlash3") == false &&
             curAnim("comboSlash4") == false)
         {
-            //rigid.AddForce(Vector3.up * moveY, ForceMode.Impulse);
-
             moveY = jumpSpeed;
             anim.SetBool("isJumping", true);
         }
@@ -293,9 +289,6 @@ public class PlayerController : MonoBehaviour
         
         if (GameManager.Instance.BuildMode == true)
             return;
-
-        //if (curAnim("Dash"))
-        //    return;
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -351,17 +344,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && WaveManager.Instance.SpawnedMonster == 0)
-            GameManager.Instance.GameOn = true;
-
-       
-
-        //else if (Input.GetKeyDown(KeyCode.F) && GameManager.Instance.BuildMode == false && InventoryManager.Instance.InventoryOn == true)
-        //{
-        //    Cursor.lockState = CursorLockMode.Confined;
-        //    GameManager.Instance.BuildMode = true;
-        //    GameManager.Instance.TooltipOn = true;
-        //}
     }
 
     private void InterAction()
@@ -369,26 +351,18 @@ public class PlayerController : MonoBehaviour
         if (!Input.GetKeyDown(KeyCode.E))
             return;
 
-        
 
-        // 1. 범위내에 있는가
         Collider[] colliders = Physics.OverlapSphere(transform.position, interActionRange);
         for (int i = 0; i < colliders.Length; i++)
         {
             Vector3 dirToTarget = (colliders[i].transform.position - transform.position).normalized;
 
-            // 2. 각도내에 있는가
             if (Vector3.Dot(transform.forward, dirToTarget) < Mathf.Cos(interActionAngle * 0.5f * Mathf.Deg2Rad))
                 continue;
 
             IInteractable target = colliders[i].GetComponent<IInteractable>();
             target?.Interaction(this);
-            //if (target != null)
-            //{
-            //    attacked = false;
-            //    anim.SetBool("isMoving", false);
-            //}
-            
+
         }
     }
 
@@ -421,18 +395,12 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isMoving", false);
             break;
         }
-        //StopCoroutine(doubleSwordWave);
     }
     private bool IsGround()
     {
         return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
 
-    }
-
-    private bool OnRespawnArea()
-    {
-        return Physics.CheckSphere(groundCheck.position, groundDistance, RespawnMask);
     }
 
     private void GravityCheck()
@@ -472,18 +440,7 @@ public class PlayerController : MonoBehaviour
         moveY = 0;
         gameObject.transform.position = RespawnArea.transform.position;
 
-        //GameObject respawnVFX = PoolManager.Instance.Get(RespawnEffect, transform.position, transform.rotation);
-        //if (respawnVFX == null)
-        //    return;
-        
         Instantiate(RespawnEffect, transform.position, transform.rotation);
-
-        //if (respawnEffectable == true)
-        //{
-        //    respawnEffectable = false;
-        //    StartCoroutine(respawnEffectCoroutine());
-        //}
-
 
     }
 
@@ -491,14 +448,6 @@ public class PlayerController : MonoBehaviour
     {
         return anim.GetCurrentAnimatorStateInfo(0).IsName(name);
     }
-
-
-    //private IEnumerator respawnEffectCoroutine()
-    //{
-    //    yield return new WaitForSeconds (0.5f);
-    //    respawnEffectable = true;
-    //}
-
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -508,6 +457,5 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
 
 }

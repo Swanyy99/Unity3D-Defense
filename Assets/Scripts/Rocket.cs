@@ -33,7 +33,9 @@ public class Rocket : MonoBehaviour
     private int MaxTarget;
 
     public LayerMask targetMask;
-    
+
+    public int Damage;
+
 
     [SerializeField]
     private bool isGlobalAttack;
@@ -43,6 +45,7 @@ public class Rocket : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         tower = GetComponentInParent<Tower>();
         Mytarget = tower.target;
+        Damage = tower.damage;
     }
     private void Start()
     {
@@ -103,7 +106,9 @@ public class Rocket : MonoBehaviour
 
             if (MaxTarget <= 1)
             {
-                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, this.transform);
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, gameObject.transform);
+                tower.durability -= 1;
+
             }
 
             target = other.GetComponent<Enemy>();
@@ -113,7 +118,6 @@ public class Rocket : MonoBehaviour
                 if (MaxTarget <= 1)
                 {
                     target.TakeDamage(tower.damage);
-                    tower.durability -= 1;
                 }
             }
 
@@ -128,7 +132,9 @@ public class Rocket : MonoBehaviour
 
             if (MaxTarget <= 1)
             {
-                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, this.transform);
+                GameObject temp = Instantiate(BoomEffect, transform.position, transform.rotation, gameObject.transform);
+                tower.durability -= 1;
+
             }
 
             target = other.GetComponent<Enemy>();
@@ -138,7 +144,6 @@ public class Rocket : MonoBehaviour
                 if (MaxTarget <= 1)
                 {
                     target.TakeDamage(tower.damage);
-                    tower.durability -= 1;
                 }
             }
 
