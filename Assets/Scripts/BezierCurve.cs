@@ -105,7 +105,7 @@ public class BezierCurve : MonoBehaviour
     {
         if (routeAmount <= 1f)
         {
-            if (theDistance > 2f) routeAmount += Time.deltaTime * speed / theDistance;
+            if (theDistance > 3f) routeAmount += Time.deltaTime * speed / theDistance;
             else routeAmount += Time.deltaTime * speed / theDistance / 4;
 
             bezierRoute = (1 - routeAmount) * (((1 - routeAmount) * startVec) + (routeAmount * handlePos)) + (routeAmount * (((1 - routeAmount) * handlePos) + (routeAmount * destinationVec)));
