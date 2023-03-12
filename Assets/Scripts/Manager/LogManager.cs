@@ -42,7 +42,6 @@ public class LogManager : SingleTon<LogManager>
 
         bool val = LogUI.activeSelf ? false : true;
         LogUI.SetActive(val);
-        
 
     }
 

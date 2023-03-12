@@ -30,11 +30,6 @@ public class ShopManager : SingleTon<ShopManager>
                 shopUnit[i].AddItem(items[i]);
 
             }
-            //else
-            //{
-            //    Debug.Log("업데이트 RemoveItem 발동");
-            //    shopUnit[i].RemoveItem();
-            //}
         }
     }
 }

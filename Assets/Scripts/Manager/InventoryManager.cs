@@ -51,7 +51,6 @@ public class InventoryManager : SingleTon<InventoryManager>
 
     public void AddItem(InventoryItem inventoryItem)
     {
-
         for (int i = 0; i < inven.Length; i++)
         {
             if (inven[i].Item != null)

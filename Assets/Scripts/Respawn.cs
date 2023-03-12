@@ -18,7 +18,6 @@ public class Respawn : MonoBehaviour
 
     public void RespawnFunc()
     {
-        Debug.Log("RespawnFunc들어왔음");
         FoundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("RespawnArea"));
         shortDis = Vector3.Distance(gameObject.transform.position, FoundObjects[0].transform.position); // 첫번째를 기준으로 잡아주기 
 
@@ -36,7 +35,7 @@ public class Respawn : MonoBehaviour
         }
 
         Player.transform.position = RespawnArea.transform.position;
-
+        PlayerManager.Instance.TakeDamage(PlayerManager.Instance.MAXHP * 20 / 100);
         Instantiate(RespawnEffect, Player.transform.position, Player.transform.rotation);
     }
 

@@ -23,7 +23,6 @@ public class EquipSlotSaveStat : MonoBehaviour
     public int HpRecover_plus { get; private set; }
     public int MpRecover_plus { get; private set; }
 
-
     private void Start()
     {
         slot = GetComponent<InventoryUnit>();
@@ -31,8 +30,6 @@ public class EquipSlotSaveStat : MonoBehaviour
 
     public void SaveStat(int Str, int Def, int Dex, int Int, int MaxHp, int MaxMp, int HpRecover, int MpRecover)
     {
-        //EquipUI = GetComponentInParent<EquipmentUI>();
-
         STR_plus = Str;
         DEF_plus = Def;
         DEX_plus = Dex;
@@ -60,7 +57,6 @@ public class EquipSlotSaveStat : MonoBehaviour
 
     public void UnEquipDetect()
     {
-        //EquipUI = GetComponentInParent<EquipmentUI>();
         if (slot == null)
             return;
 
@@ -77,10 +73,6 @@ public class EquipSlotSaveStat : MonoBehaviour
             EquipUI.UpdateAllstat();
             return;
         }
-
-        
-        
-
     }
 
 }

@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public float PlayerMoveSpeed;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -206,7 +208,9 @@ public class PlayerController : MonoBehaviour
             Vector3 moveInput = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
             if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
             Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
-            controller.Move(moveVec * 0.3f * Time.deltaTime);
+            PlayerMoveSpeed = (0.3f * Time.deltaTime);
+            controller.Move(moveVec * PlayerMoveSpeed);
+
             if (moveVec.sqrMagnitude != 0)
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.5f);
@@ -231,7 +235,9 @@ public class PlayerController : MonoBehaviour
             if (moveInput.sqrMagnitude > 1f) moveInput.Normalize();
             Vector3 moveVec = fowardVec * moveInput.z + rightVec * moveInput.x;
             //rigid.velocity = moveVec * moveSpeed;
-            controller.Move(moveVec * ( moveSpeed + ( PlayerManager.Instance.DEX * 1 / 30 ) ) * Time.deltaTime);
+            PlayerMoveSpeed = (moveSpeed + (PlayerManager.Instance.DEX * 1 / 30)) * Time.deltaTime;
+            controller.Move(moveVec * PlayerMoveSpeed);
+
             if (moveVec.sqrMagnitude != 0)
             {
                 transform.forward = Vector3.Lerp(transform.forward, moveVec, 0.7f);

@@ -26,10 +26,6 @@ public class MonClaw : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
